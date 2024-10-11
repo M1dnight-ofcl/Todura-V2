@@ -1,0 +1,322 @@
+@import "../theme";
+//-----------------
+body * {
+    border: none;
+    margin: none;
+    padding: none;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+#sidebar {
+    height: 100%;
+    width: 60px;
+    background: $bg3;
+    transition: .35s;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-direction: column;
+    $sbiconhw: 35px;
+    $sbiconpad: calc((60px - $sbiconhw) / 2);
+    border-right: $outline;
+    padding: $sbiconpad;
+    gap: calc($sbiconpad / 2);
+    .sbbutton {
+        width: $sbiconhw;
+        height: $sbiconhw;
+        background: transparent;
+        border: none;
+        display: flex;
+        .sbicon {
+            width: $sbiconhw;
+            height: $sbiconhw;
+            color: #d0d0d0a0;
+            cursor: pointer;
+            transition: all .35s;
+            &:hover {
+                color: $active;
+                transform: scale(120%);
+                filter: 
+                    drop-shadow(0 0 1vmin $active)
+                    drop-shadow(0 0 5vmin $active)
+                    drop-shadow(0 0 10vmin $active);
+            }
+        }
+    }
+    /* &:hover > .sbicon {
+        right: calc(40vmin - $sbiconhw - $sbiconpad);
+    } */
+}
+#content {
+    position: fixed;
+    height: calc(100dvh - 35px);
+    width: calc(100dvw - 60px);
+    overflow: hidden;
+    bottom: 0;
+    right: 0;
+    padding: 3.5vmin;
+    /* background-image: url("https://picsum.photos/seed/picsum/1920/1080?blur=5");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+    $taskAddInputHeight: 12.5vmin;
+    #taskCreateInputWrapper {
+        height: $taskAddInputHeight;
+        width: calc(100% - 7vmin);
+        position: absolute;
+        bottom: 3.5vmin;
+        left: 3.5vmin;
+        input {
+            height: 100%;
+            width: calc(100% - 10vmin);
+            background: $ui1;
+            border: $outline;
+            border-radius: $border-rad;
+            padding: 1vmin 1.5vmin;
+            padding-top: 1.5vmin;
+            outline: none;
+            color: $h2;
+            font-size: 3vmin;
+            font-family: $font;
+        }
+        #taskCreateTitleWrapper {
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            height: calc(50% - .25vmin);
+            width: 100%;
+            transform: translateX(-50%);
+        }
+        #taskCreateDescriptionWrapper {
+            position: absolute;
+            bottom: 0%;
+            left: 50%;
+            height: calc(50% - .25vmin);
+            width: 100%;
+            transform: translateX(-50%);
+            input{color: $p2;}
+        }
+        #taskCreateButtonWrapper {
+            height: 100%;
+            width: 9.5vmin;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 200;
+            #taskCreateButton {   
+                background: $ui1;
+                border: $outline;
+                border-radius: $border-rad;
+                cursor: pointer;
+                height: 100%;
+                width: 100%;
+                transition: .35s;
+                &:hover {
+                    background: $active;
+                    border: $outline-active;
+                    filter: 
+                        drop-shadow(0 0 1vmin $active)
+                        drop-shadow(0 0 5vmin $active);
+                }
+                &:hover > svg {
+                    color: $h1;
+                    filter: 
+                        drop-shadow(0 0 1vmin $p3)
+                        drop-shadow(0 0 2.5vmin $h2);
+                }
+                svg {
+                    color: $p2;
+                    font-size: 5vmin;
+                    transition: .35s;
+                }
+            }
+        }
+    }
+    #taskWrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        padding: 0 5px;
+        padding-bottom: 7vmin;
+        gap: 1vmin;
+        top: 3.5vmin;
+        left: calc(3.5vmin - 5px);
+        height: calc(100% - 7vmin - $taskAddInputHeight);
+        width: calc(100% - 7vmin + 10px);
+        position: absolute;
+        overflow-y: auto;
+        &{//scrollbar
+            &::-webkit-scrollbar {width: 8px;}
+            &::-webkit-scrollbar-track {background-color: transparent;} 
+            &::-webkit-scrollbar-thumb {
+                background-color: $ui1;
+                border-radius: 5vmin;
+                background-clip: content-box;
+                transition: .35s;
+            }
+            &::-webkit-scrollbar-thumb:hover {
+                background-color: $ui4;
+            }
+        }
+        .task {
+            width: 100%;
+            padding: 1.5rem .5rem;
+            gap: .5rem;
+            height: fit-content;
+            // background: rgba($ui1,.5);
+            // backdrop-filter: blur(.5vmin);
+            background: $ui2;
+            height: fit-content;
+            border: $outline;
+            border-radius: $border-rad;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+            flex-shrink: 0;
+            .task_contentWrapper {
+                height: fit-content;
+                width: calc(75% - 10vmin);
+                .task_text {
+                    margin: 0;
+                    $task_text_size: min(6.5vmin,3rem); //old: 6.5vmin
+                    line-height: $task_text_size;
+                    font-size: $task_text_size;
+                    color: $h1;
+                }
+                .task_desc {
+                    margin: 0;
+                    $task_desc_size: min(2.65vmin,1rem); //old: 6.5vmin
+                    $task_desc_lineheight: $task_desc_size + ($task_desc_size / 10);
+                    line-height: $task_desc_lineheight;
+                    font-size: $task_desc_size;
+                    margin-bottom: calc(0 - $task_desc_lineheight);
+                    color: $p1;
+                }
+                &.checked {
+                    * {
+                        text-decoration: line-through;
+                        color: $disabled;
+                    }
+                }
+            }
+            .task_checkmarkWrapper {
+                width: 60px;
+                height: 100%;
+                display: flex;
+                padding: 12px;
+                .checkmarkContainer {
+                    display: flex;
+                    aspect-ratio: 1 / 1;
+                    width: 100%;
+                    position: relative;
+                    cursor: pointer;
+                    font-size: 1rem;
+                    user-select: none;
+                    input {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                        height: 0;
+                        width: 0;
+                    }
+                    .checkmark {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        width: 100%;
+                        background-color: rgba($h1,.5);
+                        border-radius: $border-rad;
+                        transition: .35s;
+                        &:after {
+                            position:absolute;
+                            display:none;
+                            content: "✔" !important;
+                            left: 50%;
+                            top: 50%;
+                            color: $h2;
+                            font-size: 1rem;
+                            transform: translate(-50%,-50%);
+                        }
+                    }
+                    &:hover input ~ .checkmark {
+                        background-color: $h2;
+                        transform: scale(115%);
+                        filter: 
+                            drop-shadow(0 0 1vmin $active)
+                            drop-shadow(0 0 5vmin $active)
+                            drop-shadow(0 0 10vmin $active)!important;
+                    }
+                    input:checked ~ .checkmark {
+                        background-color: $active;
+                        filter: 
+                            drop-shadow(0 0 1vmin $active)
+                            drop-shadow(0 0 5vmin $active);
+                    }
+                    input:checked ~ .checkmark:after {
+                        display: block;
+                    }
+                }
+            }
+            .task_dataWrapper {
+                // width: calc(100% - (75% - 10vmin));
+                height: 100%;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                text-align: right;
+                .creationDateLabel {
+                    margin: 0;
+                    font-size: max(.75rem,1.75vmin);
+                    color: $p3;
+                    padding-top: 1vmin;
+                }
+                .creationDate {
+                    margin: 0;
+                    font-size: max(.85rem,2vmin);
+                    color: $p1;
+                }
+                .task_optionsWapper {
+                    width: 100%;
+                    height: min(2.5vmin,2rem);
+                    display: flex;
+                    flex-direction: row;
+                    gap: .5vmin;
+                    justify-content: flex-end;
+                    margin-top: .5vmin;
+                    .task_option_icon {
+                        height: 100%;
+                        aspect-ratio: 1 / 1;
+                        font-size: 1rem;
+                        color: $p2;
+                        cursor: pointer;
+                        transition: .35s;
+                        &:hover {
+                            color: $active;
+                            transform: scale(120%);
+                            filter: 
+                                drop-shadow(0 0 1vmin $active)
+                                drop-shadow(0 0 5vmin $active);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #taskScrollShade {
+        height: 5vmin;
+        width: 100%;
+        background: linear-gradient(180deg, transparent, $bg2);
+        z-index: 99;
+        position: absolute;
+        left: 0%;
+        bottom: calc($taskAddInputHeight + 3.5vmin);
+    }
+}

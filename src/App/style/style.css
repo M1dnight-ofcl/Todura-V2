@@ -1,0 +1,303 @@
+@charset "UTF-8";
+@import url("https://fonts.cdnfonts.com/css/orbiter-fbs-trial");
+body * {
+  border: none;
+  margin: none;
+  padding: none;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+}
+
+#sidebar {
+  height: 100%;
+  width: 60px;
+  background: #171717;
+  transition: 0.35s;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-direction: column;
+  border-right: rgba(69, 69, 69, 0.5843137255) solid 1px;
+  padding: 12.5px;
+  gap: 6.25px;
+  /* &:hover > .sbicon {
+      right: calc(40vmin - $sbiconhw - $sbiconpad);
+  } */
+}
+#sidebar .sbbutton {
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  border: none;
+  display: flex;
+}
+#sidebar .sbbutton .sbicon {
+  width: 35px;
+  height: 35px;
+  color: rgba(208, 208, 208, 0.6274509804);
+  cursor: pointer;
+  transition: all 0.35s;
+}
+#sidebar .sbbutton .sbicon:hover {
+  color: #8745f1;
+  transform: scale(120%);
+  filter: drop-shadow(0 0 1vmin #8745f1) drop-shadow(0 0 5vmin #8745f1) drop-shadow(0 0 10vmin #8745f1);
+}
+
+#content {
+  position: fixed;
+  height: calc(100dvh - 35px);
+  width: calc(100dvw - 60px);
+  overflow: hidden;
+  bottom: 0;
+  right: 0;
+  padding: 3.5vmin;
+  /* background-image: url("https://picsum.photos/seed/picsum/1920/1080?blur=5");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+}
+#content #taskCreateInputWrapper {
+  height: 12.5vmin;
+  width: calc(100% - 7vmin);
+  position: absolute;
+  bottom: 3.5vmin;
+  left: 3.5vmin;
+}
+#content #taskCreateInputWrapper input {
+  height: 100%;
+  width: calc(100% - 10vmin);
+  background: #303030;
+  border: rgba(69, 69, 69, 0.5843137255) solid 1px;
+  border-radius: 10px;
+  padding: 1vmin 1.5vmin;
+  padding-top: 1.5vmin;
+  outline: none;
+  color: #f0f0f0;
+  font-size: 3vmin;
+  font-family: "Orbiter FBS Trial", sans-serif;
+}
+#content #taskCreateInputWrapper #taskCreateTitleWrapper {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  height: calc(50% - 0.25vmin);
+  width: 100%;
+  transform: translateX(-50%);
+}
+#content #taskCreateInputWrapper #taskCreateDescriptionWrapper {
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  height: calc(50% - 0.25vmin);
+  width: 100%;
+  transform: translateX(-50%);
+}
+#content #taskCreateInputWrapper #taskCreateDescriptionWrapper input {
+  color: #d5d5d5;
+}
+#content #taskCreateInputWrapper #taskCreateButtonWrapper {
+  height: 100%;
+  width: 9.5vmin;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+}
+#content #taskCreateInputWrapper #taskCreateButtonWrapper #taskCreateButton {
+  background: #303030;
+  border: rgba(69, 69, 69, 0.5843137255) solid 1px;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  transition: 0.35s;
+}
+#content #taskCreateInputWrapper #taskCreateButtonWrapper #taskCreateButton:hover {
+  background: #8745f1;
+  border: #6f27e4 solid 1px;
+  filter: drop-shadow(0 0 1vmin #8745f1) drop-shadow(0 0 5vmin #8745f1);
+}
+#content #taskCreateInputWrapper #taskCreateButtonWrapper #taskCreateButton:hover > svg {
+  color: #f5f5f5;
+  filter: drop-shadow(0 0 1vmin #cacaca) drop-shadow(0 0 2.5vmin #f0f0f0);
+}
+#content #taskCreateInputWrapper #taskCreateButtonWrapper #taskCreateButton svg {
+  color: #d5d5d5;
+  font-size: 5vmin;
+  transition: 0.35s;
+}
+#content #taskWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 5px;
+  padding-bottom: 7vmin;
+  gap: 1vmin;
+  top: 3.5vmin;
+  left: calc(3.5vmin - 5px);
+  height: calc(100% - 7vmin - 12.5vmin);
+  width: calc(100% - 7vmin + 10px);
+  position: absolute;
+  overflow-y: auto;
+}
+#content #taskWrapper::-webkit-scrollbar {
+  width: 8px;
+}
+#content #taskWrapper::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+#content #taskWrapper::-webkit-scrollbar-thumb {
+  background-color: #303030;
+  border-radius: 5vmin;
+  background-clip: content-box;
+  transition: 0.35s;
+}
+#content #taskWrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #404040;
+}
+#content #taskWrapper .task {
+  width: 100%;
+  padding: 1.5rem 0.5rem;
+  gap: 0.5rem;
+  height: fit-content;
+  background: #2b2b2b;
+  height: fit-content;
+  border: rgba(69, 69, 69, 0.5843137255) solid 1px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-shrink: 0;
+}
+#content #taskWrapper .task .task_contentWrapper {
+  height: fit-content;
+  width: calc(75% - 10vmin);
+}
+#content #taskWrapper .task .task_contentWrapper .task_text {
+  margin: 0;
+  line-height: min(6.5vmin, 3rem);
+  font-size: min(6.5vmin, 3rem);
+  color: #f5f5f5;
+}
+#content #taskWrapper .task .task_contentWrapper .task_desc {
+  margin: 0;
+  line-height: min(2.65vmin, 1rem)min(2.65vmin, 1rem)/10;
+  font-size: min(2.65vmin, 1rem);
+  margin-bottom: calc(0 - min(2.65vmin, 1rem)min(2.65vmin, 1rem)/10);
+  color: #e0e0e0;
+}
+#content #taskWrapper .task .task_contentWrapper.checked * {
+  text-decoration: line-through;
+  color: #b5b5b5;
+}
+#content #taskWrapper .task .task_checkmarkWrapper {
+  width: 60px;
+  height: 100%;
+  display: flex;
+  padding: 12px;
+}
+#content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer {
+  display: flex;
+  aspect-ratio: 1/1;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+  user-select: none;
+}
+#content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+#content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(245, 245, 245, 0.5);
+  border-radius: 10px;
+  transition: 0.35s;
+}
+#content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer .checkmark:after {
+  position: absolute;
+  display: none;
+  content: "✔" !important;
+  left: 50%;
+  top: 50%;
+  color: #f0f0f0;
+  font-size: 1rem;
+  transform: translate(-50%, -50%);
+}
+#content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer:hover input ~ .checkmark {
+  background-color: #f0f0f0;
+  transform: scale(115%);
+  filter: drop-shadow(0 0 1vmin #8745f1) drop-shadow(0 0 5vmin #8745f1) drop-shadow(0 0 10vmin #8745f1) !important;
+}
+#content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark {
+  background-color: #8745f1;
+  filter: drop-shadow(0 0 1vmin #8745f1) drop-shadow(0 0 5vmin #8745f1);
+}
+#content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+#content #taskWrapper .task .task_dataWrapper {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+#content #taskWrapper .task .task_dataWrapper .creationDateLabel {
+  margin: 0;
+  font-size: max(0.75rem, 1.75vmin);
+  color: #cacaca;
+  padding-top: 1vmin;
+}
+#content #taskWrapper .task .task_dataWrapper .creationDate {
+  margin: 0;
+  font-size: max(0.85rem, 2vmin);
+  color: #e0e0e0;
+}
+#content #taskWrapper .task .task_dataWrapper .task_optionsWapper {
+  width: 100%;
+  height: min(2.5vmin, 2rem);
+  display: flex;
+  flex-direction: row;
+  gap: 0.5vmin;
+  justify-content: flex-end;
+  margin-top: 0.5vmin;
+}
+#content #taskWrapper .task .task_dataWrapper .task_optionsWapper .task_option_icon {
+  height: 100%;
+  aspect-ratio: 1/1;
+  font-size: 1rem;
+  color: #d5d5d5;
+  cursor: pointer;
+  transition: 0.35s;
+}
+#content #taskWrapper .task .task_dataWrapper .task_optionsWapper .task_option_icon:hover {
+  color: #8745f1;
+  transform: scale(120%);
+  filter: drop-shadow(0 0 1vmin #8745f1) drop-shadow(0 0 5vmin #8745f1);
+}
+#content #taskScrollShade {
+  height: 5vmin;
+  width: 100%;
+  background: linear-gradient(180deg, transparent, #202020);
+  z-index: 99;
+  position: absolute;
+  left: 0%;
+  bottom: 16vmin;
+}/*# sourceMappingURL=style.css.map */
