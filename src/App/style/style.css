@@ -8,6 +8,21 @@ body * {
   justify-content: center;
   align-items: center;
 }
+body *::-webkit-scrollbar {
+  width: 8px;
+}
+body *::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+body *::-webkit-scrollbar-thumb {
+  background-color: #303030;
+  border-radius: 5vmin;
+  background-clip: content-box;
+  transition: 0.35s;
+}
+body *::-webkit-scrollbar-thumb:hover {
+  background-color: #404040;
+}
 
 #sidebar {
   height: 100%;
@@ -144,21 +159,6 @@ body * {
   position: absolute;
   overflow-y: auto;
 }
-#content #taskWrapper::-webkit-scrollbar {
-  width: 8px;
-}
-#content #taskWrapper::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-#content #taskWrapper::-webkit-scrollbar-thumb {
-  background-color: #303030;
-  border-radius: 5vmin;
-  background-clip: content-box;
-  transition: 0.35s;
-}
-#content #taskWrapper::-webkit-scrollbar-thumb:hover {
-  background-color: #404040;
-}
 #content #taskWrapper .task {
   width: 100%;
   padding: 1.5rem 0.5rem;
@@ -185,13 +185,27 @@ body * {
   line-height: min(6.5vmin, 3rem);
   font-size: min(6.5vmin, 3rem);
   color: #f5f5f5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #content #taskWrapper .task .task_contentWrapper .task_desc {
   margin: 0;
-  line-height: min(2.65vmin, 1rem)min(2.65vmin, 1rem)/10;
+  line-height: calc(min(2.65vmin, 1rem) + min(2.65vmin, 1rem) / 10);
   font-size: min(2.65vmin, 1rem);
-  margin-bottom: calc(0 - min(2.65vmin, 1rem)min(2.65vmin, 1rem)/10);
+  margin-bottom: calc(0 - (min(2.65vmin, 1rem) + min(2.65vmin, 1rem) / 10));
   color: #e0e0e0;
+  max-height: 20vmin !important;
+  overflow: auto;
+}
+#content #taskWrapper .task .task_contentWrapper .task_desc .clamp-lines__button {
+  background: transparent;
+  color: #cacaca;
+  height: 1rem;
+  padding: 0 !important;
+  width: fit-content;
+  font-size: 0.85rem;
+  cursor: pointer;
 }
 #content #taskWrapper .task .task_contentWrapper.checked * {
   text-decoration: line-through;
@@ -300,4 +314,92 @@ body * {
   position: absolute;
   left: 0%;
   bottom: 16vmin;
+  user-select: none;
+  pointer-events: none;
+}
+
+#taskview {
+  width: 55vmin;
+  transform: translateX(calc(100% + 10vmin));
+  height: calc(100dvh - 35px);
+  position: fixed;
+  top: 35px;
+  right: 0;
+  background: #2b2b2b;
+  border-left: rgba(69, 69, 69, 0.5843137255) solid 1px;
+  box-shadow: 0 0 1vmin #171717, 0 0 5vmin #171717, 0 0 10vmin #171717;
+  transition: transform 1s;
+  padding: 2.5vmin;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1vmin;
+}
+#taskview #taskview_title {
+  color: #f5f5f5;
+  font-weight: bold;
+  background: #303030;
+  padding: 2vmin;
+  padding-top: 2.5vmin;
+  font-size: 4.5vmin;
+  width: 100%;
+  font-family: "Orbiter FBS Trial", sans-serif;
+  border-radius: 10px;
+  outline: rgba(69, 69, 69, 0.5843137255) solid 1px;
+  transition: 0.15s;
+}
+#taskview #taskview_title:focus {
+  border-bottom: 1vmin solid #8745f1;
+}
+#taskview #taskview_desc {
+  color: #e0e0e0;
+  background: #303030;
+  padding: 2vmin;
+  padding-top: 2.5vmin;
+  font-size: 3vmin;
+  min-height: 15vmin;
+  height: fit-content;
+  overflow-y: auto;
+  width: 100%;
+  font-family: "Orbiter FBS Trial", sans-serif;
+  border-radius: 10px;
+  outline: rgba(69, 69, 69, 0.5843137255) solid 1px;
+  transition: 0.15s;
+}
+#taskview #taskview_desc::-webkit-scrollbar {
+  width: 8px;
+}
+#taskview #taskview_desc::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+#taskview #taskview_desc::-webkit-scrollbar-thumb {
+  background-color: #404040;
+  border-radius: 5vmin;
+  background-clip: content-box;
+  transition: 0.35s;
+}
+#taskview #taskview_desc::-webkit-scrollbar-thumb:hover {
+  background-color: #606060;
+}
+#taskview #taskview_desc:focus {
+  border-bottom: 1vmin solid #8745f1;
+}
+#taskview #taskview_savechanges {
+  width: 100%;
+  padding: 2vmin;
+  font-size: 3vmin;
+  color: #e0e0e0;
+  background: #8745f1;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.35s;
+  box-shadow: 0 0 2vmin rgba(135, 69, 241, 0.75);
+  text-shadow: 0 0 3vmin #cacaca;
+}
+#taskview #taskview_savechanges:hover {
+  box-shadow: 0 0.5vmin 5vmin #8745f1;
+  transform: translateY(-0.5vmin);
+  text-shadow: 0 0 2vmin #f5f5f5;
 }/*# sourceMappingURL=style.css.map */

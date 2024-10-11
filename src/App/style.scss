@@ -7,6 +7,19 @@ body * {
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
+    &{//scrollbar
+        &::-webkit-scrollbar {width: 8px;}
+        &::-webkit-scrollbar-track {background-color: transparent;} 
+        &::-webkit-scrollbar-thumb {
+            background-color: $ui1;
+            border-radius: 5vmin;
+            background-clip: content-box;
+            transition: .35s;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: $ui4;
+        }
+    }
 }
 #sidebar {
     height: 100%;
@@ -148,19 +161,6 @@ body * {
         width: calc(100% - 7vmin + 10px);
         position: absolute;
         overflow-y: auto;
-        &{//scrollbar
-            &::-webkit-scrollbar {width: 8px;}
-            &::-webkit-scrollbar-track {background-color: transparent;} 
-            &::-webkit-scrollbar-thumb {
-                background-color: $ui1;
-                border-radius: 5vmin;
-                background-clip: content-box;
-                transition: .35s;
-            }
-            &::-webkit-scrollbar-thumb:hover {
-                background-color: $ui4;
-            }
-        }
         .task {
             width: 100%;
             padding: 1.5rem .5rem;
@@ -188,15 +188,29 @@ body * {
                     line-height: $task_text_size;
                     font-size: $task_text_size;
                     color: $h1;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 .task_desc {
                     margin: 0;
                     $task_desc_size: min(2.65vmin,1rem); //old: 6.5vmin
-                    $task_desc_lineheight: $task_desc_size + ($task_desc_size / 10);
+                    $task_desc_lineheight: calc($task_desc_size + ($task_desc_size / 10));
                     line-height: $task_desc_lineheight;
                     font-size: $task_desc_size;
                     margin-bottom: calc(0 - $task_desc_lineheight);
                     color: $p1;
+                    max-height: 20vmin !important;
+                    overflow: auto;
+                    .clamp-lines__button {
+                        background: transparent;
+                        color: $p3;
+                        height: 1rem;
+                        padding: 0 !important;
+                        width: fit-content;
+                        font-size: .85rem;
+                        cursor: pointer;
+                    }
                 }
                 &.checked {
                     * {
@@ -318,5 +332,91 @@ body * {
         position: absolute;
         left: 0%;
         bottom: calc($taskAddInputHeight + 3.5vmin);
+        user-select: none;
+        pointer-events: none;
+    }
+}
+#taskview {
+    width: 55vmin;
+    transform: translateX(calc(100% + 10vmin));
+    height: calc(100dvh - 35px);
+    position: fixed;
+    top: 35px;
+    right: 0;
+    background: $ui2;
+    // background-image: radial-gradient(circle farthest-corner at 10vmin 10vmin, rgba($active, .25), rgba($active, .05) 65%, transparent 100%); // too crazy lmao
+    border-left: $outline;
+    box-shadow: 0 0 1vmin $bg3, 0 0 5vmin $bg3, 0 0 10vmin $bg3;
+    transition: transform 1s;
+    padding: 2.5vmin;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1vmin;
+    #taskview_title {
+        color: $h1;
+        font-weight: bold;
+        background: $ui1;
+        padding: 2vmin;
+        padding-top: 2.5vmin;
+        font-size: 4.5vmin;
+        width: 100%;
+        font-family: $font;
+        border-radius: $border-rad;
+        outline: $outline;
+        transition: .15s;
+        &:focus {
+            border-bottom: 1vmin solid $active;
+        }
+    }
+    #taskview_desc {
+        color: $p1;
+        background: $ui1;
+        padding: 2vmin;
+        padding-top: 2.5vmin;
+        font-size: 3vmin;
+        min-height: 15vmin;
+        height: fit-content;
+        overflow-y: auto;
+        width: 100%;
+        font-family: $font;
+        border-radius: $border-rad;
+        outline: $outline;
+        transition: .15s;
+        &{//scrollbar
+            &::-webkit-scrollbar {width: 8px;}
+            &::-webkit-scrollbar-track {background-color: transparent;} 
+            &::-webkit-scrollbar-thumb {
+                background-color: $ui4;
+                border-radius: 5vmin;
+                background-clip: content-box;
+                transition: .35s;
+            }
+            &::-webkit-scrollbar-thumb:hover {
+                background-color: $ui5;
+            }
+        }
+        &:focus {
+            border-bottom: 1vmin solid $active;
+        }
+    }
+    #taskview_savechanges {
+        width: 100%;
+        padding: 2vmin;
+        font-size: 3vmin;
+        color: $p1;
+        background: $active;
+        border-radius: $border-rad;
+        cursor: pointer;
+        transition: .35s;
+        box-shadow: 0 0 2vmin rgba($active,.75);
+        text-shadow: 0 0 3vmin $p3;
+        &:hover {
+            box-shadow: 0 .5vmin 5vmin $active;
+            transform: translateY(-.5vmin);
+            text-shadow: 0 0 2vmin $h1;
+        }
     }
 }

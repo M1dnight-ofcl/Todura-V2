@@ -4035,7 +4035,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.8.1":
+"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -4105,6 +4105,17 @@ __metadata:
     iconv-lite: "npm:0.4.24"
     unpipe: "npm:1.0.0"
   checksum: 10c0/b201c4b66049369a60e766318caff5cb3cc5a900efd89bdac431463822d976ad0670912c931fdbdcf5543207daf6f6833bca57aa116e1661d2ea91e12ca692c4
+  languageName: node
+  linkType: hard
+
+"react-clamp-lines@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "react-clamp-lines@npm:3.0.3"
+  dependencies:
+    prop-types: "npm:^15.7.2"
+  peerDependencies:
+    react: ^15 || ^16 || ^17 || ^18
+  checksum: 10c0/480bf649ff9d746f26c7f592ab6d22eaac41a7c22c4ff67b1b98273b350fd341ad44add84a27f938547e191da2de38020041477c052eb0eeb1230278555c05b6
   languageName: node
   linkType: hard
 
@@ -4954,6 +4965,7 @@ __metadata:
     electron-winstaller: "npm:^5.4.0"
     path-browserify: "npm:^1.0.1"
     react: "npm:^18.3.1"
+    react-clamp-lines: "npm:^3.0.3"
     react-dom: "npm:^18.3.1"
     react-redux: "npm:^9.1.2"
     redux: "npm:^5.0.1"

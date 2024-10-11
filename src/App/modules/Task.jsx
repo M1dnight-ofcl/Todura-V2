@@ -1,14 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faCaretDown, faCaretUp, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux'
 import { addTask, removeTask, modifyState } from '../../store/slices/todo';
+import { setSelectedTask } from '../../store/slices/selectedTask';
+import ClampLines from 'react-clamp-lines';
 import React, { useState, useEffect } from "react";
 export const Task=({id,title,desc,meta})=>{
     const todo=useSelector(state=>state.todo);
+    const selectedTask=useSelector(state=>state.selectedTask);
     const state=useSelector(state=>state.todo[state.todo.findIndex(data=>data.id==id)]);
     // console.log(state); // for debug
     const dispatch=useDispatch();
-    return(<>
+    return(<>{state?
         <div className="task" id={`${btoa(title)}_${id}`.replaceAll("=","")}>
             <div className="task_checkmarkWrapper">
                 <label className="checkmarkContainer">
@@ -22,7 +25,13 @@ export const Task=({id,title,desc,meta})=>{
             </div>
             <div className={`task_contentWrapper ${state.meta.checked?"checked":""}`}>
                 <h1 className="task_text">{state.title}</h1>
-                <p className="task_desc">{state.desc}</p>
+                <ClampLines
+                    text={state.desc}
+                    lines={2}
+                    className="task_desc"
+                    id="desc"
+                    moreText={<>Read More <FontAwesomeIcon icon={faChevronDown} /></>}
+                    lessText={<>Read Less <FontAwesomeIcon icon={faChevronUp} /></>} />
             </div>
             <div className="task_dataWrapper">
                 <p className="creationDateLabel">Creation time:</p>
@@ -41,10 +50,12 @@ export const Task=({id,title,desc,meta})=>{
                         icon={faEdit} 
                         className="task_option_icon"
                         onClick={(e)=>{
-                            
+                            dispatch(setSelectedTask(state));
+                            document.getElementById("taskview").style.transform="translateX(0)";
+                            document.getElementById("taskview_title").focus();
                         }}/>
                 </div>
             </div>
         </div>
-    </>);
+    :null}</>);
 }
