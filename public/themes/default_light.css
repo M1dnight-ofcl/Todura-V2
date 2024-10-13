@@ -1,4 +1,5 @@
 :root {
+    /*base colors*/
     --bg1: #ffffff;
     --bg2: #f0f0f0;
     --bg3: #d0d0d0;
@@ -14,6 +15,7 @@
     --p1: #171717;
     --p2: #191919;
     --p3: #212121;
+    /*others*/
     --disabled: #505050;
     --navbar: var(--bg4);
     --active: #8745f1;
@@ -23,6 +25,7 @@
     --outline: #a0a0a045;
     --outline-active: #6f27e4;
     --sbicons: #35353545;
+    --color-shceme: light;
     /*clr*/
     --clr-red: #dc3939;
     --clr-orange: #dc7239;

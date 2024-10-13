@@ -308,7 +308,7 @@ body *::-webkit-scrollbar-thumb:hover {
   background: var(--ui4);
   border-radius: var(--border-rad);
   border: var(--outline) solid 1px;
-  color-scheme: dark;
+  color-scheme: var(--color-shceme);
   outline: none;
 }
 #content #taskWrapper .task .task_dataWrapper .task_optionsWapper {

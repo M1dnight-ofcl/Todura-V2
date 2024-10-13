@@ -327,7 +327,7 @@ body * {
                         background: $ui4;
                         border-radius: $border-rad;
                         border: $outline;
-                        color-scheme: dark;
+                        color-scheme: $color-shceme;
                         outline: none;
                     }
                     .task_optionsWapper {
