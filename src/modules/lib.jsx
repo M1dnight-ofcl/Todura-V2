@@ -26,3 +26,8 @@ export const queryParams=getQueryParams(window.location.search);
 export const $with=(value)=>{
     return new Promise((resolve,reject)=>{resolve(value)});
 }
+Date.prototype.toDateInputValue=(function() {
+    var local=new Date(this);
+    local.setMinutes(this.getMinutes()-this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});

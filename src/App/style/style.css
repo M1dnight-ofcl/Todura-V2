@@ -55,9 +55,9 @@ body *::-webkit-scrollbar-thumb:hover {
   transition: all 0.35s;
 }
 #sidebar .sbbutton .sbicon:hover {
-  color: var(--active);
+  color: var(--h1);
   transform: scale(120%);
-  filter: drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active)) drop-shadow(0 0 10vmin var(--active));
+  filter: drop-shadow(0 0 1vmin var(--h2)) drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active)) drop-shadow(0 0 10vmin var(--active));
 }
 
 #content {
@@ -175,6 +175,7 @@ body *::-webkit-scrollbar-thumb:hover {
   align-items: center;
   flex-direction: row;
   flex-shrink: 0;
+  cursor: pointer;
 }
 #content #taskWrapper .task .task_contentWrapper {
   height: fit-content;
@@ -188,6 +189,7 @@ body *::-webkit-scrollbar-thumb:hover {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: text;
 }
 #content #taskWrapper .task .task_contentWrapper .task_desc {
   margin: 0;
@@ -197,6 +199,7 @@ body *::-webkit-scrollbar-thumb:hover {
   color: var(--p1);
   max-height: 50vmin !important;
   overflow: auto;
+  cursor: text;
 }
 #content #taskWrapper .task .task_contentWrapper .task_desc .clamp-lines__button {
   background: transparent;
@@ -256,11 +259,14 @@ body *::-webkit-scrollbar-thumb:hover {
 #content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer:hover input ~ .checkmark {
   background: var(--h2);
   transform: scale(115%);
-  filter: drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active)) drop-shadow(0 0 10vmin var(--active)) !important;
+  filter: drop-shadow(0 0 1vmin var(--h2)) drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active)) drop-shadow(0 0 10vmin var(--active)) !important;
 }
 #content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark {
   background: var(--active);
   filter: drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active));
+}
+#content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer:hover input:checked ~ .checkmark {
+  filter: drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active)) drop-shadow(0 0 10vmin var(--active)) !important;
 }
 #content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark:after {
   display: block;
@@ -283,6 +289,27 @@ body *::-webkit-scrollbar-thumb:hover {
   margin: 0;
   font-size: 0.85rem;
   color: var(--p1);
+}
+#content #taskWrapper .task .task_dataWrapper .dueDateLabel {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--p3);
+  padding-top: 1vmin;
+}
+#content #taskWrapper .task .task_dataWrapper #dueDate {
+  padding: 0.25rem;
+  margin: 0.25rem 0;
+  font-family: var(--font);
+  width: 100%;
+  text-align: right;
+  vertical-align: middle;
+  font-size: 1rem;
+  color: var(--p2);
+  background: var(--ui4);
+  border-radius: var(--border-rad);
+  border: var(--outline) solid 1px;
+  color-scheme: dark;
+  outline: none;
 }
 #content #taskWrapper .task .task_dataWrapper .task_optionsWapper {
   width: 100%;
@@ -318,6 +345,93 @@ body *::-webkit-scrollbar-thumb:hover {
   pointer-events: none;
 }
 
+#taskedit {
+  width: 55vmin;
+  transform: translateX(calc(100% + 10vmin));
+  height: calc(100dvh - 35px);
+  position: fixed;
+  top: 35px;
+  right: 0;
+  background: var(--ui2);
+  border-left: var(--outline) solid 1px;
+  box-shadow: 0 0 1vmin var(--bg3), 0 0 5vmin var(--bg3), 0 0 10vmin var(--bg3);
+  transition: transform 1s;
+  padding: 2.5vmin;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1vmin;
+}
+#taskedit #taskedit_title {
+  color: var(--h1);
+  font-weight: bold;
+  background: var(--ui1);
+  padding: 2vmin;
+  padding-top: 2.5vmin;
+  font-size: 4.5vmin;
+  width: 100%;
+  font-family: var(--font);
+  border-radius: var(--border-rad);
+  outline: var(--outline) solid 1px;
+  transition: 0.15s;
+}
+#taskedit #taskedit_title:focus {
+  border-bottom: 1vmin solid var(--active);
+}
+#taskedit #taskedit_desc {
+  color: var(--p1);
+  background: var(--ui1);
+  padding: 2vmin;
+  padding-top: 2.5vmin;
+  font-size: 3vmin;
+  min-height: 15vmin;
+  height: fit-content;
+  overflow-y: auto;
+  max-height: 60vmin;
+  width: 100%;
+  font-family: var(--font);
+  border-radius: var(--border-rad);
+  outline: var(--outline) solid 1px;
+  transition: 0.15s;
+}
+#taskedit #taskedit_desc::-webkit-scrollbar {
+  width: 8px;
+}
+#taskedit #taskedit_desc::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+#taskedit #taskedit_desc::-webkit-scrollbar-thumb {
+  background-color: var(--ui4);
+  border-radius: 5vmin;
+  background-clip: content-box;
+  transition: 0.35s;
+}
+#taskedit #taskedit_desc::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ui5);
+}
+#taskedit #taskedit_desc:focus {
+  border-bottom: 1vmin solid var(--active);
+}
+#taskedit #taskedit_savechanges {
+  width: 100%;
+  padding: 2vmin;
+  font-size: 3vmin;
+  color: var(--p1);
+  background: var(--active);
+  border-radius: var(--border-rad);
+  cursor: pointer;
+  transition: 0.35s;
+  box-shadow: 0 0 2vmin rgba(var(--active), 0.75);
+  text-shadow: 0 0 3vmin var(--p3);
+}
+#taskedit #taskedit_savechanges:hover {
+  box-shadow: 0 0.5vmin 5vmin var(--active);
+  transform: translateY(-0.5vmin);
+  text-shadow: 0 0 2vmin var(--h1);
+}
+
 #taskview {
   width: 55vmin;
   transform: translateX(calc(100% + 10vmin));
@@ -337,10 +451,21 @@ body *::-webkit-scrollbar-thumb:hover {
   justify-content: flex-start;
   gap: 1vmin;
 }
-#taskview #taskview_title {
+#taskview #taskview_close {
+  color: var(--h2);
+  opacity: 0.5;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+#taskview .taskview_title {
   color: var(--h1);
   font-weight: bold;
   background: var(--ui1);
+  margin: 0;
+  margin-top: 1.25rem;
   padding: 2vmin;
   padding-top: 2.5vmin;
   font-size: 4.5vmin;
@@ -350,43 +475,65 @@ body *::-webkit-scrollbar-thumb:hover {
   outline: var(--outline) solid 1px;
   transition: 0.15s;
 }
-#taskview #taskview_title:focus {
-  border-bottom: 1vmin solid var(--active);
-}
-#taskview #taskview_desc {
+#taskview .taskview_desc {
   color: var(--p1);
+  font-weight: normal;
   background: var(--ui1);
+  margin: 0;
   padding: 2vmin;
   padding-top: 2.5vmin;
   font-size: 3vmin;
-  min-height: 15vmin;
-  height: fit-content;
+  width: 100%;
+  font-family: var(--font);
+  border-radius: var(--border-rad);
+  outline: var(--outline) solid 1px;
+  transition: 0.15s;
   overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 15vmin;
+  max-height: 60vmin;
+}
+#taskview .taskview_desc::-webkit-scrollbar {
+  width: 8px;
+}
+#taskview .taskview_desc::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+#taskview .taskview_desc::-webkit-scrollbar-thumb {
+  background-color: var(--ui4);
+  border-radius: 5vmin;
+  background-clip: content-box;
+  transition: 0.35s;
+}
+#taskview .taskview_desc::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ui5);
+}
+#taskview .taskview_desc:focus {
+  border-bottom: 1vmin solid var(--active);
+}
+#taskview .taskview_duedate {
+  color: var(--p2);
+  font-weight: normal;
+  background: var(--ui1);
+  margin: 0;
+  padding: 2vmin;
+  padding-top: 2.5vmin;
+  font-size: 3vmin;
   width: 100%;
   font-family: var(--font);
   border-radius: var(--border-rad);
   outline: var(--outline) solid 1px;
   transition: 0.15s;
 }
-#taskview #taskview_desc::-webkit-scrollbar {
-  width: 8px;
+#taskview .taskview_duedate #tvdlabel {
+  color: var(--p2);
+  font-size: 2.5vmin;
 }
-#taskview #taskview_desc::-webkit-scrollbar-track {
-  background-color: transparent;
+#taskview .taskview_duedate #tvddate {
+  color: var(--p1);
+  font-size: 3vmin;
 }
-#taskview #taskview_desc::-webkit-scrollbar-thumb {
-  background-color: var(--ui4);
-  border-radius: 5vmin;
-  background-clip: content-box;
-  transition: 0.35s;
-}
-#taskview #taskview_desc::-webkit-scrollbar-thumb:hover {
-  background-color: var(--ui5);
-}
-#taskview #taskview_desc:focus {
-  border-bottom: 1vmin solid var(--active);
-}
-#taskview #taskview_savechanges {
+#taskview #taskview_edit {
   width: 100%;
   padding: 2vmin;
   font-size: 3vmin;
@@ -398,7 +545,7 @@ body *::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 0 2vmin rgba(var(--active), 0.75);
   text-shadow: 0 0 3vmin var(--p3);
 }
-#taskview #taskview_savechanges:hover {
+#taskview #taskview_edit:hover {
   box-shadow: 0 0.5vmin 5vmin var(--active);
   transform: translateY(-0.5vmin);
   text-shadow: 0 0 2vmin var(--h1);

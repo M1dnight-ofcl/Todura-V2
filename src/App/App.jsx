@@ -1,7 +1,7 @@
 import React,{ useState, useEffect } from 'react';
 import "./style/style.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPlus, faGear } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPlus, faGear, faXmark, faEdit, faPencil, faPencilAlt, faSave } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { addTask, removeTask, modifyState } from '../store/slices/todo';
 import { setSelectedTask } from '../store/slices/selectedTask';
@@ -111,21 +111,21 @@ const App=(prop)=>{
                 <currentTabs.content/>
             </div>
         </div>
-        <div id="taskview">
+        <div id="taskedit">
             <div 
-                id="taskview_title" 
+                id="taskedit_title" 
                 contentEditable 
                 suppressContentEditableWarning={true}
                 onKeyDown={(e)=>{
                     switch(e.key){
                         case "Enter":
                             e.preventDefault();
-                            document.getElementById("taskview_desc").focus();
+                            document.getElementById("taskedit_desc").focus();
                         break;
                     }
                 }}>{selectedTask.title}</div>
             <div 
-                id="taskview_desc" 
+                id="taskedit_desc" 
                 contentEditable 
                 suppressContentEditableWarning={true}
                 onKeyDown={(e)=>{
@@ -133,23 +133,39 @@ const App=(prop)=>{
                         case "Enter":
                             e.preventDefault();
                             e.target.blur();
-                            document.getElementById("taskview_savechanges").click();
+                            document.getElementById("taskedit_savechanges").click();
                         break;
                     }
                 }}>{selectedTask.desc}</div>
-            <button id="taskview_savechanges" onClick={(e)=>{
+            <button id="taskedit_savechanges" onClick={(e)=>{
                 e.preventDefault();
                 console.log("saving changes!")
                 dispatch(modifyState({
                     target:selectedTask.id,
                     new:{
                         ...selectedTask,
-                        title:document.getElementById("taskview_title").innerHTML,
-                        desc:document.getElementById("taskview_desc").innerHTML,
+                        title:document.getElementById("taskedit_title").innerHTML,
+                        desc:document.getElementById("taskedit_desc").innerHTML,
                     }
                 }));
+                document.getElementById("taskedit").style.transform="translateX(calc(100% + 10vmin))";
+            }}><FontAwesomeIcon icon={faSave}/> Save Changes</button>
+        </div>
+        <div id="taskview">
+            <FontAwesomeIcon 
+                icon={faXmark} 
+                id='taskview_close' 
+                onClick={(e)=>{document.getElementById("taskview").style.transform="translateX(calc(100% + 10vmin))";}}/>
+            <h1 className='taskview_title'>{selectedTask.title}</h1>
+            <div className='taskview_desc'>{selectedTask.desc}</div>
+            <div className='taskview_duedate'><div id="tvdlabel">Due Date</div><div id="tvddate">{new Intl.DateTimeFormat('en-US', 
+                { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', })
+                    .format(selectedTask.meta?selectedTask.meta.dueDate:null)}</div></div>
+            <button id="taskview_edit" onClick={(e)=>{
                 document.getElementById("taskview").style.transform="translateX(calc(100% + 10vmin))";
-            }}>Save Changes</button>
+                document.getElementById("taskedit").style.transform="translateX(0)";
+                document.getElementById("taskedit_title").focus();
+            }}><FontAwesomeIcon icon={faEdit}/> Edit</button>
         </div>
     </>);
 }

@@ -9,6 +9,7 @@ export const todoslice=createSlice({
       id:generateId(),
       meta:{
         creationTime: Date.now(),
+        dueDate: Date.parse('2069-04-20T04:20:00'),//rehehehe
         checked: false,
       }
     },{//template 2 (for test)
@@ -17,6 +18,7 @@ export const todoslice=createSlice({
       id:generateId(),
       meta:{
         creationTime: Date.now(),
+        dueDate: Date.parse('2030-12-25T09:30:00'),
         checked: true,
       }
     },{//template 3 (for test)
@@ -29,6 +31,7 @@ Fusce nisi curabitur laoreet per torquent lobortis. Eget ut hac eleifend cras ve
       id:generateId(),
       meta:{
         creationTime: Date.now(),
+        dueDate: Date.parse('2024-12-20T02:20:00'),
         checked: false,
       }
     },
