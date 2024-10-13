@@ -69,6 +69,5 @@
 }
 #titlebar #itemContainer .item:hover {
   background: var(--active);
-  color: var(--ui1);
   filter: drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active)) drop-shadow(0 0 10vmin var(--active));
 }/*# sourceMappingURL=index.css.map */

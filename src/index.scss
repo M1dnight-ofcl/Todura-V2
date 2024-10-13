@@ -67,7 +67,6 @@
       transition: $transition-time;
       &:hover {
         background: $active;
-        color: $ui1;
         filter: 
             drop-shadow(0 0 1vmin $active)
             drop-shadow(0 0 5vmin $active)
