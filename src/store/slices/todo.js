@@ -51,8 +51,8 @@ Fusce nisi curabitur laoreet per torquent lobortis. Eget ut hac eleifend cras ve
   }
 });
 export const {
-    addTask,
-    removeTask,
-    modifyState,
+  addTask,
+  removeTask,
+  modifyState,
 }=todoslice.actions;
 export default todoslice.reducer;

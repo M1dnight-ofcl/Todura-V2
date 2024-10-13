@@ -1,15 +1,18 @@
 import React,{ useState, useEffect } from 'react';
 import "./style/style.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { useSelector, useDispatch } from 'react-redux'
+import { faHome, faPlus, faGear } from '@fortawesome/free-solid-svg-icons';
+import { useSelector, useDispatch } from 'react-redux';
 import { addTask, removeTask, modifyState } from '../store/slices/todo';
 import { setSelectedTask } from '../store/slices/selectedTask';
 import { $with, generateId } from '../modules/lib';
 import { Task } from './modules/Task';
+import { SettingsTab } from './modules/Settings';
+import { Helmet } from 'react-helmet-async';
 const App=(prop)=>{
     const todo=useSelector(state=>state.todo);
     const selectedTask=useSelector(state=>state.selectedTask);
+    const settings=useSelector(state=>state.settings);
     const dispatch=useDispatch();
     useEffect(()=>{
         console.table(todo);
@@ -77,19 +80,30 @@ const App=(prop)=>{
                     </button>
                 </div>
             </div>
-        </>)
+        </>);
     }
     const tabs={
         home:{id:generateId(),title:"Home",content:HomeTab},
+        settings:{id:generateId(),title:"Settings",content:SettingsTab},
     };
     const[currentTabs,setCurrentTabs]=useState(tabs.home);
-    return (<>
+    return(<>
+        <Helmet>
+            <title>Todura V2</title>
+            <link rel="stylesheet" id="theme" href={`/themes/${settings.theme}.css`} />
+        </Helmet>
         <div id="sidebar">
             <button 
                 id="home" 
                 className="sbbutton" 
                 onClick={()=>{setCurrentTabs(tabs.home)}}>
                     <FontAwesomeIcon icon={faHome} className='sbicon'/>
+            </button>
+            <button 
+                id="settings" 
+                className="sbbutton" 
+                onClick={()=>{setCurrentTabs(tabs.settings)}}>
+                    <FontAwesomeIcon icon={faGear} className='sbicon'/>
             </button>
         </div>
         <div>

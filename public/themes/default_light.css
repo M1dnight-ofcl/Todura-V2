@@ -1,0 +1,26 @@
+:root {
+    --bg1: #ffffff;
+    --bg2: #f0f0f0;
+    --bg3: #d0d0d0;
+    --bg4: #c0c0c0;
+    --bg5: #b5b5b5;
+    --ui1: #f0f0f0;
+    --ui2: #e5e5e5;
+    --ui3: #e0e0e0;
+    --ui4: #d0d0d0;
+    --ui5: #c0c0c0;
+    --h1: #101010;
+    --h2: #151515;
+    --p1: #171717;
+    --p2: #191919;
+    --p3: #212121;
+    --disabled: #505050;
+    --navbar: var(--bg4);
+    --active: #8745f1;
+    --transition-time: .35s;
+    --border-rad: 10px;
+    --font: 'Orbiter FBS Trial', sans-serif;
+    --outline: #a0a0a045;
+    --outline-active: #6f27e4;
+    --sbicons: #35353545;
+}

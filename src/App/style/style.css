@@ -15,27 +15,27 @@ body *::-webkit-scrollbar-track {
   background-color: transparent;
 }
 body *::-webkit-scrollbar-thumb {
-  background-color: #303030;
+  background-color: var(--ui1);
   border-radius: 5vmin;
   background-clip: content-box;
   transition: 0.35s;
 }
 body *::-webkit-scrollbar-thumb:hover {
-  background-color: #404040;
+  background-color: var(--ui4);
 }
 
 #sidebar {
   height: 100%;
   width: 60px;
-  background: #171717;
+  background: var(--bg3);
   transition: 0.35s;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
   flex-direction: column;
-  border-right: rgba(69, 69, 69, 0.5843137255) solid 1px;
+  border-right: var(--outline) solid 1px;
   padding: 12.5px;
-  gap: 6.25px;
+  gap: 12.5px;
   /* &:hover > .sbicon {
       right: calc(40vmin - $sbiconhw - $sbiconpad);
   } */
@@ -50,14 +50,14 @@ body *::-webkit-scrollbar-thumb:hover {
 #sidebar .sbbutton .sbicon {
   width: 35px;
   height: 35px;
-  color: rgba(208, 208, 208, 0.6274509804);
+  color: var(--sbicons);
   cursor: pointer;
   transition: all 0.35s;
 }
 #sidebar .sbbutton .sbicon:hover {
-  color: #8745f1;
+  color: var(--active);
   transform: scale(120%);
-  filter: drop-shadow(0 0 1vmin #8745f1) drop-shadow(0 0 5vmin #8745f1) drop-shadow(0 0 10vmin #8745f1);
+  filter: drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active)) drop-shadow(0 0 10vmin var(--active));
 }
 
 #content {
@@ -83,15 +83,15 @@ body *::-webkit-scrollbar-thumb:hover {
 #content #taskCreateInputWrapper input {
   height: 100%;
   width: calc(100% - 10vmin);
-  background: #303030;
-  border: rgba(69, 69, 69, 0.5843137255) solid 1px;
-  border-radius: 10px;
+  background: var(--ui1);
+  border: var(--outline) solid 1px;
+  border-radius: var(--border-rad);
   padding: 1vmin 1.5vmin;
   padding-top: 1.5vmin;
   outline: none;
-  color: #f0f0f0;
+  color: var(--h2);
   font-size: 3vmin;
-  font-family: "Orbiter FBS Trial", sans-serif;
+  font-family: var(--font);
 }
 #content #taskCreateInputWrapper #taskCreateTitleWrapper {
   position: absolute;
@@ -110,7 +110,7 @@ body *::-webkit-scrollbar-thumb:hover {
   transform: translateX(-50%);
 }
 #content #taskCreateInputWrapper #taskCreateDescriptionWrapper input {
-  color: #d5d5d5;
+  color: var(--p2);
 }
 #content #taskCreateInputWrapper #taskCreateButtonWrapper {
   height: 100%;
@@ -122,25 +122,25 @@ body *::-webkit-scrollbar-thumb:hover {
   z-index: 200;
 }
 #content #taskCreateInputWrapper #taskCreateButtonWrapper #taskCreateButton {
-  background: #303030;
-  border: rgba(69, 69, 69, 0.5843137255) solid 1px;
-  border-radius: 10px;
+  background: var(--ui1);
+  border: var(--outline) solid 1px;
+  border-radius: var(--border-rad);
   cursor: pointer;
   height: 100%;
   width: 100%;
   transition: 0.35s;
 }
 #content #taskCreateInputWrapper #taskCreateButtonWrapper #taskCreateButton:hover {
-  background: #8745f1;
-  border: #6f27e4 solid 1px;
-  filter: drop-shadow(0 0 1vmin #8745f1) drop-shadow(0 0 5vmin #8745f1);
+  background: var(--active);
+  border: var(--outline-active) solid 1px;
+  filter: drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active));
 }
 #content #taskCreateInputWrapper #taskCreateButtonWrapper #taskCreateButton:hover > svg {
-  color: #f5f5f5;
-  filter: drop-shadow(0 0 1vmin #cacaca) drop-shadow(0 0 2.5vmin #f0f0f0);
+  color: var(--h1);
+  filter: drop-shadow(0 0 1vmin var(--p3)) drop-shadow(0 0 2.5vmin var(--h2));
 }
 #content #taskCreateInputWrapper #taskCreateButtonWrapper #taskCreateButton svg {
-  color: #d5d5d5;
+  color: var(--p2);
   font-size: 5vmin;
   transition: 0.35s;
 }
@@ -164,10 +164,10 @@ body *::-webkit-scrollbar-thumb:hover {
   padding: 1.5rem 0.5rem;
   gap: 0.5rem;
   height: fit-content;
-  background: #2b2b2b;
+  background: var(--ui2);
   height: fit-content;
-  border: rgba(69, 69, 69, 0.5843137255) solid 1px;
-  border-radius: 10px;
+  border: var(--outline) solid 1px;
+  border-radius: var(--border-rad);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -184,7 +184,7 @@ body *::-webkit-scrollbar-thumb:hover {
   margin: 0;
   line-height: min(6.5vmin, 3rem);
   font-size: min(6.5vmin, 3rem);
-  color: #f5f5f5;
+  color: var(--h1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -194,13 +194,13 @@ body *::-webkit-scrollbar-thumb:hover {
   line-height: calc(min(2.65vmin, 1rem) + min(2.65vmin, 1rem) / 10);
   font-size: min(2.65vmin, 1rem);
   margin-bottom: calc(0 - (min(2.65vmin, 1rem) + min(2.65vmin, 1rem) / 10));
-  color: #e0e0e0;
-  max-height: 20vmin !important;
+  color: var(--p1);
+  max-height: 50vmin !important;
   overflow: auto;
 }
 #content #taskWrapper .task .task_contentWrapper .task_desc .clamp-lines__button {
   background: transparent;
-  color: #cacaca;
+  color: var(--p3);
   height: 1rem;
   padding: 0 !important;
   width: fit-content;
@@ -209,7 +209,7 @@ body *::-webkit-scrollbar-thumb:hover {
 }
 #content #taskWrapper .task .task_contentWrapper.checked * {
   text-decoration: line-through;
-  color: #b5b5b5;
+  color: var(--disabled);
 }
 #content #taskWrapper .task .task_checkmarkWrapper {
   width: 60px;
@@ -239,8 +239,8 @@ body *::-webkit-scrollbar-thumb:hover {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(245, 245, 245, 0.5);
-  border-radius: 10px;
+  background-color: var(--ui4);
+  border-radius: var(--border-rad);
   transition: 0.35s;
 }
 #content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer .checkmark:after {
@@ -249,18 +249,18 @@ body *::-webkit-scrollbar-thumb:hover {
   content: "✔" !important;
   left: 50%;
   top: 50%;
-  color: #f0f0f0;
+  color: var(--h2);
   font-size: 1rem;
   transform: translate(-50%, -50%);
 }
 #content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer:hover input ~ .checkmark {
-  background-color: #f0f0f0;
+  background: var(--h2);
   transform: scale(115%);
-  filter: drop-shadow(0 0 1vmin #8745f1) drop-shadow(0 0 5vmin #8745f1) drop-shadow(0 0 10vmin #8745f1) !important;
+  filter: drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active)) drop-shadow(0 0 10vmin var(--active)) !important;
 }
 #content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark {
-  background-color: #8745f1;
-  filter: drop-shadow(0 0 1vmin #8745f1) drop-shadow(0 0 5vmin #8745f1);
+  background: var(--active);
+  filter: drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active));
 }
 #content #taskWrapper .task .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark:after {
   display: block;
@@ -275,18 +275,18 @@ body *::-webkit-scrollbar-thumb:hover {
 }
 #content #taskWrapper .task .task_dataWrapper .creationDateLabel {
   margin: 0;
-  font-size: max(0.75rem, 1.75vmin);
-  color: #cacaca;
+  font-size: 0.85rem;
+  color: var(--p3);
   padding-top: 1vmin;
 }
 #content #taskWrapper .task .task_dataWrapper .creationDate {
   margin: 0;
-  font-size: max(0.85rem, 2vmin);
-  color: #e0e0e0;
+  font-size: 0.85rem;
+  color: var(--p1);
 }
 #content #taskWrapper .task .task_dataWrapper .task_optionsWapper {
   width: 100%;
-  height: min(2.5vmin, 2rem);
+  height: 20px;
   display: flex;
   flex-direction: row;
   gap: 0.5vmin;
@@ -297,19 +297,19 @@ body *::-webkit-scrollbar-thumb:hover {
   height: 100%;
   aspect-ratio: 1/1;
   font-size: 1rem;
-  color: #d5d5d5;
+  color: var(--p2);
   cursor: pointer;
   transition: 0.35s;
 }
 #content #taskWrapper .task .task_dataWrapper .task_optionsWapper .task_option_icon:hover {
-  color: #8745f1;
+  color: var(--active);
   transform: scale(120%);
-  filter: drop-shadow(0 0 1vmin #8745f1) drop-shadow(0 0 5vmin #8745f1);
+  filter: drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active));
 }
 #content #taskScrollShade {
   height: 5vmin;
   width: 100%;
-  background: linear-gradient(180deg, transparent, #202020);
+  background: linear-gradient(180deg, transparent, var(--bg2));
   z-index: 99;
   position: absolute;
   left: 0%;
@@ -325,9 +325,9 @@ body *::-webkit-scrollbar-thumb:hover {
   position: fixed;
   top: 35px;
   right: 0;
-  background: #2b2b2b;
-  border-left: rgba(69, 69, 69, 0.5843137255) solid 1px;
-  box-shadow: 0 0 1vmin #171717, 0 0 5vmin #171717, 0 0 10vmin #171717;
+  background: var(--ui2);
+  border-left: var(--outline) solid 1px;
+  box-shadow: 0 0 1vmin var(--bg3), 0 0 5vmin var(--bg3), 0 0 10vmin var(--bg3);
   transition: transform 1s;
   padding: 2.5vmin;
   overflow-x: hidden;
@@ -338,24 +338,24 @@ body *::-webkit-scrollbar-thumb:hover {
   gap: 1vmin;
 }
 #taskview #taskview_title {
-  color: #f5f5f5;
+  color: var(--h1);
   font-weight: bold;
-  background: #303030;
+  background: var(--ui1);
   padding: 2vmin;
   padding-top: 2.5vmin;
   font-size: 4.5vmin;
   width: 100%;
-  font-family: "Orbiter FBS Trial", sans-serif;
-  border-radius: 10px;
-  outline: rgba(69, 69, 69, 0.5843137255) solid 1px;
+  font-family: var(--font);
+  border-radius: var(--border-rad);
+  outline: var(--outline) solid 1px;
   transition: 0.15s;
 }
 #taskview #taskview_title:focus {
-  border-bottom: 1vmin solid #8745f1;
+  border-bottom: 1vmin solid var(--active);
 }
 #taskview #taskview_desc {
-  color: #e0e0e0;
-  background: #303030;
+  color: var(--p1);
+  background: var(--ui1);
   padding: 2vmin;
   padding-top: 2.5vmin;
   font-size: 3vmin;
@@ -363,9 +363,9 @@ body *::-webkit-scrollbar-thumb:hover {
   height: fit-content;
   overflow-y: auto;
   width: 100%;
-  font-family: "Orbiter FBS Trial", sans-serif;
-  border-radius: 10px;
-  outline: rgba(69, 69, 69, 0.5843137255) solid 1px;
+  font-family: var(--font);
+  border-radius: var(--border-rad);
+  outline: var(--outline) solid 1px;
   transition: 0.15s;
 }
 #taskview #taskview_desc::-webkit-scrollbar {
@@ -375,31 +375,31 @@ body *::-webkit-scrollbar-thumb:hover {
   background-color: transparent;
 }
 #taskview #taskview_desc::-webkit-scrollbar-thumb {
-  background-color: #404040;
+  background-color: var(--ui4);
   border-radius: 5vmin;
   background-clip: content-box;
   transition: 0.35s;
 }
 #taskview #taskview_desc::-webkit-scrollbar-thumb:hover {
-  background-color: #606060;
+  background-color: var(--ui5);
 }
 #taskview #taskview_desc:focus {
-  border-bottom: 1vmin solid #8745f1;
+  border-bottom: 1vmin solid var(--active);
 }
 #taskview #taskview_savechanges {
   width: 100%;
   padding: 2vmin;
   font-size: 3vmin;
-  color: #e0e0e0;
-  background: #8745f1;
-  border-radius: 10px;
+  color: var(--p1);
+  background: var(--active);
+  border-radius: var(--border-rad);
   cursor: pointer;
   transition: 0.35s;
-  box-shadow: 0 0 2vmin rgba(135, 69, 241, 0.75);
-  text-shadow: 0 0 3vmin #cacaca;
+  box-shadow: 0 0 2vmin rgba(var(--active), 0.75);
+  text-shadow: 0 0 3vmin var(--p3);
 }
 #taskview #taskview_savechanges:hover {
-  box-shadow: 0 0.5vmin 5vmin #8745f1;
+  box-shadow: 0 0.5vmin 5vmin var(--active);
   transform: translateY(-0.5vmin);
-  text-shadow: 0 0 2vmin #f5f5f5;
+  text-shadow: 0 0 2vmin var(--h1);
 }/*# sourceMappingURL=style.css.map */

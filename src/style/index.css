@@ -6,14 +6,14 @@
   top: 35px;
   left: 0%;
   margin: 0;
-  background: #202020;
+  background: var(--bg2);
   -webkit-app-region: no-drag;
   padding: 0;
-  font-family: "Orbiter FBS Trial", sans-serif;
+  font-family: var(--font);
 }
 #root ::selection, body ::selection, html ::selection {
-  background: #8745f1;
-  color: #f0f0f0;
+  background: var(--active);
+  color: var(--h2);
 }
 
 #titlebar {
@@ -22,16 +22,16 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: #101010;
+  background: var(--navbar);
   margin: 0;
   -webkit-app-region: drag;
   padding: 0;
   z-index: 9999;
-  border-bottom: rgba(69, 69, 69, 0.5843137255) solid 1px;
+  border-bottom: var(--outline) solid 1px;
 }
 #titlebar h1 {
   font-size: 18px;
-  color: #e0e0e0;
+  color: var(--p1);
   position: absolute;
   top: 17.5px;
   transform: translateY(-50%);
@@ -54,8 +54,8 @@
 #titlebar #itemContainer .item {
   height: 35px;
   aspect-ratio: 1/1;
-  background: #303030;
-  color: #e0e0e0;
+  background: var(--ui1);
+  color: var(--p1);
   width: auto;
   display: flex;
   align-items: center;
@@ -65,10 +65,10 @@
   margin: 0;
   padding: 0;
   cursor: pointer;
-  transition: 0.35s;
+  transition: var(--transition-time);
 }
 #titlebar #itemContainer .item:hover {
-  background: #8745f1;
-  color: #303030;
-  filter: drop-shadow(0 0 1vmin #8745f1) drop-shadow(0 0 5vmin #8745f1) drop-shadow(0 0 10vmin #8745f1);
+  background: var(--active);
+  color: var(--ui1);
+  filter: drop-shadow(0 0 1vmin var(--active)) drop-shadow(0 0 5vmin var(--active)) drop-shadow(0 0 10vmin var(--active));
 }/*# sourceMappingURL=index.css.map */
