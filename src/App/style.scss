@@ -21,6 +21,16 @@ body * {
         }
     }
 }
+@mixin taskWrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 5px;
+    padding-bottom: 7vmin;
+    gap: 1vmin;
+    overflow-y: auto;
+}
 #sidebar {
     height: 100%;
     width: 60px;
@@ -150,19 +160,12 @@ body * {
             }
         }
         #taskWrapper {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            flex-direction: column;
-            padding: 0 5px;
-            padding-bottom: 7vmin;
-            gap: 1vmin;
+            @include taskWrapper;
             top: 3.5vmin;
             left: calc(3.5vmin - 5px);
             height: calc(100% - 7vmin - $taskAddInputHeight);
             width: calc(100% - 7vmin + 10px);
             position: absolute;
-            overflow-y: auto;
             .task {
                 width: 100%;
                 padding: 1.5rem .5rem;
@@ -570,5 +573,49 @@ body * {
             transform: translateY(-.5vmin);
             text-shadow: 0 0 2vmin $h1;
         }
+    }
+}
+// lib stuff
+.collapsableButton {
+    width: 100%;
+    padding: 1rem 0;
+    text-align: left;
+    vertical-align: middle;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: transparent;
+    border-bottom: $p3 1px solid;
+    h1 {
+        font-size: 2rem;
+        font-family: $font;
+        font-weight: bold;
+        color: $h1;
+        margin: 0;
+        cursor: pointer;
+    }
+    .collapsableButtonCaret {
+        transform: translateY(-.25rem);
+        color: $p2;
+        cursor: pointer;
+        font-size: 2rem;
+        transition: .35s;
+        &.ctwi_open {
+            transform: rotate(180deg);
+        }
+    }
+}
+.collapsableTaskWrapper {
+    @include taskWrapper;
+    display: none;
+    overflow: hidden;
+    width: 100%;
+    max-height: 100%;
+    height: fit-content;
+    gap: .5vmin;
+    overflow: hidden;
+    padding: 0;
+    &.ctw_open {
+        display: flex;
     }
 }

@@ -5,7 +5,7 @@ import { faHome, faPlus, faGear, faXmark, faEdit, faPencil, faPencilAlt, faSave 
 import { useSelector, useDispatch } from 'react-redux';
 import { addTask, removeTask, modifyState } from '../store/slices/todo';
 import { setSelectedTask } from '../store/slices/selectedTask';
-import { $with, generateId } from '../modules/lib';
+import { $with, generateId, Collapsable } from '../modules/lib';
 import { Task } from './modules/Task';
 import { SettingsTab } from './modules/Settings';
 import { Helmet } from 'react-helmet-async';
@@ -14,23 +14,50 @@ const App=(prop)=>{
     const selectedTask=useSelector(state=>state.selectedTask);
     const settings=useSelector(state=>state.settings);
     const dispatch=useDispatch();
+    // const [scrolled,setScrolled]=useState(0);
     useEffect(()=>{
         console.table(todo);
-        document.getElementById("home").click(); // to update screen (bc states r kinda broken)
-        document.getElementById("taskWrapper").scrollTop=document.getElementById("taskWrapper").scrollHeight;
     },[todo]);
     useEffect(()=>{
         console.table(selectedTask);
     },[selectedTask]);
     const HomeTab=({})=>{
         return(<>
-            <div id="taskWrapper">
-                {todo.map(({id,title,desc,meta},index)=><Task
-                    id={id}
-                    title={title}
-                    desc={desc}
-                    meta={meta}
-                    key={`task_${id}_${btoa(title)}`.replaceAll("=","")}/>)}
+            <div id="taskWrapper" /* onScroll={(e)=>{setScrolled(e.target.scrollTop);}} */>
+                {/* <Collapsable id={generateId(5)} title={<>Important</>}> */}
+                    {/* important and unchecked */}
+                    {todo.filter(item=>item.meta.important&&!item.meta.checked)
+                        .map(({id,title,desc,meta},index)=><Task
+                            id={id}
+                            title={title}
+                            desc={desc}
+                            meta={meta}
+                            key={`task_${id}_${btoa(title)}`.replaceAll("=","")}/>)}
+                {/* </Collapsable> */}
+                {/* not important or unchecked */}
+                {todo.filter(item=>!item.meta.important&&!item.meta.checked)
+                    .map(({id,title,desc,meta},index)=><Task
+                        id={id}
+                        title={title}
+                        desc={desc}
+                        meta={meta}
+                        key={`task_${id}_${btoa(title)}`.replaceAll("=","")}/>)}
+                {/* important and checked */}
+                {todo.filter(item=>item.meta.important&&item.meta.checked)
+                    .map(({id,title,desc,meta},index)=><Task
+                        id={id}
+                        title={title}
+                        desc={desc}
+                        meta={meta}
+                        key={`task_${id}_${btoa(title)}`.replaceAll("=","")}/>)}
+                {/* not important but checked */}
+                {todo.filter(item=>!item.meta.important&&item.meta.checked)
+                    .map(({id,title,desc,meta},index)=><Task
+                        id={id}
+                        title={title}
+                        desc={desc}
+                        meta={meta}
+                        key={`task_${id}_${btoa(title)}`.replaceAll("=","")}/>)}
             </div>
             <div id="taskScrollShade"></div>
             <div id="taskCreateInputWrapper">
@@ -72,8 +99,15 @@ const App=(prop)=>{
                                 title,
                                 desc,
                                 id:generateId(),
-                                meta:{},
+                                meta:{
+                                    creationTime: Date.now(),
+                                    dueDate: NaN,//should be set by user
+                                    checked: false,
+                                },
                             }));
+                            setTimeout(()=>document.getElementById("taskWrapper").scrollTo({
+                                top:document.getElementById("taskWrapper").scrollHeight,
+                            }),5);
                         });});
                     }}>
                         <FontAwesomeIcon icon={faPlus} />
@@ -83,8 +117,8 @@ const App=(prop)=>{
         </>);
     }
     const tabs={
-        home:{id:generateId(),title:"Home",content:HomeTab},
-        settings:{id:generateId(),title:"Settings",content:SettingsTab},
+        home:{id:generateId(),title:"Home",qid:"h"},
+        settings:{id:generateId(),title:"Settings",qid:"s"},
     };
     const[currentTabs,setCurrentTabs]=useState(tabs.home);
     return(<>
@@ -108,7 +142,9 @@ const App=(prop)=>{
         </div>
         <div>
             <div id="content">
-                <currentTabs.content/>
+                {currentTabs.qid=="h"?<HomeTab/>:
+                currentTabs.qid=="s"?<SettingsTab/>:
+                null}
             </div>
         </div>
         <div id="taskedit">

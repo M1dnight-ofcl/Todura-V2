@@ -6,6 +6,9 @@ import { Provider } from 'react-redux';
 import { store } from './store/store.js';
 import { HelmetProvider } from 'react-helmet-async';
 const AppContainer=({})=>{
+    useEffect(()=>{
+        if('scrollRestoration' in window.history)window.history.scrollRestoration='manual';
+    },[]);
     return(<>
         <React.StrictMode>
             <HelmetProvider>

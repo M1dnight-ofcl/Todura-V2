@@ -152,12 +152,12 @@ body *::-webkit-scrollbar-thumb:hover {
   padding: 0 5px;
   padding-bottom: 7vmin;
   gap: 1vmin;
+  overflow-y: auto;
   top: 3.5vmin;
   left: calc(3.5vmin - 5px);
   height: calc(100% - 7vmin - 12.5vmin);
   width: calc(100% - 7vmin + 10px);
   position: absolute;
-  overflow-y: auto;
 }
 #content #taskWrapper .task {
   width: 100%;
@@ -549,4 +549,56 @@ body *::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 0.5vmin 5vmin var(--active);
   transform: translateY(-0.5vmin);
   text-shadow: 0 0 2vmin var(--h1);
+}
+
+.collapsableButton {
+  width: 100%;
+  padding: 1rem 0;
+  text-align: left;
+  vertical-align: middle;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: transparent;
+  border-bottom: var(--p3) 1px solid;
+}
+.collapsableButton h1 {
+  font-size: 2rem;
+  font-family: var(--font);
+  font-weight: bold;
+  color: var(--h1);
+  margin: 0;
+  cursor: pointer;
+}
+.collapsableButton .collapsableButtonCaret {
+  transform: translateY(-0.25rem);
+  color: var(--p2);
+  cursor: pointer;
+  font-size: 2rem;
+  transition: 0.35s;
+}
+.collapsableButton .collapsableButtonCaret.ctwi_open {
+  transform: rotate(180deg);
+}
+
+.collapsableTaskWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 5px;
+  padding-bottom: 7vmin;
+  gap: 1vmin;
+  overflow-y: auto;
+  display: none;
+  overflow: hidden;
+  width: 100%;
+  max-height: 100%;
+  height: fit-content;
+  gap: 0.5vmin;
+  overflow: hidden;
+  padding: 0;
+}
+.collapsableTaskWrapper.ctw_open {
+  display: flex;
 }/*# sourceMappingURL=style.css.map */

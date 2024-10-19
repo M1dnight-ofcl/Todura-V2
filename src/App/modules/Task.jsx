@@ -1,11 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faEdit, faCaretDown, faCaretUp, faChevronDown, faChevronUp, faDotCircle, faCircleDot, faCircle } from '@fortawesome/free-solid-svg-icons';
+import { 
+    faTrash, 
+    faEdit, 
+    faChevronDown, 
+    faChevronUp, 
+    faDotCircle, 
+    faCircleDot, 
+    faCircle, 
+    faStar 
+} from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStarBorder } from '@fortawesome/free-regular-svg-icons';
 import { useSelector, useDispatch } from 'react-redux'
 import { addTask, removeTask, modifyState } from '../../store/slices/todo';
 import { setSelectedTask } from '../../store/slices/selectedTask';
 import ClampLines from 'react-clamp-lines';
 import React, { useState, useEffect } from "react";
-import { faCircleDown } from '@fortawesome/free-solid-svg-icons/faCircleDown';
 export const Task=({id,title,desc,meta})=>{
     const todo=useSelector(state=>state.todo);
     const selectedTask=useSelector(state=>state.selectedTask);
@@ -79,6 +88,15 @@ export const Task=({id,title,desc,meta})=>{
                                 dispatch(setSelectedTask(state));
                                 document.getElementById("taskedit").style.transform="translateX(0)";
                                 document.getElementById("taskedit_title").focus();
+                            }}/>
+                        <FontAwesomeIcon 
+                            icon={state.meta.important?faStar:faStarBorder}
+                            className="task_option_icon"
+                            onClick={(e)=>{
+                                dispatch(modifyState({
+                                    target: id,
+                                    new:{id,title,desc,meta:{...meta,important:!state.meta.important,}}
+                                })); 
                             }}/>
                         {/* for colors */}
                         {/* <FontAwesomeIcon 
