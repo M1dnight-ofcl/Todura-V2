@@ -40,4 +40,22 @@
   outline: none;
   transition: 0.35s;
   font-size: 1rem;
+}
+#settingsWrapper button {
+  padding: 0.75rem 3.5rem;
+  border-radius: var(--border-rad);
+  border: var(--outline) solid 1px;
+  background: var(--ui1);
+  color: var(--p1);
+  font-family: var(--font);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.35s;
+}
+#settingsWrapper button:hover {
+  border-color: transparent;
+  filter: drop-shadow(0 0 2rem var(--active));
+  background: var(--active);
+  color: var(--bg1);
+  transform: scale(110%);
 }/*# sourceMappingURL=settings.css.map */

@@ -40,4 +40,22 @@
             font-size: 1rem;
         }
     }
+    button {
+        padding: .75rem 3.5rem;
+        border-radius: $border-rad;
+        border: $outline;
+        background: $ui1;
+        color: $p1;
+        font-family: $font;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: .35s;
+        &:hover {
+            border-color: transparent;
+            filter: drop-shadow(0 0 2rem $active);
+            background: $active;
+            color: $bg1;
+            transform: scale(110%);
+        }
+    }
 }

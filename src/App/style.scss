@@ -74,9 +74,10 @@ body * {
 }
 #content {
     position: fixed;
-    height: calc(100dvh - 35px);
-    width: calc(100dvw - 60px);
+    height: calc(100% - 35px);
+    width: calc(100% - 60px);
     overflow: hidden;
+    flex-shrink: 1;
     bottom: 0;
     right: 0;
     padding: 3.5vmin;
@@ -185,7 +186,72 @@ body * {
                 flex-direction: row;
                 flex-shrink: 0;
                 cursor: pointer;
+                $clrs:(
+                    "clr0":$clr0,
+                    "clr1":$clr1,
+                    "clr2":$clr2,
+                    "clr3":$clr3,
+                    "clr4":$clr4,
+                    "clr5":$clr5,
+                    "clr6":$clr6,
+                    "clr7":$clr7,
+                );
+                @each $name, $clr in $clrs {
+                    &.task_#{$name} {
+                        border: 1px solid $clr;
+                        &::before {
+                            content:"";
+                            opacity: .25;
+                            height: 100%;
+                            width: 100%;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%,-50%);
+                            background: linear-gradient(-65deg,transparent,$clr);
+                            z-index: 5;
+                        }
+                        & .task_#{$name}_clrselectico {
+                            color: $clr !important;
+                            filter: drop-shadow(0 0 5px $clr) !important;
+                        }
+                        .task_checkmarkWrapper {
+                            .checkmarkContainer {
+                                .checkmark {
+                                    // border: 1px $clr solid;
+                                    box-shadow: 0 0 2rem $clr;
+                                }
+                                &:hover input ~ .checkmark {
+                                    background: $h2;
+                                    transform: scale(115%);
+                                    filter: 
+                                        drop-shadow(0 0 1vmin $h2)
+                                        drop-shadow(0 0 1vmin $clr)
+                                        drop-shadow(0 0 5vmin $clr)
+                                        drop-shadow(0 0 10vmin $clr)!important;
+                                }
+                                input:checked ~ .checkmark {
+                                    background: $clr;
+                                    filter: 
+                                        drop-shadow(0 0 1vmin $clr)
+                                        drop-shadow(0 0 5vmin $clr);
+                                }
+                                &:hover input:checked ~ .checkmark {
+                                    filter: 
+                                        drop-shadow(0 0 1vmin $clr)
+                                        drop-shadow(0 0 5vmin $clr)
+                                        drop-shadow(0 0 10vmin $clr)!important;
+                                }
+                                input:checked ~ .checkmark:after {
+                                    @if $name=="clr0" or $name=="clr3" {color: $bg1 !important;}
+                                    display: block;
+                                }
+                            }
+                        }
+                    }
+                }
                 .task_contentWrapper {
+                    z-index: 10;
                     height: fit-content;
                     width: calc(75% - 10vmin);
                     .task_text {
@@ -228,6 +294,7 @@ body * {
                     }
                 }
                 .task_checkmarkWrapper {
+                    z-index: 12;
                     width: 60px;
                     height: 100%;
                     display: flex;
@@ -294,6 +361,7 @@ body * {
                     }
                 }
                 .task_dataWrapper {
+                    z-index: 14;
                     // width: calc(100% - (75% - 10vmin));
                     height: 100%;
                     flex: 1;
@@ -392,6 +460,7 @@ body * {
     flex-direction: column;
     justify-content: flex-start;
     gap: 1vmin;
+    z-index: 205;
     #taskedit_title {
         color: $h1;
         font-weight: bold;
@@ -477,6 +546,7 @@ body * {
     flex-direction: column;
     justify-content: flex-start;
     gap: 1vmin;
+    z-index: 200;
     #taskview_close {
         color: $h2;
         opacity: .5;
@@ -568,6 +638,7 @@ body * {
         transition: .35s;
         box-shadow: 0 0 2vmin rgba($active,.75);
         text-shadow: 0 0 3vmin $p3;
+        z-index: 205;
         &:hover {
             box-shadow: 0 .5vmin 5vmin $active;
             transform: translateY(-.5vmin);

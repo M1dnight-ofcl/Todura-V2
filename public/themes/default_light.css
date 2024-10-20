@@ -26,13 +26,13 @@
     --outline-active: #6f27e4;
     --sbicons: #35353545;
     --color-shceme: light;
-    /*clr*/
-    --clr-red: #dc3939;
-    --clr-orange: #dc7239;
-    --clr-yellow: #ffe656;
-    --clr-green: #47e632;
-    --clr-blue: #2789ec;
-    --clr-purple: #8745f1;
-    --clr-pink: #dd32e6;
-    --clr-white: #ffffff;
+    /*clrs*/
+    --clr0: #303030;
+    --clr1: #dc3939;
+    --clr2: #dc7239;
+    --clr3: #ebca13;
+    --clr4: #47e632;
+    --clr5: #2789ec;
+    --clr6: #8745f1;
+    --clr7: #dd32e6;
 }

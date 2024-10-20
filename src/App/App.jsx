@@ -103,6 +103,7 @@ const App=(prop)=>{
                                     creationTime: Date.now(),
                                     dueDate: NaN,//should be set by user
                                     checked: false,
+                                    color: NaN,
                                 },
                             }));
                             setTimeout(()=>document.getElementById("taskWrapper").scrollTo({
@@ -194,9 +195,9 @@ const App=(prop)=>{
                 onClick={(e)=>{document.getElementById("taskview").style.transform="translateX(calc(100% + 10vmin))";}}/>
             <h1 className='taskview_title'>{selectedTask.title}</h1>
             <div className='taskview_desc'>{selectedTask.desc}</div>
-            <div className='taskview_duedate'><div id="tvdlabel">Due Date</div><div id="tvddate">{new Intl.DateTimeFormat('en-US', 
+            <div className='taskview_duedate'><div id="tvdlabel">Due Date</div><div id="tvddate">{selectedTask.meta?!isNaN(selectedTask.meta.dueDate)?new Intl.DateTimeFormat('en-US', 
                 { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', })
-                    .format(selectedTask.meta?selectedTask.meta.dueDate:null)}</div></div>
+                    .format(new Date(selectedTask.meta.dueDate).fixDate()):"Not Set":null}</div></div>
             <button id="taskview_edit" onClick={(e)=>{
                 document.getElementById("taskview").style.transform="translateX(calc(100% + 10vmin))";
                 document.getElementById("taskedit").style.transform="translateX(0)";

@@ -12,6 +12,7 @@ export const todoslice=createSlice({
         dueDate: Date.parse('2069-04-20'),//rehehehe
         checked: false,
         important: true,
+        color: 4, //0:wht,1:rd,2:or,3:yw,4:bl,5:prp,6:pnk
       }
     },{//template 2 (for test)
       title:"Test: Hello, World 2",
@@ -22,6 +23,7 @@ export const todoslice=createSlice({
         dueDate: NaN,
         checked: true,
         important: false,
+        color: 6,
       }
     },{//template 3 (for test)
       title:"Test: Hello, World 3",
@@ -32,6 +34,7 @@ export const todoslice=createSlice({
         dueDate: Date.parse('2024-09-30'),
         checked: false,
         important: false,
+        color: NaN,
       }
     },
   ],

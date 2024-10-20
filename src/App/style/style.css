@@ -62,9 +62,10 @@ body *::-webkit-scrollbar-thumb:hover {
 
 #content {
   position: fixed;
-  height: calc(100dvh - 35px);
-  width: calc(100dvw - 60px);
+  height: calc(100% - 35px);
+  width: calc(100% - 60px);
   overflow: hidden;
+  flex-shrink: 1;
   bottom: 0;
   right: 0;
   padding: 3.5vmin;
@@ -177,7 +178,306 @@ body *::-webkit-scrollbar-thumb:hover {
   flex-shrink: 0;
   cursor: pointer;
 }
+#content #taskWrapper .task.task_clr0 {
+  border: 1px solid var(--clr0);
+}
+#content #taskWrapper .task.task_clr0::before {
+  content: "";
+  opacity: 0.25;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(-65deg, transparent, var(--clr0));
+  z-index: 5;
+}
+#content #taskWrapper .task.task_clr0 .task_clr0_clrselectico {
+  color: var(--clr0) !important;
+  filter: drop-shadow(0 0 5px var(--clr0)) !important;
+}
+#content #taskWrapper .task.task_clr0 .task_checkmarkWrapper .checkmarkContainer .checkmark {
+  box-shadow: 0 0 2rem var(--clr0);
+}
+#content #taskWrapper .task.task_clr0 .task_checkmarkWrapper .checkmarkContainer:hover input ~ .checkmark {
+  background: var(--h2);
+  transform: scale(115%);
+  filter: drop-shadow(0 0 1vmin var(--h2)) drop-shadow(0 0 1vmin var(--clr0)) drop-shadow(0 0 5vmin var(--clr0)) drop-shadow(0 0 10vmin var(--clr0)) !important;
+}
+#content #taskWrapper .task.task_clr0 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark {
+  background: var(--clr0);
+  filter: drop-shadow(0 0 1vmin var(--clr0)) drop-shadow(0 0 5vmin var(--clr0));
+}
+#content #taskWrapper .task.task_clr0 .task_checkmarkWrapper .checkmarkContainer:hover input:checked ~ .checkmark {
+  filter: drop-shadow(0 0 1vmin var(--clr0)) drop-shadow(0 0 5vmin var(--clr0)) drop-shadow(0 0 10vmin var(--clr0)) !important;
+}
+#content #taskWrapper .task.task_clr0 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark:after {
+  color: var(--bg1) !important;
+  display: block;
+}
+#content #taskWrapper .task.task_clr1 {
+  border: 1px solid var(--clr1);
+}
+#content #taskWrapper .task.task_clr1::before {
+  content: "";
+  opacity: 0.25;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(-65deg, transparent, var(--clr1));
+  z-index: 5;
+}
+#content #taskWrapper .task.task_clr1 .task_clr1_clrselectico {
+  color: var(--clr1) !important;
+  filter: drop-shadow(0 0 5px var(--clr1)) !important;
+}
+#content #taskWrapper .task.task_clr1 .task_checkmarkWrapper .checkmarkContainer .checkmark {
+  box-shadow: 0 0 2rem var(--clr1);
+}
+#content #taskWrapper .task.task_clr1 .task_checkmarkWrapper .checkmarkContainer:hover input ~ .checkmark {
+  background: var(--h2);
+  transform: scale(115%);
+  filter: drop-shadow(0 0 1vmin var(--h2)) drop-shadow(0 0 1vmin var(--clr1)) drop-shadow(0 0 5vmin var(--clr1)) drop-shadow(0 0 10vmin var(--clr1)) !important;
+}
+#content #taskWrapper .task.task_clr1 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark {
+  background: var(--clr1);
+  filter: drop-shadow(0 0 1vmin var(--clr1)) drop-shadow(0 0 5vmin var(--clr1));
+}
+#content #taskWrapper .task.task_clr1 .task_checkmarkWrapper .checkmarkContainer:hover input:checked ~ .checkmark {
+  filter: drop-shadow(0 0 1vmin var(--clr1)) drop-shadow(0 0 5vmin var(--clr1)) drop-shadow(0 0 10vmin var(--clr1)) !important;
+}
+#content #taskWrapper .task.task_clr1 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+#content #taskWrapper .task.task_clr2 {
+  border: 1px solid var(--clr2);
+}
+#content #taskWrapper .task.task_clr2::before {
+  content: "";
+  opacity: 0.25;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(-65deg, transparent, var(--clr2));
+  z-index: 5;
+}
+#content #taskWrapper .task.task_clr2 .task_clr2_clrselectico {
+  color: var(--clr2) !important;
+  filter: drop-shadow(0 0 5px var(--clr2)) !important;
+}
+#content #taskWrapper .task.task_clr2 .task_checkmarkWrapper .checkmarkContainer .checkmark {
+  box-shadow: 0 0 2rem var(--clr2);
+}
+#content #taskWrapper .task.task_clr2 .task_checkmarkWrapper .checkmarkContainer:hover input ~ .checkmark {
+  background: var(--h2);
+  transform: scale(115%);
+  filter: drop-shadow(0 0 1vmin var(--h2)) drop-shadow(0 0 1vmin var(--clr2)) drop-shadow(0 0 5vmin var(--clr2)) drop-shadow(0 0 10vmin var(--clr2)) !important;
+}
+#content #taskWrapper .task.task_clr2 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark {
+  background: var(--clr2);
+  filter: drop-shadow(0 0 1vmin var(--clr2)) drop-shadow(0 0 5vmin var(--clr2));
+}
+#content #taskWrapper .task.task_clr2 .task_checkmarkWrapper .checkmarkContainer:hover input:checked ~ .checkmark {
+  filter: drop-shadow(0 0 1vmin var(--clr2)) drop-shadow(0 0 5vmin var(--clr2)) drop-shadow(0 0 10vmin var(--clr2)) !important;
+}
+#content #taskWrapper .task.task_clr2 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+#content #taskWrapper .task.task_clr3 {
+  border: 1px solid var(--clr3);
+}
+#content #taskWrapper .task.task_clr3::before {
+  content: "";
+  opacity: 0.25;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(-65deg, transparent, var(--clr3));
+  z-index: 5;
+}
+#content #taskWrapper .task.task_clr3 .task_clr3_clrselectico {
+  color: var(--clr3) !important;
+  filter: drop-shadow(0 0 5px var(--clr3)) !important;
+}
+#content #taskWrapper .task.task_clr3 .task_checkmarkWrapper .checkmarkContainer .checkmark {
+  box-shadow: 0 0 2rem var(--clr3);
+}
+#content #taskWrapper .task.task_clr3 .task_checkmarkWrapper .checkmarkContainer:hover input ~ .checkmark {
+  background: var(--h2);
+  transform: scale(115%);
+  filter: drop-shadow(0 0 1vmin var(--h2)) drop-shadow(0 0 1vmin var(--clr3)) drop-shadow(0 0 5vmin var(--clr3)) drop-shadow(0 0 10vmin var(--clr3)) !important;
+}
+#content #taskWrapper .task.task_clr3 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark {
+  background: var(--clr3);
+  filter: drop-shadow(0 0 1vmin var(--clr3)) drop-shadow(0 0 5vmin var(--clr3));
+}
+#content #taskWrapper .task.task_clr3 .task_checkmarkWrapper .checkmarkContainer:hover input:checked ~ .checkmark {
+  filter: drop-shadow(0 0 1vmin var(--clr3)) drop-shadow(0 0 5vmin var(--clr3)) drop-shadow(0 0 10vmin var(--clr3)) !important;
+}
+#content #taskWrapper .task.task_clr3 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark:after {
+  color: var(--bg1) !important;
+  display: block;
+}
+#content #taskWrapper .task.task_clr4 {
+  border: 1px solid var(--clr4);
+}
+#content #taskWrapper .task.task_clr4::before {
+  content: "";
+  opacity: 0.25;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(-65deg, transparent, var(--clr4));
+  z-index: 5;
+}
+#content #taskWrapper .task.task_clr4 .task_clr4_clrselectico {
+  color: var(--clr4) !important;
+  filter: drop-shadow(0 0 5px var(--clr4)) !important;
+}
+#content #taskWrapper .task.task_clr4 .task_checkmarkWrapper .checkmarkContainer .checkmark {
+  box-shadow: 0 0 2rem var(--clr4);
+}
+#content #taskWrapper .task.task_clr4 .task_checkmarkWrapper .checkmarkContainer:hover input ~ .checkmark {
+  background: var(--h2);
+  transform: scale(115%);
+  filter: drop-shadow(0 0 1vmin var(--h2)) drop-shadow(0 0 1vmin var(--clr4)) drop-shadow(0 0 5vmin var(--clr4)) drop-shadow(0 0 10vmin var(--clr4)) !important;
+}
+#content #taskWrapper .task.task_clr4 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark {
+  background: var(--clr4);
+  filter: drop-shadow(0 0 1vmin var(--clr4)) drop-shadow(0 0 5vmin var(--clr4));
+}
+#content #taskWrapper .task.task_clr4 .task_checkmarkWrapper .checkmarkContainer:hover input:checked ~ .checkmark {
+  filter: drop-shadow(0 0 1vmin var(--clr4)) drop-shadow(0 0 5vmin var(--clr4)) drop-shadow(0 0 10vmin var(--clr4)) !important;
+}
+#content #taskWrapper .task.task_clr4 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+#content #taskWrapper .task.task_clr5 {
+  border: 1px solid var(--clr5);
+}
+#content #taskWrapper .task.task_clr5::before {
+  content: "";
+  opacity: 0.25;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(-65deg, transparent, var(--clr5));
+  z-index: 5;
+}
+#content #taskWrapper .task.task_clr5 .task_clr5_clrselectico {
+  color: var(--clr5) !important;
+  filter: drop-shadow(0 0 5px var(--clr5)) !important;
+}
+#content #taskWrapper .task.task_clr5 .task_checkmarkWrapper .checkmarkContainer .checkmark {
+  box-shadow: 0 0 2rem var(--clr5);
+}
+#content #taskWrapper .task.task_clr5 .task_checkmarkWrapper .checkmarkContainer:hover input ~ .checkmark {
+  background: var(--h2);
+  transform: scale(115%);
+  filter: drop-shadow(0 0 1vmin var(--h2)) drop-shadow(0 0 1vmin var(--clr5)) drop-shadow(0 0 5vmin var(--clr5)) drop-shadow(0 0 10vmin var(--clr5)) !important;
+}
+#content #taskWrapper .task.task_clr5 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark {
+  background: var(--clr5);
+  filter: drop-shadow(0 0 1vmin var(--clr5)) drop-shadow(0 0 5vmin var(--clr5));
+}
+#content #taskWrapper .task.task_clr5 .task_checkmarkWrapper .checkmarkContainer:hover input:checked ~ .checkmark {
+  filter: drop-shadow(0 0 1vmin var(--clr5)) drop-shadow(0 0 5vmin var(--clr5)) drop-shadow(0 0 10vmin var(--clr5)) !important;
+}
+#content #taskWrapper .task.task_clr5 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+#content #taskWrapper .task.task_clr6 {
+  border: 1px solid var(--clr6);
+}
+#content #taskWrapper .task.task_clr6::before {
+  content: "";
+  opacity: 0.25;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(-65deg, transparent, var(--clr6));
+  z-index: 5;
+}
+#content #taskWrapper .task.task_clr6 .task_clr6_clrselectico {
+  color: var(--clr6) !important;
+  filter: drop-shadow(0 0 5px var(--clr6)) !important;
+}
+#content #taskWrapper .task.task_clr6 .task_checkmarkWrapper .checkmarkContainer .checkmark {
+  box-shadow: 0 0 2rem var(--clr6);
+}
+#content #taskWrapper .task.task_clr6 .task_checkmarkWrapper .checkmarkContainer:hover input ~ .checkmark {
+  background: var(--h2);
+  transform: scale(115%);
+  filter: drop-shadow(0 0 1vmin var(--h2)) drop-shadow(0 0 1vmin var(--clr6)) drop-shadow(0 0 5vmin var(--clr6)) drop-shadow(0 0 10vmin var(--clr6)) !important;
+}
+#content #taskWrapper .task.task_clr6 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark {
+  background: var(--clr6);
+  filter: drop-shadow(0 0 1vmin var(--clr6)) drop-shadow(0 0 5vmin var(--clr6));
+}
+#content #taskWrapper .task.task_clr6 .task_checkmarkWrapper .checkmarkContainer:hover input:checked ~ .checkmark {
+  filter: drop-shadow(0 0 1vmin var(--clr6)) drop-shadow(0 0 5vmin var(--clr6)) drop-shadow(0 0 10vmin var(--clr6)) !important;
+}
+#content #taskWrapper .task.task_clr6 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+#content #taskWrapper .task.task_clr7 {
+  border: 1px solid var(--clr7);
+}
+#content #taskWrapper .task.task_clr7::before {
+  content: "";
+  opacity: 0.25;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(-65deg, transparent, var(--clr7));
+  z-index: 5;
+}
+#content #taskWrapper .task.task_clr7 .task_clr7_clrselectico {
+  color: var(--clr7) !important;
+  filter: drop-shadow(0 0 5px var(--clr7)) !important;
+}
+#content #taskWrapper .task.task_clr7 .task_checkmarkWrapper .checkmarkContainer .checkmark {
+  box-shadow: 0 0 2rem var(--clr7);
+}
+#content #taskWrapper .task.task_clr7 .task_checkmarkWrapper .checkmarkContainer:hover input ~ .checkmark {
+  background: var(--h2);
+  transform: scale(115%);
+  filter: drop-shadow(0 0 1vmin var(--h2)) drop-shadow(0 0 1vmin var(--clr7)) drop-shadow(0 0 5vmin var(--clr7)) drop-shadow(0 0 10vmin var(--clr7)) !important;
+}
+#content #taskWrapper .task.task_clr7 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark {
+  background: var(--clr7);
+  filter: drop-shadow(0 0 1vmin var(--clr7)) drop-shadow(0 0 5vmin var(--clr7));
+}
+#content #taskWrapper .task.task_clr7 .task_checkmarkWrapper .checkmarkContainer:hover input:checked ~ .checkmark {
+  filter: drop-shadow(0 0 1vmin var(--clr7)) drop-shadow(0 0 5vmin var(--clr7)) drop-shadow(0 0 10vmin var(--clr7)) !important;
+}
+#content #taskWrapper .task.task_clr7 .task_checkmarkWrapper .checkmarkContainer input:checked ~ .checkmark:after {
+  display: block;
+}
 #content #taskWrapper .task .task_contentWrapper {
+  z-index: 10;
   height: fit-content;
   width: calc(75% - 10vmin);
 }
@@ -215,6 +515,7 @@ body *::-webkit-scrollbar-thumb:hover {
   color: var(--disabled);
 }
 #content #taskWrapper .task .task_checkmarkWrapper {
+  z-index: 12;
   width: 60px;
   height: 100%;
   display: flex;
@@ -272,6 +573,7 @@ body *::-webkit-scrollbar-thumb:hover {
   display: block;
 }
 #content #taskWrapper .task .task_dataWrapper {
+  z-index: 14;
   height: 100%;
   flex: 1;
   display: flex;
@@ -363,6 +665,7 @@ body *::-webkit-scrollbar-thumb:hover {
   flex-direction: column;
   justify-content: flex-start;
   gap: 1vmin;
+  z-index: 205;
 }
 #taskedit #taskedit_title {
   color: var(--h1);
@@ -450,6 +753,7 @@ body *::-webkit-scrollbar-thumb:hover {
   flex-direction: column;
   justify-content: flex-start;
   gap: 1vmin;
+  z-index: 200;
 }
 #taskview #taskview_close {
   color: var(--h2);
@@ -544,6 +848,7 @@ body *::-webkit-scrollbar-thumb:hover {
   transition: 0.35s;
   box-shadow: 0 0 2vmin rgba(var(--active), 0.75);
   text-shadow: 0 0 3vmin var(--p3);
+  z-index: 205;
 }
 #taskview #taskview_edit:hover {
   box-shadow: 0 0.5vmin 5vmin var(--active);

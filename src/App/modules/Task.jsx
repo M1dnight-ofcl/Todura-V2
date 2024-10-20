@@ -4,12 +4,11 @@ import {
     faEdit, 
     faChevronDown, 
     faChevronUp, 
-    faDotCircle, 
-    faCircleDot, 
+    faDotCircle,
     faCircle, 
     faStar 
 } from '@fortawesome/free-solid-svg-icons';
-import { faStar as faStarBorder } from '@fortawesome/free-regular-svg-icons';
+import { faStar as faStarBorder, faCircle as faCircleDot } from '@fortawesome/free-regular-svg-icons';
 import { useSelector, useDispatch } from 'react-redux'
 import { addTask, removeTask, modifyState } from '../../store/slices/todo';
 import { setSelectedTask } from '../../store/slices/selectedTask';
@@ -29,7 +28,7 @@ export const Task=({id,title,desc,meta})=>{
     }
     return(<>{state?
         <div 
-            className="task" 
+            className={`task ${!isNaN(state.meta.color)&&state.meta.color>=0&&state.meta.color<=7?`task_clr${state.meta.color}`:""}`} 
             id={`${btoa(title)}_${id}`.replaceAll("=","")} 
             onClick={(e)=>{
                 if(e.target.id==`${btoa(title)}_${id}`.replaceAll("=","")){
@@ -99,13 +98,21 @@ export const Task=({id,title,desc,meta})=>{
                                 })); 
                             }}/>
                         {/* for colors */}
-                        {/* <FontAwesomeIcon 
-                            icon={faCircle} 
-                            className="task_option_icon"
+                        <FontAwesomeIcon 
+                            icon={!isNaN(state.meta.color)&&state.meta.color>=0&&state.meta.color<=7?faCircle:faCircleDot}
+                            className={`task_option_icon clrselectico ${!isNaN(state.meta.color)&&state.meta.color>=0&&state.meta.color<=7?`task_clr${state.meta.color}_clrselectico`:""}`}
                             onClick={(e)=>{
-                                // ["red","orange","yellow","green","blue","purple","pink","white"]
-
-                            }}/> */}
+                                // [...Array(7).keys(),NaN]
+                                dispatch(modifyState({
+                                    target: id,
+                                    new:{id,title,desc,meta:{...meta,
+                                        color:
+                                            isNaN(state.meta.color)?0:
+                                            state.meta.color<7?state.meta.color+1:
+                                            state.meta.color>=7?NaN:NaN,
+                                    }}
+                                })); 
+                            }}/>
                     </div>
                 </div>
         </div>

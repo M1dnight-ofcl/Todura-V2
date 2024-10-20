@@ -51,3 +51,8 @@ Date.prototype.toDateInputValue=(function() {
     local.setMinutes((this.getMinutes()/*+1440*/)+this.getTimezoneOffset());
     return String(`${local.getFullYear()}-${String(local.getMonth()+1).padStart(2,'0')}-${String(local.getDate()).padStart(2,'0')}`);
 });
+Date.prototype.fixDate=(function() {
+    var local=new Date(this);
+    local.setMinutes(local.getMinutes()+this.getTimezoneOffset());
+    return local;
+});

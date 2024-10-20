@@ -1,4 +1,5 @@
 const {app,BrowserWindow,screen,ipcMain}=require('electron');
+const {spawn}=require("child_process");
 const path=require('path');
 if(require('electron-squirrel-startup'))app.quit();
 const createWindow=()=>{
@@ -32,10 +33,13 @@ ipcMain.on('max',()=>{
   if(!BrowserWindow.getFocusedWindow().isMaximized()){ BrowserWindow.getFocusedWindow().maximize();}
   else if(BrowserWindow.getFocusedWindow().isMaximized()){ BrowserWindow.getFocusedWindow().unmaximize();}
 });
+ipcMain.handle('saveToFile',(_,obj)=>{
+  // console.log(`got data:${obj}`);
+  let pysu=spawn("./scripts/venv/Scripts/python.exe", ["./scripts/saveutil.py","csf",obj,]);
+  pysu.stdout.on("data",(data)=>{console.log(`PYSU: ${data}`);});
+  pysu.stderr.on("data",(data)=>{console.error(`------------\nPYSU_ERR:\n${data}------------`);});
+  pysu.on("exit",(code)=>{console.log(`\n------------\nPYSU Exited with Code ${code}\n------------`);});
+});
 app.on('ready',createWindow);
-app.on('window-all-closed',()=>{
-  if(process.platform!=='darwin')app.quit();
-});
-app.on('activate',()=>{
-  if(BrowserWindow.getAllWindows().length===0)createWindow();
-});
+app.on('window-all-closed',()=>{if(process.platform!=='darwin')app.quit();});
+app.on('activate',()=>{if(BrowserWindow.getAllWindows().length===0)createWindow();});

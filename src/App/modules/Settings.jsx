@@ -3,7 +3,9 @@ import { setTheme } from '../../store/slices/settings';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import "./assets/style/settings.css";
+import { generateId } from '../../modules/lib';
 export const SettingsTab=({})=>{
+    const todo=useSelector(state=>state.todo);
     const settings=useSelector(state=>state.settings);
     const dispatch=useDispatch();
     useEffect(()=>{
@@ -24,6 +26,12 @@ export const SettingsTab=({})=>{
                 <option value="default_dark">Default Dark</option>
                 <option value="default_light">Default Light</option>
             </select></label>
+            <h2>Backup</h2>
+            <button onClick={(e)=>{
+                e.preventDefault();
+                let saveObj={todo,settings,saveId:generateId(10).replaceAll("==","")}
+                toduraApi.saveToFile(saveObj);
+            }}>Save to File</button>
         </div>
     </pre></>);
 }
