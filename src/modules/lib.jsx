@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faCaretDown, 
@@ -56,3 +57,4 @@ Date.prototype.fixDate=(function() {
     local.setMinutes(local.getMinutes()+this.getTimezoneOffset());
     return local;
 });
+export const Portal=({children})=>{return createPortal(children, document.body);}

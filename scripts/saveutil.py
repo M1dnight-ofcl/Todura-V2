@@ -28,8 +28,11 @@ class SaveUtil:
         print("created file data");
         os.chdir('..');
         self.compileToFile(data_parsed["saveId"]);
-        print("moving file to desktop")
-        shutil.move("todura-savefile.tsf",os.path.join(os.path.join(os.environ['USERPROFILE']),'Downloads'));
+        print("copying file to downloads folder")
+        try:shutil.copy("todura-savefile.tsf",os.path.join(os.path.join(os.environ['USERPROFILE']),'Downloads'));
+        except shutil.SameFileError:print("File already exists in downloads");
+        except PermissionError:print("Permission denied.");
+        except:print("ran into error copying file");
         print("done!")
 
 if sys.argv[1]=="createSaveFile" or sys.argv[1]=="csf":

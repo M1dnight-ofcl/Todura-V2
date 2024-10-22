@@ -1,5 +1,74 @@
 @charset "UTF-8";
 @import url("https://fonts.cdnfonts.com/css/orbiter-fbs-trial");
+.tx_clr0 {
+  color: var(--clr0) !important;
+}
+
+.bg_clr0 {
+  background: var(--clr0) !important;
+}
+
+.tx_clr1 {
+  color: var(--clr1) !important;
+}
+
+.bg_clr1 {
+  background: var(--clr1) !important;
+}
+
+.tx_clr2 {
+  color: var(--clr2) !important;
+}
+
+.bg_clr2 {
+  background: var(--clr2) !important;
+}
+
+.tx_clr3 {
+  color: var(--clr3) !important;
+}
+
+.bg_clr3 {
+  background: var(--clr3) !important;
+}
+
+.tx_clr4 {
+  color: var(--clr4) !important;
+}
+
+.bg_clr4 {
+  background: var(--clr4) !important;
+}
+
+.tx_clr5 {
+  color: var(--clr5) !important;
+}
+
+.bg_clr5 {
+  background: var(--clr5) !important;
+}
+
+.tx_clr6 {
+  color: var(--clr6) !important;
+}
+
+.bg_clr6 {
+  background: var(--clr6) !important;
+}
+
+.tx_clr7 {
+  color: var(--clr7) !important;
+}
+
+.bg_clr7 {
+  background: var(--clr7) !important;
+}
+
+.toastify {
+  top: calc(35px + 0.5rem) !important;
+  right: 0.5rem !important;
+}
+
 body * {
   border: none;
   margin: none;

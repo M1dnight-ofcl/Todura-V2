@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+//fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faTrash, 
@@ -8,13 +10,24 @@ import {
     faCircle, 
     faStar 
 } from '@fortawesome/free-solid-svg-icons';
-import { faStar as faStarBorder, faCircle as faCircleDot } from '@fortawesome/free-regular-svg-icons';
+import { 
+    faStar as faStarBorder, 
+    faCircle as faCircleDot 
+} from '@fortawesome/free-regular-svg-icons';
+//redux
 import { useSelector, useDispatch } from 'react-redux'
 import { addTask, removeTask, modifyState } from '../../store/slices/todo';
 import { setSelectedTask } from '../../store/slices/selectedTask';
+//external modules
 import ClampLines from 'react-clamp-lines';
-import React, { useState, useEffect } from "react";
-export const Task=({id,title,desc,meta})=>{
+import { toast } from 'react-toastify';
+export const Task=({
+    id,
+    title,
+    desc,
+    meta,
+    contextMenuHandler=()=>{},
+})=>{
     const todo=useSelector(state=>state.todo);
     const selectedTask=useSelector(state=>state.selectedTask);
     const state=useSelector(state=>state.todo[state.todo.findIndex(data=>data.id==id)]);
@@ -30,6 +43,7 @@ export const Task=({id,title,desc,meta})=>{
         <div 
             className={`task ${!isNaN(state.meta.color)&&state.meta.color>=0&&state.meta.color<=7?`task_clr${state.meta.color}`:""}`} 
             id={`${btoa(title)}_${id}`.replaceAll("=","")} 
+            onContextMenu={(e)=>{contextMenuHandler(e,{id,title,desc,meta})}}
             onClick={(e)=>{
                 if(e.target.id==`${btoa(title)}_${id}`.replaceAll("=","")){
                     dispatch(setSelectedTask(state));

@@ -1,14 +1,34 @@
+//core
 import React,{ useState, useEffect } from 'react';
 import "./style/style.css";
+//fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPlus, faGear, faXmark, faEdit, faPencil, faPencilAlt, faSave } from '@fortawesome/free-solid-svg-icons';
+import { 
+    faHome, 
+    faPlus, 
+    faGear, 
+    faXmark, 
+    faEdit, 
+    faSave, 
+    faCircle,
+} from '@fortawesome/free-solid-svg-icons';
+//redux
 import { useSelector, useDispatch } from 'react-redux';
 import { addTask, removeTask, modifyState } from '../store/slices/todo';
 import { setSelectedTask } from '../store/slices/selectedTask';
-import { $with, generateId, Collapsable } from '../modules/lib';
+//lib
+import { $with, generateId, Collapsable, Portal } from '../modules/lib';
+//modules
 import { Task } from './modules/Task';
+//tabs
 import { SettingsTab } from './modules/Settings';
+//helmet
 import { Helmet } from 'react-helmet-async';
+//external modules
+import { Menu, Item, Separator, Submenu, useContextMenu } from 'react-contexify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-contexify/ReactContexify.css';
 const App=(prop)=>{
     const todo=useSelector(state=>state.todo);
     const selectedTask=useSelector(state=>state.selectedTask);
@@ -21,8 +41,61 @@ const App=(prop)=>{
     useEffect(()=>{
         console.table(selectedTask);
     },[selectedTask]);
+    const ContextMenu=({})=>{
+        return(<>
+            <Portal>
+                <Menu id="context_menu" animation="fade">
+                    <Item id="delete" 
+                        onClick={handleItemClick} 
+                        keyMatcher={(e)=>{return e.key=="Delete"||e.key=="Backspace"}}>Delete</Item>
+                    <Item id="edit" onClick={handleItemClick}>Edit</Item>
+                    <Item id="toggleimportance" onClick={handleItemClick}>Toggle Importance</Item>
+                    <Submenu label="Set Color">
+                        <Item id="set_clr0" onClick={handleItemClick}>
+                            <FontAwesomeIcon className='tx_clr0' icon={faCircle}/>&nbsp;White</Item>
+                        <Item id="set_clr1" onClick={handleItemClick}>
+                            <FontAwesomeIcon className='tx_clr1' icon={faCircle}/>&nbsp;Red</Item>
+                        <Item id="set_clr2" onClick={handleItemClick}>
+                            <FontAwesomeIcon className='tx_clr2' icon={faCircle}/>&nbsp;Orange</Item>
+                        <Item id="set_clr3" onClick={handleItemClick}>
+                            <FontAwesomeIcon className='tx_clr3' icon={faCircle}/>&nbsp;Yellow</Item>
+                        <Item id="set_clr4" onClick={handleItemClick}>
+                            <FontAwesomeIcon className='tx_clr4' icon={faCircle}/>&nbsp;Green</Item>
+                        <Item id="set_clr5" onClick={handleItemClick}>
+                            <FontAwesomeIcon className='tx_clr5' icon={faCircle}/>&nbsp;Blue</Item>
+                        <Item id="set_clr6" onClick={handleItemClick}>
+                            <FontAwesomeIcon className='tx_clr6' icon={faCircle}/>&nbsp;Purple</Item>
+                        <Item id="set_clr7" onClick={handleItemClick}>
+                            <FontAwesomeIcon className='tx_clr7' icon={faCircle}/>&nbsp;Pink</Item>
+                    </Submenu>
+                </Menu>
+            </Portal>
+        </>);
+    }
+    const {show}=useContextMenu({id:"context_menu",});
+    const handleContextMenu=(event,props)=>{show({event,props,});}
+    const handleItemClick=({id,event,props})=>{
+        switch(id){
+            case "delete":dispatch(removeTask(props.id));break;
+            case "toggleimportance":dispatch(modifyState({target:props.id,new:{id:props.id,title:props.title,desc:props.desc,meta:{...props.meta,important:!props.meta.important,}}}));break;
+            case "edit":
+                dispatch(setSelectedTask(props));
+                document.getElementById("taskedit").style.transform="translateX(0)";
+                document.getElementById("taskedit_title").focus();
+            break;
+            case "set_clr0":dispatch(modifyState({target:props.id,new:{id:props.id,title:props.title,desc:props.desc,meta:{...props.meta,color:0,}}}));break;
+            case "set_clr1":dispatch(modifyState({target:props.id,new:{id:props.id,title:props.title,desc:props.desc,meta:{...props.meta,color:1,}}}));break;
+            case "set_clr2":dispatch(modifyState({target:props.id,new:{id:props.id,title:props.title,desc:props.desc,meta:{...props.meta,color:2,}}}));break;
+            case "set_clr3":dispatch(modifyState({target:props.id,new:{id:props.id,title:props.title,desc:props.desc,meta:{...props.meta,color:3,}}}));break;
+            case "set_clr4":dispatch(modifyState({target:props.id,new:{id:props.id,title:props.title,desc:props.desc,meta:{...props.meta,color:4,}}}));break;
+            case "set_clr5":dispatch(modifyState({target:props.id,new:{id:props.id,title:props.title,desc:props.desc,meta:{...props.meta,color:5,}}}));break;
+            case "set_clr6":dispatch(modifyState({target:props.id,new:{id:props.id,title:props.title,desc:props.desc,meta:{...props.meta,color:6,}}}));break;
+            case "set_clr7":dispatch(modifyState({target:props.id,new:{id:props.id,title:props.title,desc:props.desc,meta:{...props.meta,color:7,}}}));break;
+        }
+    }
     const HomeTab=({})=>{
         return(<>
+            <ContextMenu/>
             <div id="taskWrapper" /* onScroll={(e)=>{setScrolled(e.target.scrollTop);}} */>
                 {/* <Collapsable id={generateId(5)} title={<>Important</>}> */}
                     {/* important and unchecked */}
@@ -32,6 +105,7 @@ const App=(prop)=>{
                             title={title}
                             desc={desc}
                             meta={meta}
+                            contextMenuHandler={handleContextMenu}
                             key={`task_${id}_${btoa(title)}`.replaceAll("=","")}/>)}
                 {/* </Collapsable> */}
                 {/* not important or unchecked */}
@@ -41,6 +115,7 @@ const App=(prop)=>{
                         title={title}
                         desc={desc}
                         meta={meta}
+                        contextMenuHandler={handleContextMenu}
                         key={`task_${id}_${btoa(title)}`.replaceAll("=","")}/>)}
                 {/* important and checked */}
                 {todo.filter(item=>item.meta.important&&item.meta.checked)
@@ -49,6 +124,7 @@ const App=(prop)=>{
                         title={title}
                         desc={desc}
                         meta={meta}
+                        contextMenuHandler={handleContextMenu}
                         key={`task_${id}_${btoa(title)}`.replaceAll("=","")}/>)}
                 {/* not important but checked */}
                 {todo.filter(item=>!item.meta.important&&item.meta.checked)
@@ -57,6 +133,7 @@ const App=(prop)=>{
                         title={title}
                         desc={desc}
                         meta={meta}
+                        contextMenuHandler={handleContextMenu}
                         key={`task_${id}_${btoa(title)}`.replaceAll("=","")}/>)}
             </div>
             <div id="taskScrollShade"></div>
@@ -127,6 +204,19 @@ const App=(prop)=>{
             <title>Todura V2</title>
             <link rel="stylesheet" id="theme" href={`/themes/${settings.theme}.css`} />
         </Helmet>
+        <Portal>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                pauseOnHover
+                className="toastify"
+                theme="dark"/>
+        </Portal>
         <div id="sidebar">
             <button 
                 id="home" 

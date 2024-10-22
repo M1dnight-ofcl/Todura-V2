@@ -1562,7 +1562,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^2.1.1":
+"clsx@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "clsx@npm:1.2.1"
+  checksum: 10c0/34dead8bee24f5e96f6e7937d711978380647e936a22e76380290e35486afd8634966ce300fc4b74a32f3762c7d4c0303f442c3e259f4ce02374eb0c82834f27
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.1.0, clsx@npm:^2.1.1":
   version: 2.1.1
   resolution: "clsx@npm:2.1.1"
   checksum: 10c0/c4c8eb865f8c82baab07e71bfa8897c73454881c4f99d6bc81585aecd7c441746c1399d08363dc096c550cceaf97bd4ce1e8854e1771e9998d9f94c4fe075839
@@ -4203,6 +4210,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-contexify@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "react-contexify@npm:6.0.0"
+  dependencies:
+    clsx: "npm:^1.2.1"
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: 10c0/f43ece394e0d398941bdc46930759582a447372b48fac06a382acfb447ca6f359d8c882f8bfd25d38d951966dcb19a566d9bd00d157e81a32a15f77a771ef45d
+  languageName: node
+  linkType: hard
+
 "react-datepicker@npm:^7.4.0":
   version: 7.4.0
   resolution: "react-datepicker@npm:7.4.0"
@@ -4273,6 +4292,18 @@ __metadata:
     redux:
       optional: true
   checksum: 10c0/56ac98228e011b26e0202346af9c8dd408ad5ea8235d8761c8e05ea0953b8ca801cdf9d1f481fdec7b285d7f30ceef7238b46b3df7636ef77dd5c2ea8c5be5b2
+  languageName: node
+  linkType: hard
+
+"react-toastify@npm:^10.0.6":
+  version: 10.0.6
+  resolution: "react-toastify@npm:10.0.6"
+  dependencies:
+    clsx: "npm:^2.1.0"
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  checksum: 10c0/4042b716d008295d0feab32488d1e88ec655a1b7a9176fa7d253c70387578a8a0c04aca0ff86d20e1722f3b4baadae8970f50f462940d67a90453c307dd350a9
   languageName: node
   linkType: hard
 
@@ -5100,10 +5131,12 @@ __metadata:
     path-browserify: "npm:^1.0.1"
     react: "npm:^18.3.1"
     react-clamp-lines: "npm:^3.0.3"
+    react-contexify: "npm:^6.0.0"
     react-datepicker: "npm:^7.4.0"
     react-dom: "npm:^18.3.1"
     react-helmet-async: "npm:^2.0.5"
     react-redux: "npm:^9.1.2"
+    react-toastify: "npm:^10.0.6"
     redux: "npm:^5.0.1"
     vite: "npm:^5.4.8"
   languageName: unknown

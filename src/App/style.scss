@@ -1,5 +1,23 @@
 @import "../theme";
 //-----------------
+$clrs:(
+    "clr0":$clr0,
+    "clr1":$clr1,
+    "clr2":$clr2,
+    "clr3":$clr3,
+    "clr4":$clr4,
+    "clr5":$clr5,
+    "clr6":$clr6,
+    "clr7":$clr7,
+);
+@each $name, $clr in $clrs {
+    .tx_#{$name}{color: #{$clr} !important;}
+    .bg_#{$name}{background: #{$clr} !important;}
+}
+.toastify {
+    top: calc(35px + .5rem) !important;
+    right: .5rem !important;
+}
 body * {
     border: none;
     margin: none;
@@ -186,16 +204,6 @@ body * {
                 flex-direction: row;
                 flex-shrink: 0;
                 cursor: pointer;
-                $clrs:(
-                    "clr0":$clr0,
-                    "clr1":$clr1,
-                    "clr2":$clr2,
-                    "clr3":$clr3,
-                    "clr4":$clr4,
-                    "clr5":$clr5,
-                    "clr6":$clr6,
-                    "clr7":$clr7,
-                );
                 @each $name, $clr in $clrs {
                     &.task_#{$name} {
                         border: 1px solid $clr;

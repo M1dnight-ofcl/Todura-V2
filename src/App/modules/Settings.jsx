@@ -1,13 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { setTheme } from '../../store/slices/settings';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import "./assets/style/settings.css";
 import { generateId } from '../../modules/lib';
+import { toast } from 'react-toastify';
 export const SettingsTab=({})=>{
     const todo=useSelector(state=>state.todo);
     const settings=useSelector(state=>state.settings);
     const dispatch=useDispatch();
+    const saveStatusToastId=React.useRef(null);
     useEffect(()=>{
         // document.getElementById("settings").click();
         Object.keys(settings).map((skey,index)=>{
@@ -29,8 +31,10 @@ export const SettingsTab=({})=>{
             <h2>Backup</h2>
             <button onClick={(e)=>{
                 e.preventDefault();
+                saveStatusToastId.current=toast("Saving to File...",{autoClose:false});
                 let saveObj={todo,settings,saveId:generateId(10).replaceAll("==","")}
-                toduraApi.saveToFile(saveObj);
+                setTimeout(()=>toduraApi.saveToFile(saveObj),200);
+                toast.update(saveStatusToastId.current,{render:"Saved File to 'Downloads'",autoClose:5000})
             }}>Save to File</button>
         </div>
     </pre></>);
