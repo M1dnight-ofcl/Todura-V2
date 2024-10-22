@@ -1,9 +1,10 @@
 export const releaseData={
-    v:"v0.4.2",
+    v:"v0.4.3",
     changelog:[
         "Improved Settings UI",
         "Added options to settings",
         "Fixed a small issue with temp folder",
+        "Attempted fix of github languages",
     ]
 }
 import React, { useEffect, useState } from "react";
