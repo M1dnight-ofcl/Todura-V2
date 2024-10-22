@@ -38,6 +38,18 @@ const App=(prop)=>{
     useEffect(()=>{
         console.table(todo);
     },[todo]);
+    useEffect(()=>{//settings renderer
+        Object.keys(settings).map((skey,index)=>{
+            switch(skey){
+                case "theme":
+                    // document.body.classList.map((className,index)=>{document.body.classList.remove("className")});
+                    document.body.className=settings[skey]
+                break;
+                case "advanced_settings":break;
+                default:console.error(`unknowng settings key: ${skey} (value: ${settings[skey]})`);
+            }
+        });
+    },[settings]);
     useEffect(()=>{
         console.table(selectedTask);
     },[selectedTask]);
@@ -202,7 +214,7 @@ const App=(prop)=>{
     return(<>
         <Helmet>
             <title>Todura V2</title>
-            <link rel="stylesheet" id="theme" href={`/themes/${settings.theme}.css`} />
+            {/* <link rel="stylesheet" id="theme" href={`./themes/${settings.theme}.css`} /> */}
         </Helmet>
         <Portal>
             <ToastContainer

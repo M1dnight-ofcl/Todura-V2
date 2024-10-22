@@ -1,4 +1,6 @@
 @import "../theme";
+@import "./themes/default_dark.scss";
+@import "./themes/default_light.scss";
 //-----------------
 $clrs:(
     "clr0":$clr0,

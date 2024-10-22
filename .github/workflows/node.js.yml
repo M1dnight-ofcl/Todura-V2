@@ -29,5 +29,5 @@ jobs:
       run: yarn
     - name: Updating Libraries
       run: yarn up
-    - name: Building Package
-      run: yarn package
+    - name: Building
+      run: yarn build

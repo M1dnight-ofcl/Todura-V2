@@ -1,7 +1,9 @@
-const {app,BrowserWindow,screen,ipcMain}=require('electron');
-const {spawn}=require("child_process");
-const path=require('path');
-if(require('electron-squirrel-startup'))app.quit();
+import {app,BrowserWindow,screen,ipcMain } from 'electron';
+import path from 'node:path';
+import spawn from "node:child_process";
+import started from 'electron-squirrel-startup';
+// if(require('electron-squirrel-startup'))app.quit();
+if(started)app.quit();
 const createWindow=()=>{
   const primaryDisplay=screen.getPrimaryDisplay();
   const{width,height}=primaryDisplay.workAreaSize;

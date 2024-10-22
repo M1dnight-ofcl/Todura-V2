@@ -28,16 +28,6 @@ export const SettingsTab=({})=>{
     const settings=useSelector(state=>state.settings);
     const dispatch=useDispatch();
     const saveStatusToastId=React.useRef(null);
-    useEffect(()=>{
-        // document.getElementById("settings").click();
-        Object.keys(settings).map((skey,index)=>{
-            switch(skey){
-                case "theme":break;
-                case "advanced_settings":break;
-                default:console.error(`unknowng settings key: ${skey} (value: ${settings[skey]})`);
-            }
-        });
-    },[settings]);
     return(<><pre>
         <div id="settingsWrapper">
             <div id="settingsSidebar">
