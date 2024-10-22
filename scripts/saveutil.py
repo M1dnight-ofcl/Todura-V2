@@ -10,7 +10,7 @@ class SaveUtil:
     def createSaveFile(self,data):
         # print(os.getcwd());
         if os.path.exists("temp"):
-            shutil.rmtree('temp')
+            shutil.rmtree('temp');
             print("temp dir exists. this could be result of incorrect shutdown of program or manual creation. it had been removed");
         os.mkdir("temp");
         print("created temp dir");
@@ -28,12 +28,15 @@ class SaveUtil:
         print("created file data");
         os.chdir('..');
         self.compileToFile(data_parsed["saveId"]);
-        print("copying file to downloads folder")
+        print("copying file to downloads folder");
         try:shutil.copy("todura-savefile.tsf",os.path.join(os.path.join(os.environ['USERPROFILE']),'Downloads'));
         except shutil.SameFileError:print("File already exists in downloads");
         except PermissionError:print("Permission denied.");
         except:print("ran into error copying file");
-        print("done!")
+        os.chdir('..');
+        shutil.rmtree('temp');
+        print("clearing temp");
+        print("done!");
 
 if sys.argv[1]=="createSaveFile" or sys.argv[1]=="csf":
     SaveUtil().createSaveFile(sys.argv[2]);
