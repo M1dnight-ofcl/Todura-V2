@@ -1,3 +1,10 @@
+export const releaseData={
+    v:"v0.4.1",
+    changelog:[
+        "Improved Settings UI",
+        "Added options to settings",
+    ]
+}
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,9 +38,9 @@ export function getQueryParams(qs) {
     return params;
 }
 export const queryParams=getQueryParams(window.location.search);
-export const $with=(value)=>{
-    return new Promise((resolve,reject)=>{resolve(value)});
-}
+export const $with=(value)=>{return new Promise((resolve,reject)=>{resolve(value)});}
+export const $=(query)=>{return document.querySelector(query)}
+export const $range=(length,start=0)=>{return [...Array(5).keys()].map(i=>i+start);}
 export const Collapsable=({id,title,children,opened=true})=>{
     const[open,setOpen]=useState(opened);
     useEffect(()=>{//!barely fucking works

@@ -1,61 +1,174 @@
 @import "../../../theme.scss";
 #settingsWrapper {
     height: 100%;
-    width: 100%;
+    width: calc(110vmin);
+    max-width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     padding: 5vmin;
     font-family: $font;
-    h1 {
-        margin: 0;
-        padding: 0;
-        padding-bottom: .75rem;
-        border-bottom: $p3 solid 1px;
-        margin-bottom: .75rem;
-        font-size: 3rem;
-        color: $h1;
-        font-weight: bold;
-    }
-    h2 {
-        margin: .5rem 0;
-        padding: 0;
-        font-size: 2rem;
-        line-height: 2rem;
-        color: $h2;
-    }
-    label {
-        color: $p1;
-        margin: .5rem 0;
-        font-size: 1rem;
-        select {
-            background: $ui1;
-            color: $p1;
-            padding: .35rem;
+    #settingsSidebar {
+        height: 100%;
+        width: 32vmin;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        display: flex;
+        padding: 1rem;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: .5vmin;
+        h1 {
+            font-size: 6vmin;
+            color: $h1;
+            width: 100%;
+            margin: 2vmin 0;
+            margin-bottom: 1vmin !important;
+        }
+        button {
+            width: 100%;
+            padding: 1vmin;
+            padding-top: 1.5vmin;
+            text-align: left;
             border-radius: $border-rad;
-            border: $outline;
-            outline: none;
+            background: transparent;
+            border: transparent 1px solid;
+            color: $p2;
+            font-size: 3vmin;
+            font-family: $font;
+            cursor: pointer;
             transition: .35s;
-            font-size: 1rem;
+            &:hover {background: $ui1;}
+            &.sb_active {background: $ui4;}
+            .i{aspect-ratio: 1 / 1;}
         }
     }
-    button {
-        padding: .75rem 3.5rem;
-        border-radius: $border-rad;
-        border: $outline;
-        background: $ui1;
-        color: $p1;
-        font-family: $font;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: .35s;
-        &:hover {
-            border-color: transparent;
-            filter: drop-shadow(0 0 2rem $active);
-            background: $active;
-            color: $bg1;
-            transform: scale(110%);
+    #settingsContent {
+        height: calc(100% - 2rem);
+        width: calc(100% - 32vmin);
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        padding: 0 1rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        overflow-y: auto;
+        h2 {
+            font-size: 4.5vmin;
+            color: $h2;
+            width: 100%;
+            margin: 2vmin 0;
+        }
+        h3 {
+            font-size: 3.5vmin;
+            color: $p1;
+            width: 100%;
+            margin: 0;
+        }
+        ul {
+            margin: 1vmin;
+            li {
+                font-size: 3vmin;
+                color: $p3;
+                width: 100%;
+                margin: 0;
+            }
+        }
+        label {
+            font-size: 3vmin;
+            color: $p2;
+            margin: .35vmin 0;
+        }
+        .label_checkbox {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            .checkmarkContainer {
+                display: flex;
+                aspect-ratio: 1 / 1;
+                width: 4.5vmin !important;
+                position: relative;
+                cursor: pointer;
+                font-size: 1rem;
+                user-select: none;
+                input {
+                    position: absolute;
+                    opacity: 0;
+                    cursor: pointer;
+                    height: 0;
+                    width: 0;
+                }
+                .checkmark {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    background-color: $ui4;
+                    border-radius: calc(($border-rad / 4) * 3);
+                    transition: .35s;
+                    &:after {
+                        position:absolute;
+                        display:none;
+                        content: "✔" !important;
+                        left: 50%;
+                        top: 50%;
+                        color: $h2;
+                        font-size: 1rem;
+                        transform: translate(-50%,-50%);
+                    }
+                }
+                &:hover input ~ .checkmark {
+                    background: $h2;
+                    transform: scale(105%);
+                }
+                input:checked ~ .checkmark {
+                    background: $active;
+                }
+                input:checked ~ .checkmark:after {
+                    display: block;
+                }
+            }
+        }
+        button {
+            padding: 2vmin;
+            width: 35vmin;
+            border-radius: $border-rad;
+            border: $outline;
+            background: $ui1;
+            color: $p1;
+            font-family: $font;
+            font-size: 2.5vmin;
+            cursor: pointer;
+            transition: .35s;
+            &:hover {
+                border-color: transparent;
+                // filter: drop-shadow(0 0 2rem $active);
+                background: $active;
+                color: $bg1;
+                transform: scale(105%);
+            }
+        }
+        select {
+            padding: 2vmin;
+            width: 35vmin;
+            border-radius: $border-rad;
+            border: $outline;
+            background: $ui1;
+            color: $p1;
+            font-family: $font;
+            font-size: 2.5vmin;
+            margin-top: .5vmin;
+            cursor: pointer;
+            transition: .35s;
+            outline: none;
         }
     }
 }

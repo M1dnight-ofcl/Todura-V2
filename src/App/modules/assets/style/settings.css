@@ -1,7 +1,9 @@
+@charset "UTF-8";
 @import url("https://fonts.cdnfonts.com/css/orbiter-fbs-trial");
 #settingsWrapper {
   height: 100%;
-  width: 100%;
+  width: 110vmin;
+  max-width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -9,53 +11,170 @@
   padding: 5vmin;
   font-family: var(--font);
 }
-#settingsWrapper h1 {
-  margin: 0;
-  padding: 0;
-  padding-bottom: 0.75rem;
-  border-bottom: var(--p3) solid 1px;
-  margin-bottom: 0.75rem;
-  font-size: 3rem;
+#settingsWrapper #settingsSidebar {
+  height: 100%;
+  width: 32vmin;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  padding: 1rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.5vmin;
+}
+#settingsWrapper #settingsSidebar h1 {
+  font-size: 6vmin;
   color: var(--h1);
-  font-weight: bold;
+  width: 100%;
+  margin: 2vmin 0;
+  margin-bottom: 1vmin !important;
 }
-#settingsWrapper h2 {
-  margin: 0.5rem 0;
-  padding: 0;
-  font-size: 2rem;
-  line-height: 2rem;
-  color: var(--h2);
-}
-#settingsWrapper label {
-  color: var(--p1);
-  margin: 0.5rem 0;
-  font-size: 1rem;
-}
-#settingsWrapper label select {
-  background: var(--ui1);
-  color: var(--p1);
-  padding: 0.35rem;
+#settingsWrapper #settingsSidebar button {
+  width: 100%;
+  padding: 1vmin;
+  padding-top: 1.5vmin;
+  text-align: left;
   border-radius: var(--border-rad);
-  border: var(--outline) solid 1px;
-  outline: none;
+  background: transparent;
+  border: transparent 1px solid;
+  color: var(--p2);
+  font-size: 3vmin;
+  font-family: var(--font);
+  cursor: pointer;
   transition: 0.35s;
-  font-size: 1rem;
 }
-#settingsWrapper button {
-  padding: 0.75rem 3.5rem;
+#settingsWrapper #settingsSidebar button:hover {
+  background: var(--ui1);
+}
+#settingsWrapper #settingsSidebar button.sb_active {
+  background: var(--ui4);
+}
+#settingsWrapper #settingsSidebar button .i {
+  aspect-ratio: 1/1;
+}
+#settingsWrapper #settingsContent {
+  height: calc(100% - 2rem);
+  width: calc(100% - 32vmin);
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 0 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  overflow-y: auto;
+}
+#settingsWrapper #settingsContent h2 {
+  font-size: 4.5vmin;
+  color: var(--h2);
+  width: 100%;
+  margin: 2vmin 0;
+}
+#settingsWrapper #settingsContent h3 {
+  font-size: 3.5vmin;
+  color: var(--p1);
+  width: 100%;
+  margin: 0;
+}
+#settingsWrapper #settingsContent ul {
+  margin: 1vmin;
+}
+#settingsWrapper #settingsContent ul li {
+  font-size: 3vmin;
+  color: var(--p3);
+  width: 100%;
+  margin: 0;
+}
+#settingsWrapper #settingsContent label {
+  font-size: 3vmin;
+  color: var(--p2);
+  margin: 0.35vmin 0;
+}
+#settingsWrapper #settingsContent .label_checkbox {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer {
+  display: flex;
+  aspect-ratio: 1/1;
+  width: 4.5vmin !important;
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+  user-select: none;
+}
+#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--ui4);
+  border-radius: calc(var(--border-rad) / 4 * 3);
+  transition: 0.35s;
+}
+#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer .checkmark:after {
+  position: absolute;
+  display: none;
+  content: "✔" !important;
+  left: 50%;
+  top: 50%;
+  color: var(--h2);
+  font-size: 1rem;
+  transform: translate(-50%, -50%);
+}
+#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer:hover input ~ .checkmark {
+  background: var(--h2);
+  transform: scale(105%);
+}
+#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer input:checked ~ .checkmark {
+  background: var(--active);
+}
+#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+#settingsWrapper #settingsContent button {
+  padding: 2vmin;
+  width: 35vmin;
   border-radius: var(--border-rad);
   border: var(--outline) solid 1px;
   background: var(--ui1);
   color: var(--p1);
   font-family: var(--font);
-  font-size: 1rem;
+  font-size: 2.5vmin;
   cursor: pointer;
   transition: 0.35s;
 }
-#settingsWrapper button:hover {
+#settingsWrapper #settingsContent button:hover {
   border-color: transparent;
-  filter: drop-shadow(0 0 2rem var(--active));
   background: var(--active);
   color: var(--bg1);
-  transform: scale(110%);
+  transform: scale(105%);
+}
+#settingsWrapper #settingsContent select {
+  padding: 2vmin;
+  width: 35vmin;
+  border-radius: var(--border-rad);
+  border: var(--outline) solid 1px;
+  background: var(--ui1);
+  color: var(--p1);
+  font-family: var(--font);
+  font-size: 2.5vmin;
+  margin-top: 0.5vmin;
+  cursor: pointer;
+  transition: 0.35s;
+  outline: none;
 }/*# sourceMappingURL=settings.css.map */
