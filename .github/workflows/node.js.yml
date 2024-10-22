@@ -26,6 +26,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: trying to delete temp (if avaliable. this may error)
+      run: if [ -d "/temp" ]; then rm -rf /temp; fi
+      continue-on-error: true
     - run: corepack enable
     - run: yarn
     - run: yarn up
