@@ -47,6 +47,34 @@
             .i{aspect-ratio: 1 / 1;}
         }
     }
+    #taskScrollShade {
+        height: 10vmin;
+        width: 100%;
+        background: linear-gradient(180deg, transparent, $bg2);
+        z-index: 99;
+        position: absolute;
+        left: calc((32vmin * 2) + 30px + 2vmin);
+        transform: translateX(-50%);
+        bottom: 3.5vmin;
+        user-select: none;
+        pointer-events: none;
+        opacity: 1;
+        transition: .5s;
+    }
+    #taskScrollShadeTop {
+        height: 10vmin;
+        width: calc(110vmin - 32vmin);
+        background: linear-gradient(0deg, transparent, $bg2);
+        z-index: 99;
+        position: absolute;
+        left: calc((32vmin * 2) + 30px + 2vmin);
+        transform: translateX(-50%);
+        top: 3.5vmin;
+        user-select: none;
+        pointer-events: none;
+        opacity: 0;
+        transition: .5s;
+    }
     #settingsContent {
         height: calc(100% - 2rem);
         width: calc(100% - 32vmin);

@@ -55,6 +55,34 @@
 #settingsWrapper #settingsSidebar button .i {
   aspect-ratio: 1/1;
 }
+#settingsWrapper #taskScrollShade {
+  height: 10vmin;
+  width: 100%;
+  background: linear-gradient(180deg, transparent, var(--bg2));
+  z-index: 99;
+  position: absolute;
+  left: calc(64vmin + 30px + 2vmin);
+  transform: translateX(-50%);
+  bottom: 3.5vmin;
+  user-select: none;
+  pointer-events: none;
+  opacity: 1;
+  transition: 0.5s;
+}
+#settingsWrapper #taskScrollShadeTop {
+  height: 10vmin;
+  width: 78vmin;
+  background: linear-gradient(0deg, transparent, var(--bg2));
+  z-index: 99;
+  position: absolute;
+  left: calc(64vmin + 30px + 2vmin);
+  transform: translateX(-50%);
+  top: 3.5vmin;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.5s;
+}
 #settingsWrapper #settingsContent {
   height: calc(100% - 2rem);
   width: calc(100% - 32vmin);

@@ -108,7 +108,13 @@ const App=(prop)=>{
     const HomeTab=({})=>{
         return(<>
             <ContextMenu/>
-            <div id="taskWrapper" /* onScroll={(e)=>{setScrolled(e.target.scrollTop);}} */>
+            <div id="taskWrapper" onScroll={(e)=>{
+                document.getElementById("taskScrollShadeTop").style.opacity=
+                    (e.target.scrollTop>0)?"1":"0";
+                document.getElementById("taskScrollShade").style.opacity=
+                    (Math.abs(e.target.scrollHeight-e.target.scrollTop-e.target.clientHeight)<1)?
+                        "0":"1";
+            }}>
                 {/* <Collapsable id={generateId(5)} title={<>Important</>}> */}
                     {/* important and unchecked */}
                     {todo.filter(item=>item.meta.important&&!item.meta.checked)
@@ -149,6 +155,7 @@ const App=(prop)=>{
                         key={`task_${id}_${btoa(title)}`.replaceAll("=","")}/>)}
             </div>
             <div id="taskScrollShade"></div>
+            <div id="taskScrollShadeTop"></div>
             <div id="taskCreateInputWrapper">
                 <div id="taskCreateTitleWrapper">
                     <input 

@@ -64,7 +64,7 @@ export const SettingsTab=({})=>{
                             });
                         }}><FontAwesomeIcon className='i' icon={faScrewdriverWrench}/> Advanced</button>
                 </>:null}
-                <button 
+                {window.toduraApi?toduraApi.desktop?<button 
                     id="settingsSidebar_backup"
                     onClick={(e)=>{
                         e.preventDefault();
@@ -74,6 +74,7 @@ export const SettingsTab=({})=>{
                             inline:"nearest",
                         });
                     }}><FontAwesomeIcon className='i' icon={faClockRotateLeft}/> Backup</button>
+                        :null:null}
                 <button 
                     id="settingsSidebar_info"
                     onClick={(e)=>{
@@ -85,7 +86,13 @@ export const SettingsTab=({})=>{
                         });
                     }}><FontAwesomeIcon className='i' icon={faInfoCircle}/> Info</button>
             </div>
-            <div id="settingsContent">
+            <div id="settingsContent" onScroll={(e)=>{
+                document.getElementById("taskScrollShadeTop").style.opacity=
+                    (e.target.scrollTop>0)?"1":"0";
+                document.getElementById("taskScrollShade").style.opacity=
+                    (Math.abs(e.target.scrollHeight-e.target.scrollTop-e.target.clientHeight)<1)?
+                        "0":"1";
+            }}>
                 <h2 id="settingsheader_general">General</h2>
                 <label htmlFor="settings_advancedsettings" className='label_checkbox'>Advanced Settings&nbsp;
                     <label className="checkmarkContainer">
@@ -103,13 +110,13 @@ export const SettingsTab=({})=>{
                     
                 </>:null}
                 <br/><h2 id="settingsheader_backup">Backup</h2>
-                <button onClick={(e)=>{
+                {window.toduraApi?toduraApi.desktop?<button onClick={(e)=>{
                     e.preventDefault();
                     saveStatusToastId.current=toast("Saving to File...",{autoClose:false});
                     let saveObj={todo,settings,saveId:generateId(10).replaceAll("==","")}
                     setTimeout(()=>toduraApi.saveToFile(saveObj),200);
                     toast.update(saveStatusToastId.current,{render:"Saved File to 'Downloads'",autoClose:5000})
-                }}>Save to File</button>
+                }}>Save to File</button>:null:null}
                 <br/><h2 id="settingsheader_info">Info</h2>
                 <label>Current Version: {releaseData.v}</label>
                 <h3>Changelog</h3>
@@ -120,6 +127,8 @@ export const SettingsTab=({})=>{
                 <label>Made with <FontAwesomeIcon icon={faHeart} /> in nj</label>
                 <br/><br/>
             </div>
+            <div id="taskScrollShade"></div>
+            <div id="taskScrollShadeTop"></div>
         </div>
     </pre></>);
 }

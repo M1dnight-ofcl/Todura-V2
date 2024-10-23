@@ -47,7 +47,8 @@ body * {
     align-items: center;
     flex-direction: column;
     padding: 0 5px;
-    padding-bottom: 7vmin;
+    padding-bottom: 1vmin;
+    // padding-bottom: 7vmin;
     gap: 1vmin;
     overflow-y: auto;
 }
@@ -105,7 +106,7 @@ body * {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat; */
-    $taskAddInputHeight: 12.5vmin;
+    $taskAddInputHeight: 5rem;
     &{//homepage
         #taskCreateInputWrapper {
             height: $taskAddInputHeight;
@@ -113,17 +114,17 @@ body * {
             position: absolute;
             bottom: 3.5vmin;
             left: 3.5vmin;
-            input {
+            input[type=text] {
                 height: 100%;
-                width: calc(100% - 10vmin);
+                width: calc(100% - 100px);
                 background: $ui1;
                 border: $outline;
                 border-radius: $border-rad;
-                padding: 1vmin 1.5vmin;
-                padding-top: 1.5vmin;
+                padding: .5rem;
+                padding-top: calc(.5rem + .5vmin);
                 outline: none;
                 color: $h2;
-                font-size: 3vmin;
+                font-size: 1.25rem;
                 font-family: $font;
             }
             #taskCreateTitleWrapper {
@@ -145,7 +146,7 @@ body * {
             }
             #taskCreateButtonWrapper {
                 height: 100%;
-                width: 9.5vmin;
+                width: calc(100px - .5vmin);
                 position: absolute;
                 right: 0;
                 top: 50%;
@@ -174,7 +175,7 @@ body * {
                     }
                     svg {
                         color: $p2;
-                        font-size: 5vmin;
+                        font-size: 2.5rem;
                         transition: .35s;
                     }
                 }
@@ -448,6 +449,21 @@ body * {
             bottom: calc($taskAddInputHeight + 3.5vmin);
             user-select: none;
             pointer-events: none;
+            opacity: 1;
+            transition: .5s;
+        }
+        #taskScrollShadeTop {
+            height: 5vmin;
+            width: 100%;
+            background: linear-gradient(0deg, transparent, $bg2);
+            z-index: 99;
+            position: absolute;
+            left: 0%;
+            top: 3.5vmin;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0;
+            transition: .5s;
         }
     }
 }

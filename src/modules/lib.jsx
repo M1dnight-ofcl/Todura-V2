@@ -1,5 +1,5 @@
 export const releaseData={
-    v:"v0.5.2",
+    v:"v0.6.1",
     changelog:[
         "Improved Settings UI",
         "Added options to settings",
@@ -8,6 +8,8 @@ export const releaseData={
         "Fixed build issues",
         "Reworked themes system",
         "Modified settings system",
+        "Added Web Version",
+        "Added scroll shades",
     ]
 }
 import React, { useEffect, useState } from "react";
