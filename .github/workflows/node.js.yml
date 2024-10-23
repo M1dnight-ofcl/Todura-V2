@@ -30,4 +30,4 @@ jobs:
     - name: Updating Libraries
       run: yarn up
     - name: Building
-      run: yarn build
+      run: yarn package
