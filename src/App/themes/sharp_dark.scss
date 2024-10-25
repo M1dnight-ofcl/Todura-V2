@@ -1,40 +1,40 @@
 @import url('https://fonts.cdnfonts.com/css/orbiter-fbs-trial');
 @import url('https://fonts.cdnfonts.com/css/jetbrains-mono-2');
-.default_light {
+.sharp_dark {
     /*base colors*/
-    --bg1: #ffffff;
-    --bg2: #f0f0f0;
-    --bg3: #d0d0d0;
-    --bg4: #c0c0c0;
-    --bg5: #b5b5b5;
-    --ui1: #f0f0f0;
-    --ui2: #e5e5e5;
-    --ui3: #e0e0e0;
-    --ui4: #d0d0d0;
-    --ui5: #c0c0c0;
-    --h1: #101010;
-    --h2: #151515;
-    --p1: #171717;
-    --p2: #191919;
-    --p3: #212121;
+    --bg1: #252525;
+    --bg2: #202020;
+    --bg3: #171717;
+    --bg4: #101010;
+    --bg5: #131313;
+    --ui1: #303030;
+    --ui2: #2b2b2b;
+    --ui3: #252525;
+    --ui4: #404040;
+    --ui5: #606060;
+    --h1: #f5f5f5;
+    --h2: #f0f0f0;
+    --p1: #e0e0e0;
+    --p2: #d5d5d5;
+    --p3: #cacaca;
     /*others*/
-    --disabled: #505050;
+    --disabled: #b5b5b5;
     --navbar: var(--bg4);
     --active: #8745f1;
     --transition-time: .35s;
-    --border-rad: 10px;
+    --border-rad: 0;
     --font: 'Orbiter FBS Trial', sans-serif;
     --font-monospace: 'JetBrains Mono', sans-serif;
-    --outline: #a0a0a045;
+    --outline: #45454595;
     --outline-active: #6f27e4;
-    --sbicons: #35353545;
-    --color-shceme: light;
+    --sbicons: #95959595;
+    --color-shceme: dark;
     /*clrs*/
-    --clr0: #303030;
+    --clr0: #ffffff;
     --clr1: #dc3939;
     --clr2: #dc7239;
     --clr3: #ebca13;
-    --clr4: #47e632;
+    --clr4: #39ba28;
     --clr5: #2789ec;
     --clr6: #8745f1;
     --clr7: #dd32e6;

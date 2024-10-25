@@ -1,5 +1,5 @@
 export const releaseData={
-    v:"v0.6.1",
+    v:"v0.7.1",
     changelog:[
         "Improved Settings UI",
         "Added options to settings",
@@ -10,6 +10,9 @@ export const releaseData={
         "Modified settings system",
         "Added Web Version",
         "Added scroll shades",
+        "Added sharp themes (like v1)",
+        "Started work on bug fixes",
+        "Planned addition of custom css vars (current script broken)",
     ]
 }
 import React, { useEffect, useState } from "react";
@@ -48,7 +51,7 @@ export const queryParams=getQueryParams(window.location.search);
 export const $with=(value)=>{return new Promise((resolve,reject)=>{resolve(value)});}
 export const $=(query)=>{return document.querySelector(query)}
 export const $range=(length,start=0)=>{return [...Array(5).keys()].map(i=>i+start);}
-export const Collapsable=({id,title,children,opened=true})=>{
+export const Collapsible=({id,title,children,opened=true})=>{
     const[open,setOpen]=useState(opened);
     useEffect(()=>{//!barely fucking works
         document.getElementById(`tw:c_${id}`).style.paddingBottom=`calc(${document.getElementById(`tw:c_${id}`).scrollHeight}px + .5rem)`;
@@ -72,3 +75,4 @@ Date.prototype.fixDate=(function() {
     return local;
 });
 export const Portal=({children})=>{return createPortal(children, document.body);}
+export const GetCssVar=(key)=>{return getComputedStyle(document.body).getPropertyValue(key);}

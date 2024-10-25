@@ -55,7 +55,7 @@
         position: absolute;
         left: calc((32vmin * 2) + 30px + 2vmin);
         transform: translateX(-50%);
-        bottom: 3.5vmin;
+        bottom: 1vmin;
         user-select: none;
         pointer-events: none;
         opacity: 1;
@@ -69,7 +69,7 @@
         position: absolute;
         left: calc((32vmin * 2) + 30px + 2vmin);
         transform: translateX(-50%);
-        top: 3.5vmin;
+        top: 1vmin;
         user-select: none;
         pointer-events: none;
         opacity: 0;
@@ -88,6 +88,83 @@
         align-items: flex-start;
         flex-direction: column;
         overflow-y: auto;
+        overflow-x: hidden;
+        .caption {
+            width: 100%;
+            text-wrap: wrap;
+            color: $p3;
+            opacity: .75;
+            margin: 0;
+            padding: 0;
+            font-size: 2.5vmin;
+        }
+        .clrinput {
+            height: 5vmin;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            color: $p3;
+            code {
+                padding: .5vmin;
+                background: $ui1;
+                border: $outline;
+                border-radius: calc(($border-rad / 4) * 3);
+                font-family: $font-monospace;
+                font-weight: thin;
+                font-size: 2.5vmin;
+                position: relative;
+                .clrinput_tooltip {
+                    // visibility: hidden;
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: .35s;
+                    width: 30vmin;
+                    background-color: $ui1;
+                    color: $p2;
+                    text-align: left;
+                    text-wrap: wrap;
+                    padding: 2vmin;
+                    border: $outline;
+                    font-size: 2.5vmin;
+                    line-height: 3vmin;
+                    border-radius: calc(($border-rad / 4) * 3);
+                    top: calc(100% + .5vmin);
+                    left: 50%;
+                    transform: translate(-50%,-1vmin);
+                    position: absolute;
+                    z-index: 1;
+                    font-family: $font !important;
+                }
+                &:hover .clrinput_tooltip,
+                .clrinput_tooltip:hover {
+                    opacity: 1;
+                    transform: translate(-50%,0);
+                }
+            }
+            input[type=color] {
+                appearance: none;
+                border: none;
+                $size: calc(4.5vmin + 2px);
+                width: $size;
+                height: $size;
+                border-radius: calc(($border-rad / 4) * 3);
+                background: transparent;
+                transition: .35s;
+                color-scheme: $color-scheme;
+                position: absolute;
+                left: calc(100% - 4.5vmin - 10vmin);
+                &:hover {
+                    transform: scale(120%);
+                }
+            }
+            input[type=color]::-webkit-color-swatch-wrapper {
+                padding: 1px;
+                background: var(--outline);
+            }
+            input[type=color]::-webkit-color-swatch {
+                border: none;
+            }
+        }
         h2 {
             font-size: 4.5vmin;
             color: $h2;
@@ -98,7 +175,7 @@
             font-size: 3.5vmin;
             color: $p1;
             width: 100%;
-            margin: 0;
+            margin: .5vmin 0;
         }
         ul {
             margin: 1vmin;
@@ -114,10 +191,53 @@
             color: $p2;
             margin: .35vmin 0;
         }
+        label,button {
+            code {
+                padding: .5vmin;
+                background: $ui1;
+                border: $outline;
+                border-radius: calc(($border-rad / 4) * 3);
+                font-family: $font-monospace;
+                font-weight: thin;
+                font-size: 2.5vmin;
+                position: relative;
+            }
+            .tooltip {
+                // visibility: hidden;
+                opacity: 0;
+                pointer-events: none;
+                transition: .35s;
+                width: 30vmin;
+                background-color: $ui1;
+                color: $p2;
+                text-align: left;
+                text-wrap: wrap;
+                padding: 2vmin;
+                border: $outline;
+                font-size: 2.5vmin;
+                line-height: 3vmin;
+                border-radius: calc(($border-rad / 4) * 3);
+                left: calc(100% + .5vmin);
+                top: 50%;
+                transform: translate(-1vmin,-50%);
+                position: absolute;
+                z-index: 1;
+                font-family: $font !important;
+                code {
+                    font-size: 1.75vmin;
+                }
+            }
+            &:hover .tooltip,
+            .tooltip:hover {
+                opacity: 1;
+                transform: translate(0,-50%);
+            }
+        }
         .label_checkbox {
-            width: 100%;
+            width: fit-content;
             display: flex;
             justify-content: flex-start;
+            position: relative;
             .checkmarkContainer {
                 display: flex;
                 aspect-ratio: 1 / 1;

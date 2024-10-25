@@ -1,6 +1,7 @@
 @import "../theme";
 @import "./themes/default_dark.scss";
 @import "./themes/default_light.scss";
+@import "./themes/sharp_dark.scss";
 //-----------------
 $clrs:(
     "clr0":$clr0,
@@ -210,6 +211,9 @@ body * {
                 @each $name, $clr in $clrs {
                     &.task_#{$name} {
                         border: 1px solid $clr;
+                        /* &::selection {
+                            background: $clr !important;
+                        } */
                         &::before {
                             content:"";
                             opacity: .25;
@@ -287,6 +291,10 @@ body * {
                         max-height: 50vmin !important;
                         overflow: auto;
                         cursor: text;
+                        padding-left: 1vmin;
+                        &::-webkit-scrollbar-thumb {
+                            background: #959595;
+                        }
                         .clamp-lines__button {
                             background: transparent;
                             color: $p3;
@@ -409,7 +417,7 @@ body * {
                         background: $ui4;
                         border-radius: $border-rad;
                         border: $outline;
-                        color-scheme: $color-shceme;
+                        color-scheme: $color-scheme;
                         outline: none;
                     }
                     .task_optionsWapper {

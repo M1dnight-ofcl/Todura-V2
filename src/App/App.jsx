@@ -17,7 +17,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addTask, removeTask, modifyState } from '../store/slices/todo';
 import { setSelectedTask } from '../store/slices/selectedTask';
 //lib
-import { $with, generateId, Collapsable, Portal } from '../modules/lib';
+import { $with, generateId, Collapsible, Portal, GetCssVar } from '../modules/lib';
 //modules
 import { Task } from './modules/Task';
 //tabs
@@ -39,14 +39,16 @@ const App=(prop)=>{
         console.table(todo);
     },[todo]);
     useEffect(()=>{//settings renderer
+        console.table(settings);
         Object.keys(settings).map((skey,index)=>{
             switch(skey){
                 case "theme":
                     // document.body.classList.map((className,index)=>{document.body.classList.remove("className")});
-                    document.body.className=settings[skey]
+                    document.body.className=settings[skey];
                 break;
                 case "advanced_settings":break;
-                default:console.error(`unknowng settings key: ${skey} (value: ${settings[skey]})`);
+                case "customCssVar":break;
+                default:console.error(`unknown settings key: ${skey} (value: ${settings[skey]})`);
             }
         });
     },[settings]);
@@ -115,7 +117,7 @@ const App=(prop)=>{
                     (Math.abs(e.target.scrollHeight-e.target.scrollTop-e.target.clientHeight)<1)?
                         "0":"1";
             }}>
-                {/* <Collapsable id={generateId(5)} title={<>Important</>}> */}
+                {/* <Collapsible id={generateId(5)} title={<>Important</>}> */}
                     {/* important and unchecked */}
                     {todo.filter(item=>item.meta.important&&!item.meta.checked)
                         .map(({id,title,desc,meta},index)=><Task
@@ -125,7 +127,7 @@ const App=(prop)=>{
                             meta={meta}
                             contextMenuHandler={handleContextMenu}
                             key={`task_${id}_${btoa(title)}`.replaceAll("=","")}/>)}
-                {/* </Collapsable> */}
+                {/* </Collapsible> */}
                 {/* not important or unchecked */}
                 {todo.filter(item=>!item.meta.important&&!item.meta.checked)
                     .map(({id,title,desc,meta},index)=><Task

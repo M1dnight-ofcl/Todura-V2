@@ -1,3 +1,5 @@
+@import url("https://fonts.cdnfonts.com/css/orbiter-fbs-trial");
+@import url("https://fonts.cdnfonts.com/css/jetbrains-mono-2");
 .default_light {
   /*base colors*/
   --bg1: #ffffff;
@@ -22,6 +24,7 @@
   --transition-time: .35s;
   --border-rad: 10px;
   --font: "Orbiter FBS Trial", sans-serif;
+  --font-monospace: "JetBrains Mono", sans-serif;
   --outline: #a0a0a045;
   --outline-active: #6f27e4;
   --sbicons: #35353545;

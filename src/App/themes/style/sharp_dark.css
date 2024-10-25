@@ -1,6 +1,6 @@
 @import url("https://fonts.cdnfonts.com/css/orbiter-fbs-trial");
 @import url("https://fonts.cdnfonts.com/css/jetbrains-mono-2");
-.default_dark {
+.sharp_dark {
   /*base colors*/
   --bg1: #252525;
   --bg2: #202020;
@@ -22,7 +22,7 @@
   --navbar: var(--bg4);
   --active: #8745f1;
   --transition-time: .35s;
-  --border-rad: 10px;
+  --border-rad: 0;
   --font: "Orbiter FBS Trial", sans-serif;
   --font-monospace: "JetBrains Mono", sans-serif;
   --outline: #45454595;
@@ -68,9 +68,9 @@
   --toastify-font-family: var(--font);
   --toastify-z-index: 8940;
 }
-.default_dark .contexify {
+.sharp_dark .contexify {
   border: 1px solid var(--outline);
 }
-.default_dark .Toastify__toast {
+.sharp_dark .Toastify__toast {
   border: 1px var(--outline) solid;
-}/*# sourceMappingURL=default_dark.css.map */
+}/*# sourceMappingURL=sharp_dark.css.map */
