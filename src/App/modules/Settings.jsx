@@ -119,37 +119,36 @@ export const SettingsTab=({})=>{
                     </select></label>
                 {settings.advanced_settings?<>
                     <br/><h2 id="settingsheader_advancedsettings">Advanced</h2>
-                    <p className='caption'>
+                    {/* <p className='caption'>
                         Nothing yet... (tried custom css vars but OH. MY. GOD. (I hate js sometimes))
-                    </p>
-                    {/* <h3>Custom Theme Variables</h3>
-                    {Object.keys(settings.customCssVar)
-                        .map((cssvar,index)=>
-                            settings.customCssVar[cssvar].type=="color"?
-                                <React.Fragment key={generateId(10)}>
-                                    <form id={`${cssvar}_form`}/>
-                                        <label className='clrinput' htmlFor={`${cssvar.slice(2)}_tvs`}>{settings.customCssVar[cssvar].title} &nbsp;
-                                            <code>{cssvar}
-                                            <span className="clrinput_tooltip">This is the css variable in the code. If you want to make a custom theme, these is the variabe you would set</span></code>&nbsp;
-                                            <input 
-                                                type="color" 
-                                                id={`${cssvar.slice(2)}_tvs`}
-                                                defaultValue={GetCssVar(cssvar)}
-                                                onBlur={(e)=>{
-                                                    document.getElementById(`${cssvar}_form`).submit();
-                                                    document.getElementById("settings").click();
-                                                }}
-                                                onSubmit={(e)=>{
-                                                    dispatch(setCustomCssVar({
-                                                        name:cssvar,
-                                                        new:e.target.value,
-                                                    }));
-                                                }}
-                                            />
-                                        </label>
-                                    <form/>
-                                </React.Fragment>:null)} */}
-                            </>:null}
+                    </p> */}
+                    <div className="experimental_settingswrapper">
+                        <h3>Custom Theme Variables</h3>
+                            {Object.keys(settings.customCssVar)
+                            .map((cssvar,index)=>
+                                settings.customCssVar[cssvar].type=="color"?
+                                    <React.Fragment key={generateId(10)}>
+                                        {/* <form id={`${cssvar}_form`}/> */}
+                                            <label className='clrinput' htmlFor={`${cssvar.slice(2)}_tvs`}>{settings.customCssVar[cssvar].title} &nbsp;
+                                                <code>{cssvar}
+                                                <span className="clrinput_tooltip">This is the css variable in the code. If you want to make a custom theme, these is the variabe you would set</span></code>&nbsp;
+                                                <input 
+                                                    type="color" 
+                                                    id={`${cssvar.slice(2)}_tvs`}
+                                                    defaultValue={GetCssVar(cssvar)}
+                                                    onBlur={(e)=>{
+                                                        // document.getElementById(`${cssvar}_form`).submit();
+                                                        dispatch(setCustomCssVar({
+                                                            name:cssvar,
+                                                            new:e.target.value,
+                                                        }));
+                                                    }}
+                                                />
+                                            </label>
+                                        {/* <form/> */}
+                                    </React.Fragment>:null)}
+                    </div>
+                </>:null}
                 <br/><h2 id="settingsheader_backup">Backup</h2>
                 {window.toduraApi?toduraApi.desktop?<button onClick={(e)=>{
                     e.preventDefault();

@@ -16,6 +16,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { addTask, removeTask, modifyState } from '../store/slices/todo';
 import { setSelectedTask } from '../store/slices/selectedTask';
+import { setCurrentTabs, tabs } from '../store/slices/currentTab';
 //lib
 import { $with, generateId, Collapsible, Portal, GetCssVar } from '../modules/lib';
 //modules
@@ -33,6 +34,7 @@ const App=(prop)=>{
     const todo=useSelector(state=>state.todo);
     const selectedTask=useSelector(state=>state.selectedTask);
     const settings=useSelector(state=>state.settings);
+    const currentTab=useSelector(state=>state.currentTab);
     const dispatch=useDispatch();
     // const [scrolled,setScrolled]=useState(0);
     useEffect(()=>{
@@ -47,7 +49,13 @@ const App=(prop)=>{
                     document.body.className=settings[skey];
                 break;
                 case "advanced_settings":break;
-                case "customCssVar":break;
+                case "customCssVar":
+                    Object.keys(settings[skey]).map((cssvar)=>{
+                        if(settings[skey][cssvar].value!=""){
+                            document.querySelector(`.${settings.theme}`).style.setProperty(cssvar,settings[skey][cssvar].value);
+                        }
+                    });
+                break;
                 default:console.error(`unknown settings key: ${skey} (value: ${settings[skey]})`);
             }
         });
@@ -215,11 +223,6 @@ const App=(prop)=>{
             </div>
         </>);
     }
-    const tabs={
-        home:{id:generateId(),title:"Home",qid:"h"},
-        settings:{id:generateId(),title:"Settings",qid:"s"},
-    };
-    const[currentTabs,setCurrentTabs]=useState(tabs.home);
     return(<>
         <Helmet>
             <title>Todura V2</title>
@@ -242,20 +245,20 @@ const App=(prop)=>{
             <button 
                 id="home" 
                 className="sbbutton" 
-                onClick={()=>{setCurrentTabs(tabs.home)}}>
+                onClick={()=>{dispatch(setCurrentTabs(tabs.home))}}>
                     <FontAwesomeIcon icon={faHome} className='sbicon'/>
             </button>
             <button 
                 id="settings" 
                 className="sbbutton" 
-                onClick={()=>{setCurrentTabs(tabs.settings)}}>
+                onClick={()=>{dispatch(setCurrentTabs(tabs.settings))}}>
                     <FontAwesomeIcon icon={faGear} className='sbicon'/>
             </button>
         </div>
         <div>
             <div id="content">
-                {currentTabs.qid=="h"?<HomeTab/>:
-                currentTabs.qid=="s"?<SettingsTab/>:
+                {currentTab.qid=="h"?<HomeTab/>:
+                currentTab.qid=="s"?<SettingsTab/>:
                 null}
             </div>
         </div>

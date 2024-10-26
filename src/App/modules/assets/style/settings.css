@@ -97,6 +97,36 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+#settingsWrapper #settingsContent .experimental_settingswrapper {
+  padding: 2vmin;
+  width: 100%;
+  border: 1px solid var(--clr1);
+  border-radius: var(--border-rad);
+  position: relative;
+  padding-top: 5vmin;
+}
+#settingsWrapper #settingsContent .experimental_settingswrapper::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: var(--border-rad);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -10 !important;
+  background-image: linear-gradient(115deg, var(--clr1), transparent);
+  opacity: 0.25;
+  pointer-events: none;
+}
+#settingsWrapper #settingsContent .experimental_settingswrapper::before {
+  content: "Experimental Settings! These probably barely work";
+  position: absolute;
+  top: 2vmin;
+  left: 2vmin;
+  font-size: 2vmin;
+  color: var(--clr1);
+}
 #settingsWrapper #settingsContent .caption {
   width: 100%;
   text-wrap: wrap;
@@ -141,7 +171,7 @@
   left: 50%;
   transform: translate(-50%, -1vmin);
   position: absolute;
-  z-index: 1;
+  z-index: 120 !important;
   font-family: var(--font) !important;
 }
 #settingsWrapper #settingsContent .clrinput code:hover .clrinput_tooltip,
@@ -159,7 +189,7 @@
   transition: 0.35s;
   color-scheme: var(--color-shceme);
   position: absolute;
-  left: calc(100% - 4.5vmin - 10vmin);
+  left: calc(100% - 4.5vmin - 2vmin);
 }
 #settingsWrapper #settingsContent .clrinput input[type=color]:hover {
   transform: scale(120%);
@@ -225,7 +255,7 @@
   top: 50%;
   transform: translate(-1vmin, -50%);
   position: absolute;
-  z-index: 1;
+  z-index: 120;
   font-family: var(--font) !important;
 }
 #settingsWrapper #settingsContent label .tooltip code, #settingsWrapper #settingsContent button .tooltip code {
