@@ -5,11 +5,12 @@
   "description": "Simple Todo App",
   "main": ".vite/build/main.js",
   "scripts": {
-    "web:start": "vite",
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish"
+    "publish": "electron-forge publish",
+    "web:start": "vite",
+    "web:build": "vite build --output web"
   },
   "build": {
     "appId": "com.m1dnight.todurav2",
