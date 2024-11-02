@@ -48,28 +48,28 @@
         }
     }
     #taskScrollShade {
-        height: 10vmin;
+        height: 5vmin;
         width: 100%;
         background: linear-gradient(180deg, transparent, $bg2);
         z-index: 99;
         position: absolute;
         left: calc((32vmin * 2) + 30px + 2vmin);
         transform: translateX(-50%);
-        bottom: 1vmin;
+        bottom: 2.5vmin;
         user-select: none;
         pointer-events: none;
         opacity: 1;
         transition: .5s;
     }
     #taskScrollShadeTop {
-        height: 10vmin;
+        height: 5vmin;
         width: calc(110vmin - 32vmin);
         background: linear-gradient(0deg, transparent, $bg2);
         z-index: 99;
         position: absolute;
         left: calc((32vmin * 2) + 30px + 2vmin);
         transform: translateX(-50%);
-        top: 1vmin;
+        top: 2.5vmin;
         user-select: none;
         pointer-events: none;
         opacity: 0;
@@ -89,6 +89,7 @@
         flex-direction: column;
         overflow-y: auto;
         overflow-x: hidden;
+        // scroll-margin: 20vmin;
         .experimental_settingswrapper {
             padding: 2vmin;
             // padding-right: 8.5vmin;
@@ -216,6 +217,8 @@
                 color: $p3;
                 width: 100%;
                 margin: 0;
+                width: 100%;
+                text-wrap: wrap;
             }
         }
         label {

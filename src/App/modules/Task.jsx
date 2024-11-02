@@ -44,7 +44,7 @@ export const Task=({
             className={`task ${!isNaN(state.meta.color)&&state.meta.color>=0&&state.meta.color<=7?`task_clr${state.meta.color}`:""}`} 
             id={`${btoa(title)}_${id}`.replaceAll("=","")} 
             onContextMenu={(e)=>{contextMenuHandler(e,{id,title,desc,meta})}}
-            onClick={(e)=>{
+            onDoubleClick={(e)=>{
                 if(e.target.id==`${btoa(title)}_${id}`.replaceAll("=","")){
                     dispatch(setSelectedTask(state));
                     document.getElementById("taskview").style.transform="translateX(0)";

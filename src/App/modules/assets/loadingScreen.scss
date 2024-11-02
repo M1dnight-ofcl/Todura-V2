@@ -1,0 +1,23 @@
+@import "../../../theme.scss";
+#loadingScreen {
+    height: 100dvh;
+    width: 100dvw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: $bg3;
+    z-index: 9999;
+    pointer-events: auto;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    #loadingani{
+        fill: $active !important;
+        filter:
+            drop-shadow(0 0 2vmin $active)
+            drop-shadow(0 0 10vmin $active);
+    }
+    // transition: 1s;
+}

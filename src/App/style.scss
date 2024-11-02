@@ -33,7 +33,7 @@ body * {
         &::-webkit-scrollbar-track {background-color: transparent;} 
         &::-webkit-scrollbar-thumb {
             background-color: $ui1;
-            border-radius: 5vmin;
+            border-radius: $border-rad;
             background-clip: content-box;
             transition: .35s;
         }
@@ -103,10 +103,10 @@ body * {
     bottom: 0;
     right: 0;
     padding: 3.5vmin;
-    /* background-image: url("https://picsum.photos/seed/picsum/1920/1080?blur=5");
+    background-image: $bg-img;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat; */
+    background-repeat: no-repeat;
     $taskAddInputHeight: 5rem;
     &{//homepage
         #taskCreateInputWrapper {

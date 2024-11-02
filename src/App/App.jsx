@@ -21,6 +21,7 @@ import { setCurrentTabs, tabs } from '../store/slices/currentTab';
 import { $with, generateId, Collapsible, Portal, GetCssVar } from '../modules/lib';
 //modules
 import { Task } from './modules/Task';
+import { LoadingScreen } from './modules/LoadingScreen';
 //tabs
 import { SettingsTab } from './modules/Settings';
 //helmet
@@ -41,7 +42,7 @@ const App=(prop)=>{
         console.table(todo);
     },[todo]);
     useEffect(()=>{//settings renderer
-        console.table(settings);
+        console.table({settings});
         Object.keys(settings).map((skey,index)=>{
             switch(skey){
                 case "theme":
@@ -118,6 +119,7 @@ const App=(prop)=>{
     const HomeTab=({})=>{
         return(<>
             <ContextMenu/>
+            <LoadingScreen/>
             <div id="taskWrapper" onScroll={(e)=>{
                 document.getElementById("taskScrollShadeTop").style.opacity=
                     (e.target.scrollTop>0)?"1":"0";

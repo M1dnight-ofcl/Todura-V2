@@ -23,7 +23,7 @@ import { Helmet } from 'react-helmet-async';
 //css
 import "./assets/style/settings.css";
 //lib
-import { generateId, GetCssVar, releaseData } from '../../modules/lib';
+import { $with, generateId, GetCssVar, releaseData } from '../../modules/lib';
 //external modules
 import { toast } from 'react-toastify';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
@@ -32,6 +32,22 @@ export const SettingsTab=({})=>{
     const settings=useSelector(state=>state.settings);
     const dispatch=useDispatch();
     const saveStatusToastId=React.useRef(null);
+    const scrollToHeader=(header_id)=>{
+        $with(document.getElementById(header_id)).then((settingsheader)=>{
+            $with(document.getElementById("settingsContent")).then((settingsContent)=>{
+                settingsContent.scrollTo({ 
+                    left:0,
+                    top: 
+                        settingsheader.getBoundingClientRect().top 
+                        + settingsContent.scrollTop 
+                        - 75,
+                    behavior:"smooth", 
+                    // block:"start", 
+                    // inline:"nearest",
+                });
+            });
+        });
+    }
     return(<><pre>
         <div id="settingsWrapper">
             <div id="settingsSidebar">
@@ -40,54 +56,34 @@ export const SettingsTab=({})=>{
                     id="settingsSidebar_general"
                     onClick={(e)=>{
                         e.preventDefault();
-                        document.getElementById("settingsheader_general").scrollIntoView({ 
-                            behavior:"smooth", 
-                            block:"start", 
-                            inline:"nearest",
-                        });
+                        scrollToHeader("settingsheader_general");
                     }}><FontAwesomeIcon className='i' icon={faHouse}/> General</button>
                 <button 
                     id="settingsSidebar_appearance"
                     onClick={(e)=>{
                         e.preventDefault();
-                        document.getElementById("settingsheader_appearance").scrollIntoView({ 
-                            behavior:"smooth", 
-                            block:"start", 
-                            inline:"nearest",
-                        });
+                        scrollToHeader("settingsheader_appearance");
                     }}><FontAwesomeIcon className='i' icon={faPaintBrush}/> Appearance</button>
                 {settings.advanced_settings?<>
                     <button 
                         id="settingsSidebar_advancedsettings"
                         onClick={(e)=>{
                             e.preventDefault();
-                            document.getElementById("settingsheader_advancedsettings").scrollIntoView({ 
-                                behavior:"smooth", 
-                                block:"start", 
-                                inline:"nearest",
-                            });
+                            scrollToHeader("settingsheader_advancedsettings");
                         }}><FontAwesomeIcon className='i' icon={faScrewdriverWrench}/> Advanced</button>
                 </>:null}
                 {window.toduraApi?toduraApi.desktop?<button 
                     id="settingsSidebar_backup"
                     onClick={(e)=>{
                         e.preventDefault();
-                        document.getElementById("settingsheader_backup").scrollIntoView({ 
-                            behavior:"smooth", 
-                            block:"start", 
-                            inline:"nearest",
-                        });
+                        scrollToHeader("settingsheader_backup");
                     }}><FontAwesomeIcon className='i' icon={faClockRotateLeft}/> Backup</button>
                         :null:null}
                 <button 
                     id="settingsSidebar_info"
                     onClick={(e)=>{
                         e.preventDefault();
-                        document.getElementById("settingsheader_info").scrollIntoView({ 
-                            behavior:"smooth", 
-                            block:"start", 
-                            inline:"nearest",
-                        });
+                        scrollToHeader("settingsheader_info");
                     }}><FontAwesomeIcon className='i' icon={faInfoCircle}/> Info</button>
             </div>
             <div id="settingsContent" onScroll={(e)=>{

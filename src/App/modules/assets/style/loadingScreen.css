@@ -1,0 +1,19 @@
+#loadingScreen {
+  height: 100dvh;
+  width: 100dvw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg3);
+  z-index: 9999;
+  pointer-events: auto;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#loadingScreen #loadingani {
+  fill: var(--active) !important;
+  filter: drop-shadow(0 0 2vmin var(--active)) drop-shadow(0 0 10vmin var(--active));
+}/*# sourceMappingURL=loadingScreen.css.map */

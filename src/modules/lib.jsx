@@ -1,5 +1,5 @@
 export const releaseData={
-    v:"v0.7.2",
+    v:"v0.7.4",
     changelog:[
         "Improved Settings UI",
         "Added options to settings",
@@ -16,6 +16,10 @@ export const releaseData={
         "Added tooltips to settings",
         "Fixing State Issues/Bugs",
         "Moved tabs state to use redux",
+        "Started Work on Loading Screen",
+        // "Added loading screen",
+        "Fixed Scroll Margins in Settings",
+        "Fixed Theme Variable Typo",
     ]
 }
 import React, { useEffect, useState } from "react";
@@ -79,3 +83,20 @@ Date.prototype.fixDate=(function() {
 });
 export const Portal=({children})=>{return createPortal(children, document.body);}
 export const GetCssVar=(key)=>{return getComputedStyle(document.body).getPropertyValue(key);}
+// window.onerror=(e)=>{
+//     console.error(e);
+// }
+export const waitForElm=(selector)=>{
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));}
+        const observer = new MutationObserver(mutations=>{
+            if (document.querySelector(selector)) {
+                observer.disconnect();
+                resolve(document.querySelector(selector));
+            }});
+        observer.observe(document.body,{
+            childList: true,
+            subtree: true});
+    });
+}
