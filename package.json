@@ -10,7 +10,7 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "web:start": "vite",
-    "web:build": "vite build --output web"
+    "web:build": "vite build"
   },
   "build": {
     "appId": "com.m1dnight.todurav2",
