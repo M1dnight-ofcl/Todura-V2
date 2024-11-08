@@ -25,6 +25,7 @@ import "./assets/style/settings.css";
 //lib
 import { $with, generateId, GetCssVar, releaseData } from '../../modules/lib';
 //external modules
+import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 export const SettingsTab=({})=>{
@@ -93,32 +94,81 @@ export const SettingsTab=({})=>{
                     (Math.abs(e.target.scrollHeight-e.target.scrollTop-e.target.clientHeight)<1)?
                         "0":"1";
             }}>
-                <h2 id="settingsheader_general">General</h2>
-                <label htmlFor="settings_advancedsettings" className='label_checkbox'>Advanced Settings&nbsp;
+                <motion.h2 
+                    id="settingsheader_general"
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}>General</motion.h2>
+                <motion.label 
+                    htmlFor="settings_advancedsettings" 
+                    className='label_checkbox'
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}>Advanced Settings&nbsp;
                     <span className="tooltip">This is some advanced settings, like theme variables and experimental features.</span>
-                    <label className="checkmarkContainer">
-                        <input 
-                            type="checkbox" 
-                            defaultChecked={settings.advanced_settings}
-                            onChange={(e)=>{dispatch(setAdvancedSettings(e.target.checked));}}/>
-                        <span className="checkmark"></span>
-                    </label></label>
-                <h2 id="settingsheader_appearance">Appearance</h2>
-                <label htmlFor="settings_theme">Themes<br/>
-                    {/* <span className="tooltip">These are our inbuilt themes. Custom themes and setting custom theme variables can be found in advanced settings </span> */}
-                    <select id="settings_theme" onClick={(e)=>{
-                        dispatch(setTheme(e.target.value));}} defaultValue={settings.theme}>
-                        <option value="default_dark">Default Dark</option>
-                        <option value="default_light">Default Light</option>
-                        <option value="sharp_dark">Sharp Dark</option>
-                        <option value="sharp_light">Sharp Light</option>
-                    </select></label>
+                        <label className="checkmarkContainer">
+                            <input 
+                                type="checkbox" 
+                                defaultChecked={settings.advanced_settings}
+                                onChange={(e)=>{dispatch(setAdvancedSettings(e.target.checked));}}/>
+                            <span className="checkmark"></span>
+                    </label></motion.label>
+                <motion.h2 
+                    id="settingsheader_appearance"
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}>Appearance</motion.h2>
+                <motion.label 
+                    htmlFor="settings_theme"
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                    y:0,}}>Themes<br/>
+                        {/* <span className="tooltip">These are our inbuilt themes. Custom themes and setting custom theme variables can be found in advanced settings </span> */}
+                        <select id="settings_theme" onClick={(e)=>{
+                            dispatch(setTheme(e.target.value));}} defaultValue={settings.theme}>
+                            <option value="default_dark">Default Dark</option>
+                            <option value="default_light">Default Light</option>
+                            <option value="sharp_dark">Sharp Dark</option>
+                            <option value="sharp_light">Sharp Light</option>
+                        </select></motion.label>
                 {settings.advanced_settings?<>
-                    <br/><h2 id="settingsheader_advancedsettings">Advanced</h2>
+                    <br/><motion.h2 
+                        transition={{ delay:.1,duration:.15 }}
+                        initial={{
+                            opacity:0,
+                            y:-5,}}
+                        whileInView={{
+                            opacity:1,
+                            y:0,}}
+                        id="settingsheader_advancedsettings">Advanced</motion.h2>
                     {/* <p className='caption'>
                         Nothing yet... (tried custom css vars but OH. MY. GOD. (I hate js sometimes))
                     </p> */}
-                    <div className="experimental_settingswrapper">
+                    <motion.div 
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}
+                    className="experimental_settingswrapper">
                         <h3>Custom Theme Variables</h3>
                             {Object.keys(settings.customCssVar)
                             .map((cssvar,index)=>
@@ -143,25 +193,93 @@ export const SettingsTab=({})=>{
                                             </label>
                                         {/* <form/> */}
                                     </React.Fragment>:null)}
-                    </div>
+                    </motion.div>
                 </>:null}
-                <br/><h2 id="settingsheader_backup">Backup</h2>
-                {window.toduraApi?toduraApi.desktop?<button onClick={(e)=>{
-                    e.preventDefault();
-                    saveStatusToastId.current=toast("Saving to File...",{autoClose:false});
-                    let saveObj={todo,settings,saveId:generateId(10).replaceAll("==","")}
-                    setTimeout(()=>toduraApi.saveToFile(saveObj),200);
-                    toast.update(saveStatusToastId.current,{render:"Saved File to 'Downloads'",autoClose:5000})
-                }}>Save to File
-                    <span className="tooltip">Just save all your data to a custom <code>.tsf</code> file</span></button>:null:null}
-                <br/><h2 id="settingsheader_info">Info</h2>
-                <label>Current Version: {releaseData.v}</label>
-                <h3>Changelog</h3>
-                <ul>
-                    {releaseData.changelog.map((data,index)=><li key={index}>{data}</li>)}
-                </ul>
-                <label>M1dnight <FontAwesomeIcon icon={faCopyright} /> 2024-Current</label>
-                <label>Made with <FontAwesomeIcon icon={faHeart} /> in nj</label>
+                <br/><motion.h2 
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}
+                    id="settingsheader_backup">Backup</motion.h2>
+                {window.toduraApi?toduraApi.desktop?<motion.button 
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}
+                    onClick={(e)=>{
+                        e.preventDefault();
+                        saveStatusToastId.current=toast("Saving to File...",{autoClose:false});
+                        let saveObj={todo,settings,saveId:generateId(10).replaceAll("==","")}
+                        setTimeout(()=>toduraApi.saveToFile(saveObj),200);
+                        toast.update(saveStatusToastId.current,{render:"Saved File to 'Downloads'",autoClose:5000})
+                    }}>Save to File
+                        <span className="tooltip">Just save all your data to a custom <code>.tsf</code> file</span></motion.button>:null:null}
+                <br/><motion.h2 
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}
+                    id="settingsheader_info">Info</motion.h2>
+                <motion.label
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}>Current Version: {releaseData.v}</motion.label>
+                <motion.h3
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}>Changelog</motion.h3>
+                <motion.ul
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}>
+                        {releaseData.changelog.map((data,index)=>
+                            <motion.li 
+                                transition={{ delay:.15,duration:.15 }}
+                                initial={{
+                                    opacity:0,
+                                    y:-5,}}
+                                whileInView={{
+                                    opacity:1,
+                                    y:0,}}
+                                key={index}>{data}</motion.li>)}
+                </motion.ul>
+                <motion.label
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}>M1dnight <FontAwesomeIcon icon={faCopyright} /> 2024-Current</motion.label>
+                <motion.label
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}>Made with <FontAwesomeIcon icon={faHeart} /> in nj</motion.label>
                 <br/><br/>
             </div>
             <div id="taskScrollShade"></div>

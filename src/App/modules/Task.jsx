@@ -20,6 +20,7 @@ import { addTask, removeTask, modifyState } from '../../store/slices/todo';
 import { setSelectedTask } from '../../store/slices/selectedTask';
 //external modules
 import ClampLines from 'react-clamp-lines';
+import { motion } from "framer-motion";
 import { toast } from 'react-toastify';
 export const Task=({
     id,
@@ -40,10 +41,19 @@ export const Task=({
         })); 
     }
     return(<>{state?
-        <div 
+        <motion.div 
             className={`task ${!isNaN(state.meta.color)&&state.meta.color>=0&&state.meta.color<=7?`task_clr${state.meta.color}`:""}`} 
             id={`${btoa(title)}_${id}`.replaceAll("=","")} 
             onContextMenu={(e)=>{contextMenuHandler(e,{id,title,desc,meta})}}
+            transition={{ delay:.1,duration:.15 }}
+            initial={{
+                opacity:0,
+                scale:.95,
+                y:5,}}
+            whileInView={{
+                opacity:1,
+                scale:1,
+                y:0,}}
             onDoubleClick={(e)=>{
                 if(e.target.id==`${btoa(title)}_${id}`.replaceAll("=","")){
                     dispatch(setSelectedTask(state));
@@ -51,7 +61,17 @@ export const Task=({
                 }
             }}>
                 <div className="task_checkmarkWrapper">
-                    <label className="checkmarkContainer">
+                    <motion.label 
+                    transition={{ delay:.15,duration:.15 }}
+                        initial={{
+                            opacity:0,
+                            scale:.85,
+                            y:5,}}
+                        whileInView={{
+                            opacity:1,
+                            scale:1,
+                            y:0,}}
+                        className="checkmarkContainer">
                         <input type="checkbox" defaultChecked={state.meta.checked} onChange={(e)=>{
                             /* e.preventDefault();
                             e.stopPropagation(); */
@@ -60,7 +80,7 @@ export const Task=({
                                 new:{id,title,desc,meta:{...meta,checked:e.target.checked,}}
                             })); 
                         }}/><span className="checkmark"></span>
-                    </label>
+                    </motion.label>
                 </div>
                 <div className={`task_contentWrapper ${state.meta.checked?"checked":""}`}>
                     <h1 className="task_text">{state.title}</h1>
@@ -129,6 +149,6 @@ export const Task=({
                             }}/>
                     </div>
                 </div>
-        </div>
+        </motion.div>
     :null}</>);
 }

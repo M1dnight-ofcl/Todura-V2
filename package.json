@@ -51,6 +51,7 @@
     "electron-is-dev": "^3.0.1",
     "electron-react-devtools": "^0.5.3",
     "electron-squirrel-startup": "^1.0.1",
+    "framer-motion": "^11.11.11",
     "path-browserify": "^1.0.1",
     "react": "^18.3.1",
     "react-clamp-lines": "^3.0.3",
