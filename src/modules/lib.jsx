@@ -1,5 +1,5 @@
 export const releaseData={
-    v:"v0.8.1",
+    v:"v0.9.1",
     changelog:[
         "Improved Settings UI",
         "Added options to settings",
@@ -21,6 +21,7 @@ export const releaseData={
         "Fixed Scroll Margins in Settings",
         "Fixed Theme Variable Typo",
         "Added Animations using framer-motion",
+        "Started working on save servers",
     ]
 }
 import React, { useEffect, useState } from "react";

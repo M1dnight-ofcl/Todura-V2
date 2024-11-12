@@ -93,3 +93,7 @@ out/
 
 # temp
 temp/
+
+# python
+server/venv/
+*__pycache__*
