@@ -1,27 +1,10 @@
 export const releaseData={
     v:"v0.9.1",
     changelog:[
-        "Improved Settings UI",
-        "Added options to settings",
-        "Fixed a small issue with temp folder",
-        "Attempted fix of github languages",
-        "Fixed build issues",
-        "Reworked themes system",
-        "Modified settings system",
-        "Added Web Version",
-        "Added scroll shades",
-        "Added sharp themes (like v1)",
-        "Started work on bug fixes",
-        "Planned addition of custom css vars (current script broken)",
-        "Added tooltips to settings",
-        "Fixing State Issues/Bugs",
-        "Moved tabs state to use redux",
-        "Started Work on Loading Screen",
         // "Added loading screen",
-        "Fixed Scroll Margins in Settings",
-        "Fixed Theme Variable Typo",
         "Added Animations using framer-motion",
         "Started working on save servers",
+        "Tweaked Taskview/edit guis to use states",
     ]
 }
 import React, { useEffect, useState } from "react";

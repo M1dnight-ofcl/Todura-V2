@@ -20,6 +20,7 @@ import { addTask, removeTask, modifyState } from '../../store/slices/todo';
 import { setSelectedTask } from '../../store/slices/selectedTask';
 //external modules
 import ClampLines from 'react-clamp-lines';
+import Markdown from 'react-markdown';
 import { motion } from "framer-motion";
 import { toast } from 'react-toastify';
 export const Task=({
@@ -27,6 +28,10 @@ export const Task=({
     title,
     desc,
     meta,
+    taskviewOpen,
+    setTaskviewOpen,
+    taskeditOpen,
+    setTaskeditOpen,
     contextMenuHandler=()=>{},
 })=>{
     const todo=useSelector(state=>state.todo);
@@ -56,13 +61,13 @@ export const Task=({
                 y:0,}}
             onDoubleClick={(e)=>{
                 if(e.target.id==`${btoa(title)}_${id}`.replaceAll("=","")){
-                    dispatch(setSelectedTask(state));
-                    document.getElementById("taskview").style.transform="translateX(0)";
+                    dispatch(setSelectedTask({...state,taskeditOpen:true}));
+                    // document.getElementById("taskview").style.transform="translateX(0)";
                 }
             }}>
                 <div className="task_checkmarkWrapper">
                     <motion.label 
-                    transition={{ delay:.15,duration:.15 }}
+                        transition={{ delay:.15,duration:.15 }}
                         initial={{
                             opacity:0,
                             scale:.85,
@@ -82,7 +87,17 @@ export const Task=({
                         }}/><span className="checkmark"></span>
                     </motion.label>
                 </div>
-                <div className={`task_contentWrapper ${state.meta.checked?"checked":""}`}>
+                <motion.div 
+                    transition={{ delay:.2,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        scale:.985,
+                        y:5,}}
+                    whileInView={{
+                        opacity:1,
+                        scale:1,
+                        y:0,}}
+                    className={`task_contentWrapper ${state.meta.checked?"checked":""}`}>
                     <h1 className="task_text">{state.title}</h1>
                     <ClampLines
                         text={state.desc}
@@ -91,64 +106,96 @@ export const Task=({
                         id="desc"
                         moreText={<>Read More <FontAwesomeIcon icon={faChevronDown} /></>}
                         lessText={<>Read Less <FontAwesomeIcon icon={faChevronUp} /></>} />
-                </div>
-                <div className="task_dataWrapper">
-                    {/* <p className="creationDateLabel">Creation time:</p>
-                    <p className="creationDate">
-                        {new Intl.DateTimeFormat('en-US', 
-                            { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', })
-                                .format(state.meta.creationTime)}</p> */}
-                    <p className="dueDateLabel">Due Date:</p>
-                    <input type="date" id="dueDate" 
-                        defaultValue={new Date(state.meta.dueDate).toDateInputValue()} 
-                        onFocus={(e)=>e.target.showPicker()}
-                        onChange={(e)=>{setDueDate(e.target.valueAsNumber);}}/>
-                    <div className="task_optionsWapper">
-                        <FontAwesomeIcon 
-                            icon={faTrash} 
-                            className="task_option_icon"
-                            onClick={(e)=>{
-                                /* e.preventDefault();
-                                e.stopPropagation(); */
-                                dispatch(removeTask(id));
-                            }}/>
-                        <FontAwesomeIcon 
-                            icon={faEdit} 
-                            className="task_option_icon"
-                            onClick={(e)=>{
-                                /* e.preventDefault();
-                                e.stopPropagation(); */
-                                dispatch(setSelectedTask(state));
-                                document.getElementById("taskedit").style.transform="translateX(0)";
-                                document.getElementById("taskedit_title").focus();
-                            }}/>
-                        <FontAwesomeIcon 
-                            icon={state.meta.important?faStar:faStarBorder}
-                            className="task_option_icon"
-                            onClick={(e)=>{
-                                dispatch(modifyState({
-                                    target: id,
-                                    new:{id,title,desc,meta:{...meta,important:!state.meta.important,}}
-                                })); 
-                            }}/>
-                        {/* for colors */}
-                        <FontAwesomeIcon 
-                            icon={!isNaN(state.meta.color)&&state.meta.color>=0&&state.meta.color<=7?faCircle:faCircleDot}
-                            className={`task_option_icon clrselectico ${!isNaN(state.meta.color)&&state.meta.color>=0&&state.meta.color<=7?`task_clr${state.meta.color}_clrselectico`:""}`}
-                            onClick={(e)=>{
-                                // [...Array(7).keys(),NaN]
-                                dispatch(modifyState({
-                                    target: id,
-                                    new:{id,title,desc,meta:{...meta,
-                                        color:
-                                            isNaN(state.meta.color)?0:
-                                            state.meta.color<7?state.meta.color+1:
-                                            state.meta.color>=7?NaN:NaN,
-                                    }}
-                                })); 
-                            }}/>
-                    </div>
-                </div>
+                </motion.div>
+                <motion.div
+                    transition={{ delay:.25,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        scale:.985,
+                        y:5,}}
+                    whileInView={{
+                        opacity:1,
+                        scale:1,
+                        y:0,}}
+                    className="task_dataWrapper">
+                        {/* <p className="creationDateLabel">Creation time:</p>
+                        <p className="creationDate">
+                            {new Intl.DateTimeFormat('en-US', 
+                                { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', })
+                                    .format(state.meta.creationTime)}</p> */}
+                        <p className="dueDateLabel">Due Date:</p>
+                        <motion.input 
+                            type="date" id="dueDate" 
+                            defaultValue={new Date(state.meta.dueDate).toDateInputValue()} 
+                            onFocus={(e)=>e.target.showPicker()}
+                            onChange={(e)=>{setDueDate(e.target.valueAsNumber);}}
+                            transition={{ delay:.3,duration:.15 }}
+                            initial={{
+                                opacity:0,
+                                scale:.985,
+                                y:5,}}
+                            whileInView={{
+                                opacity:1,
+                                scale:1,
+                                y:0,}}/>
+                        <motion.div 
+                            transition={{ delay:.35,duration:.15 }}
+                            initial={{
+                                opacity:0,
+                                scale:.985,
+                                y:5,}}
+                            whileInView={{
+                                opacity:1,
+                                scale:1,
+                                y:0,}}
+                            className="task_optionsWapper">
+                                <FontAwesomeIcon 
+                                    icon={faTrash} 
+                                    className="task_option_icon"
+                                    onClick={(e)=>{
+                                        /* e.preventDefault();
+                                        e.stopPropagation(); */
+                                        dispatch(removeTask(id));
+                                        toast("Deleted Task Successfully",{autoClose:5000});
+                                    }}/>
+                                <FontAwesomeIcon 
+                                    icon={faEdit} 
+                                    className="task_option_icon"
+                                    onClick={(e)=>{
+                                        /* e.preventDefault();
+                                        e.stopPropagation(); */
+                                        dispatch(setSelectedTask(state));
+                                        // document.getElementById("taskedit").style.transform="translateX(0)";
+                                        setTaskeditOpen(true);
+                                        document.getElementById("taskedit_title").focus();
+                                    }}/>
+                                <FontAwesomeIcon 
+                                    icon={state.meta.important?faStar:faStarBorder}
+                                    className="task_option_icon"
+                                    onClick={(e)=>{
+                                        dispatch(modifyState({
+                                            target: id,
+                                            new:{id,title,desc,meta:{...meta,important:!state.meta.important,}}
+                                        })); 
+                                    }}/>
+                                {/* for colors */}
+                                <FontAwesomeIcon 
+                                    icon={!isNaN(state.meta.color)&&state.meta.color>=0&&state.meta.color<=7?faCircle:faCircleDot}
+                                    className={`task_option_icon clrselectico ${!isNaN(state.meta.color)&&state.meta.color>=0&&state.meta.color<=7?`task_clr${state.meta.color}_clrselectico`:""}`}
+                                    onClick={(e)=>{
+                                        // [...Array(7).keys(),NaN]
+                                        dispatch(modifyState({
+                                            target: id,
+                                            new:{id,title,desc,meta:{...meta,
+                                                color:
+                                                    isNaN(state.meta.color)?0:
+                                                    state.meta.color<7?state.meta.color+1:
+                                                    state.meta.color>=7?NaN:NaN,
+                                            }}
+                                        })); 
+                                    }}/>
+                        </motion.div>
+                </motion.div>
         </motion.div>
     :null}</>);
 }
