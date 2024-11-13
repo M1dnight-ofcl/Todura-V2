@@ -121,6 +121,10 @@ const App=(prop)=>{
     }
     const HomeTab=({})=>{
         return(<>
+            <Helmet>
+                <title>Todura V2</title>
+                <link rel="icon" type="image/x-icon" href="/logo.ico"/>
+            </Helmet>
             <ContextMenu/>
             <LoadingScreen/>
             <div id="taskWrapper" onScroll={(e)=>{

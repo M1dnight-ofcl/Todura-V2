@@ -53,39 +53,54 @@ export const SettingsTab=({})=>{
         <div id="settingsWrapper">
             <div id="settingsSidebar">
                 <h1>Settings</h1>
-                <button 
+                <motion.button 
                     id="settingsSidebar_general"
+                    transition={{ delay:0,duration:.05 }}
+                    initial={{x:-5,opacity:0,}}
+                    animate={{x:0,opacity:1,}}
                     onClick={(e)=>{
                         e.preventDefault();
                         scrollToHeader("settingsheader_general");
-                    }}><FontAwesomeIcon className='i' icon={faHouse}/> General</button>
-                <button 
+                    }}><FontAwesomeIcon className='i' icon={faHouse}/> General</motion.button>
+                <motion.button 
                     id="settingsSidebar_appearance"
+                    transition={{ delay:.15,duration:.05 }}
+                    initial={{x:-5,opacity:0,}}
+                    animate={{x:0,opacity:1,}}
                     onClick={(e)=>{
                         e.preventDefault();
                         scrollToHeader("settingsheader_appearance");
-                    }}><FontAwesomeIcon className='i' icon={faPaintBrush}/> Appearance</button>
+                    }}><FontAwesomeIcon className='i' icon={faPaintBrush}/> Appearance</motion.button>
                 {settings.advanced_settings?<>
-                    <button 
+                    <motion.button 
                         id="settingsSidebar_advancedsettings"
+                        transition={{ delay:.25,duration:.05 }}
+                        initial={{x:-5,opacity:0,}}
+                        animate={{x:0,opacity:1,}}
                         onClick={(e)=>{
                             e.preventDefault();
                             scrollToHeader("settingsheader_advancedsettings");
-                        }}><FontAwesomeIcon className='i' icon={faScrewdriverWrench}/> Advanced</button>
+                        }}><FontAwesomeIcon className='i' icon={faScrewdriverWrench}/> Advanced</motion.button>
                 </>:null}
-                {window.toduraApi?toduraApi.desktop?<button 
+                {/* {window.toduraApi?toduraApi.desktop? */}<motion.button 
                     id="settingsSidebar_backup"
+                    transition={{ delay:.35,duration:.05 }}
+                    initial={{x:-5,opacity:0,}}
+                    animate={{x:0,opacity:1,}}
                     onClick={(e)=>{
                         e.preventDefault();
                         scrollToHeader("settingsheader_backup");
-                    }}><FontAwesomeIcon className='i' icon={faClockRotateLeft}/> Backup</button>
-                        :null:null}
-                <button 
+                    }}><FontAwesomeIcon className='i' icon={faClockRotateLeft}/> Backup</motion.button>
+                        {/* :null:null} */}
+                <motion.button 
                     id="settingsSidebar_info"
+                    transition={{ delay:.5,duration:.05 }}
+                    initial={{x:-5,opacity:0,scale:.985,}}
+                    animate={{x:0,opacity:1,scale:1,}}
                     onClick={(e)=>{
                         e.preventDefault();
                         scrollToHeader("settingsheader_info");
-                    }}><FontAwesomeIcon className='i' icon={faInfoCircle}/> Info</button>
+                    }}><FontAwesomeIcon className='i' icon={faInfoCircle}/> Info</motion.button>
             </div>
             <div id="settingsContent" onScroll={(e)=>{
                 document.getElementById("taskScrollShadeTop").style.opacity=
@@ -161,36 +176,45 @@ export const SettingsTab=({})=>{
                         Nothing yet... (tried custom css vars but OH. MY. GOD. (I hate js sometimes))
                     </p> */}
                     <motion.div 
-                    transition={{ delay:.1,duration:.15 }}
-                    initial={{
-                        opacity:0,
-                        y:-5,}}
-                    whileInView={{
-                        opacity:1,
-                        y:0,}}
-                    className="experimental_settingswrapper">
-                        <h3>Custom Theme Variables</h3>
+                        transition={{ delay:.1,duration:.15 }}
+                        initial={{
+                            opacity:0,
+                            y:-5,}}
+                        whileInView={{
+                            opacity:1,
+                            y:0,}}
+                        className="experimental_settingswrapper">
+                            <h3>Custom Theme Variables</h3>
                             {Object.keys(settings.customCssVar)
                             .map((cssvar,index)=>
                                 settings.customCssVar[cssvar].type=="color"?
                                     <React.Fragment key={generateId(10)}>
                                         {/* <form id={`${cssvar}_form`}/> */}
-                                            <label className='clrinput' htmlFor={`${cssvar.slice(2)}_tvs`}>{settings.customCssVar[cssvar].title} &nbsp;
-                                                <code>{cssvar}
-                                                <span className="clrinput_tooltip">This is the css variable in the code. If you want to make a custom theme, these is the variabe you would set</span></code>&nbsp;
-                                                <input 
-                                                    type="color" 
-                                                    id={`${cssvar.slice(2)}_tvs`}
-                                                    defaultValue={GetCssVar(cssvar)}
-                                                    onBlur={(e)=>{
-                                                        // document.getElementById(`${cssvar}_form`).submit();
-                                                        dispatch(setCustomCssVar({
-                                                            name:cssvar,
-                                                            new:e.target.value,
-                                                        }));
-                                                    }}
-                                                />
-                                            </label>
+                                            <motion.label 
+                                                transition={{ delay:.1,duration:.15 }}
+                                                initial={{
+                                                    opacity:0,
+                                                    y:-5,}}
+                                                whileInView={{
+                                                    opacity:1,
+                                                    y:0,}}
+                                                className='clrinput' 
+                                                htmlFor={`${cssvar.slice(2)}_tvs`}>{settings.customCssVar[cssvar].title} &nbsp;
+                                                    <code>{cssvar}
+                                                    <span className="clrinput_tooltip">This is the css variable in the code. If you want to make a custom theme, these is the variabe you would set</span></code>&nbsp;
+                                                    <input 
+                                                        type="color" 
+                                                        id={`${cssvar.slice(2)}_tvs`}
+                                                        defaultValue={GetCssVar(cssvar)}
+                                                        onBlur={(e)=>{
+                                                            // document.getElementById(`${cssvar}_form`).submit();
+                                                            dispatch(setCustomCssVar({
+                                                                name:cssvar,
+                                                                new:e.target.value,
+                                                            }));
+                                                        }}
+                                                    />
+                                            </motion.label>
                                         {/* <form/> */}
                                     </React.Fragment>:null)}
                     </motion.div>
@@ -204,7 +228,7 @@ export const SettingsTab=({})=>{
                         opacity:1,
                         y:0,}}
                     id="settingsheader_backup">Backup</motion.h2>
-                {window.toduraApi?toduraApi.desktop?<motion.button 
+                {window.toduraApi?toduraApi.desktop?<><motion.button 
                     transition={{ delay:.1,duration:.15 }}
                     initial={{
                         opacity:0,
@@ -219,7 +243,31 @@ export const SettingsTab=({})=>{
                         setTimeout(()=>toduraApi.saveToFile(saveObj),200);
                         toast.update(saveStatusToastId.current,{render:"Saved File to 'Downloads'",autoClose:5000})
                     }}>Save to File
-                        <span className="tooltip">Just save all your data to a custom <code>.tsf</code> file</span></motion.button>:null:null}
+                        <span className="tooltip">Just save all your data to a custom <code>.tsf</code> file</span></motion.button><br/></>:null:null}
+                
+                <motion.div 
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}
+                    className="danger_settingswrapper"><br/>
+                        <motion.button 
+                            transition={{ delay:.1,duration:.15 }}
+                            initial={{
+                                opacity:0,
+                                y:-5,}}
+                            whileInView={{
+                                opacity:1,
+                                y:0,}}
+                            onClick={(e)=>{
+                                e.preventDefault();
+                                localStorage.clear();
+                                location.reload();
+                            }}>Reset Data</motion.button>
+                </motion.div>
                 <br/><motion.h2 
                     transition={{ delay:.1,duration:.15 }}
                     initial={{

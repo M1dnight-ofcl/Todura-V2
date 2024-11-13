@@ -127,6 +127,37 @@
   font-size: 2vmin;
   color: var(--clr1);
 }
+#settingsWrapper #settingsContent .danger_settingswrapper {
+  padding: 2vmin;
+  width: 100%;
+  border: 1px solid var(--clr1);
+  border-radius: var(--border-rad);
+  position: relative;
+  padding-top: 5vmin;
+}
+#settingsWrapper #settingsContent .danger_settingswrapper::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: var(--border-rad);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -10 !important;
+  background-image: linear-gradient(115deg, var(--clr1), transparent);
+  opacity: 0.25;
+  pointer-events: none;
+}
+#settingsWrapper #settingsContent .danger_settingswrapper::before {
+  content: "Dangerous Settings! These probably do something major or will result in data loss";
+  position: absolute;
+  text-wrap: wrap;
+  top: 2vmin;
+  left: 2vmin;
+  font-size: 2vmin;
+  color: var(--clr1);
+}
 #settingsWrapper #settingsContent .caption {
   width: 100%;
   text-wrap: wrap;
@@ -187,7 +218,7 @@
   border-radius: calc(var(--border-rad) / 4 * 3);
   background: transparent;
   transition: 0.35s;
-  color-scheme: var(--color-shceme);
+  color-scheme: var(--color-scheme);
   position: absolute;
   left: calc(100% - 4.5vmin - 2vmin);
 }

@@ -1,10 +1,11 @@
 export const releaseData={
-    v:"v0.9.1",
+    v:"v0.9.3",
     changelog:[
         // "Added loading screen",
         "Added Animations using framer-motion",
         "Started working on save servers",
         "Tweaked Taskview/edit guis to use states",
+        "Added Redux-Persist",
     ]
 }
 import React, { useEffect, useState } from "react";

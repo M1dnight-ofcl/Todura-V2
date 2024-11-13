@@ -3,9 +3,10 @@ import { createRoot } from 'react-dom/client';
 import "./style/index.css";
 import App from './App/App.jsx';
 import { Provider } from 'react-redux';
-import { store } from './store/store.js';
+import { store, persistor } from './store/store.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';
+import { PersistGate } from 'redux-persist/integration/react';
 import { motion } from 'framer-motion';
 const AppContainer=({})=>{
     // const settings=useSelector(state=>state.settings);
@@ -69,6 +70,8 @@ const AppContainer=({})=>{
 createRoot(document.getElementById('root'))
     .render(<React.StrictMode>
         <Provider store={store}>
-            <AppContainer/>
+            <PersistGate loading={null} persistor={persistor}>
+                <AppContainer/>
+            </PersistGate>
         </Provider>
     </React.StrictMode>);

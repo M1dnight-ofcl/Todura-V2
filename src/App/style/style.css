@@ -33,7 +33,7 @@
   --outline: #45454595;
   --outline-active: #6f27e4;
   --sbicons: #95959595;
-  --color-shceme: dark;
+  --color-scheme: dark;
   /*clrs*/
   --clr0: #ffffff;
   --clr1: #dc3939;
@@ -108,7 +108,7 @@
   --outline: #a0a0a045;
   --outline-active: #6f27e4;
   --sbicons: #35353545;
-  --color-shceme: light;
+  --color-scheme: light;
   /*clrs*/
   --clr0: #303030;
   --clr1: #dc3939;
@@ -183,7 +183,7 @@
   --outline: #45454595;
   --outline-active: #6f27e4;
   --sbicons: #95959595;
-  --color-shceme: dark;
+  --color-scheme: dark;
   /*clrs*/
   --clr0: #ffffff;
   --clr1: #dc3939;
@@ -937,7 +937,7 @@ body *::-webkit-scrollbar-thumb:hover {
   background: var(--ui4);
   border-radius: var(--border-rad);
   border: var(--outline) solid 1px;
-  color-scheme: var(--color-shceme);
+  color-scheme: var(--color-scheme);
   outline: none;
 }
 #content #taskWrapper .task .task_dataWrapper .task_optionsWapper {

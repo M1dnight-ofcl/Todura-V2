@@ -122,6 +122,39 @@
                 color: $clr1;
             }
         }
+        .danger_settingswrapper {
+            padding: 2vmin;
+            // padding-right: 8.5vmin;
+            width: 100%;
+            border: 1px solid $clr1;
+            border-radius: $border-rad;
+            position: relative;
+            // &,& *,*,:not(&::after){z-index: 90 !important;}
+            &::after {
+                content: "";
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                border-radius: $border-rad;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                z-index: -10 !important;
+                background-image: linear-gradient(115deg,$clr1,transparent);
+                opacity: .25;
+                pointer-events: none;
+            }
+            padding-top: 5vmin;
+            &::before {
+                content: "Dangerous Settings! These probably do something major or will result in data loss";
+                position: absolute;
+                text-wrap: wrap;
+                top: 2vmin;
+                left: 2vmin;
+                font-size: 2vmin;
+                color: $clr1;
+            }
+        }
         .caption {
             width: 100%;
             text-wrap: wrap;
