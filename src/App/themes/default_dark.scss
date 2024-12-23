@@ -22,7 +22,12 @@
     --navbar: var(--bg4);
     --active: #8745f1;
     --transition-time: .35s;
-    --border-rad: 10px;
+    @media (orientation: landscape) {
+        --border-rad: 10px;
+    }
+    @media (orientation: portrait) {
+        --border-rad: 2vmin;
+    }
     --font: 'Orbiter FBS Trial', sans-serif;
     --font-monospace: 'JetBrains Mono', sans-serif;
     --outline: #45454595;

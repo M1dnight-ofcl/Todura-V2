@@ -232,22 +232,27 @@ const App=(prop)=>{
                         id="taskCreateButton" 
                         onClick={(e)=>{
                             e.preventDefault();
-                            $with(document.getElementById("taskCreateTitle").value).then((title)=>{
-                            $with(document.getElementById("taskCreateDescription").value).then((desc)=>{
-                                dispatch(addTask({
-                                    title,
-                                    desc,
-                                    id:generateId(),
-                                    meta:{
-                                        creationTime: Date.now(),
-                                        dueDate: NaN,//should be set by user
-                                        checked: false,
-                                        color: NaN,
-                                    },
-                                }));
-                                setTimeout(()=>document.getElementById("taskWrapper").scrollTo({
-                                    top:document.getElementById("taskWrapper").scrollHeight,
-                                }),5);
+                            $with(String(document.getElementById("taskCreateTitle").value)).then((title)=>{
+                            $with(String(document.getElementById("taskCreateDescription").value)).then((desc)=>{
+                                if(!title&&desc)toast.error("Title is empty. Please fill in a title",{autoClose:5000});
+                                else if(!desc&&title)toast.error("Description is empty. Please fill in a description",{autoClose:5000});
+                                else if(!title&&!desc)toast.error("Title and description is empty. Please fill in title and description",{autoClose:5000});
+                                else{
+                                    dispatch(addTask({
+                                        title,
+                                        desc,
+                                        id:generateId(),
+                                        meta:{
+                                            creationTime: Date.now(),
+                                            dueDate: NaN,//should be set by user
+                                            checked: false,
+                                            color: NaN,
+                                        },
+                                    }));
+                                    setTimeout(()=>document.getElementById("taskWrapper").scrollTo({
+                                        top:document.getElementById("taskWrapper").scrollHeight,
+                                    }),5);
+                                }
                             });});
                         }}
                         transition={{ duration:.15,delay:.05 }}

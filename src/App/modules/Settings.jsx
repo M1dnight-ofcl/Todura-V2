@@ -285,6 +285,14 @@ export const SettingsTab=({})=>{
                     whileInView={{
                         opacity:1,
                         y:0,}}>Current Version: {releaseData.v}</motion.label>
+                <motion.label
+                    transition={{ delay:.1,duration:.15 }}
+                    initial={{
+                        opacity:0,
+                        y:-5,}}
+                    whileInView={{
+                        opacity:1,
+                        y:0,}}>Release Date: {releaseData.date}</motion.label>
                 <motion.h3
                     transition={{ delay:.1,duration:.15 }}
                     initial={{

@@ -22,7 +22,6 @@
   --navbar: var(--bg4);
   --active: #8745f1;
   --transition-time: .35s;
-  --border-rad: 10px;
   --font: "Orbiter FBS Trial", sans-serif;
   --font-monospace: "JetBrains Mono", sans-serif;
   --outline: #45454595;
@@ -67,6 +66,16 @@
   --toastify-toast-max-height: 15rem;
   --toastify-font-family: var(--font);
   --toastify-z-index: 8940;
+}
+@media (orientation: landscape) {
+  .default_dark {
+    --border-rad: 10px;
+  }
+}
+@media (orientation: portrait) {
+  .default_dark {
+    --border-rad: 2vmin;
+  }
 }
 .default_dark .contexify {
   border: 1px solid var(--outline);

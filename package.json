@@ -10,6 +10,7 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "web:start": "vite",
+    "web:host": "vite --host",
     "web:build": "vite build"
   },
   "build": {
