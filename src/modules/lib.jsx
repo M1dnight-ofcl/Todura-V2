@@ -1,13 +1,13 @@
 export const releaseData={
-    v:"v0.10.3",
-    date: "12/23/24",
+    v:"v0.10.6",
+    date: "12/24/24",
     changelog:[
         // "Added loading screen",
         "Added Animations using framer-motion",
         "Started working on save servers",
         "Tweaked Taskview/edit guis to use states",
         "Added Redux-Persist",
-        "Started work on portrait mode UI",
+        "Added Portrait Mode",
     ]
 }
 import React, { useEffect, useState } from "react";

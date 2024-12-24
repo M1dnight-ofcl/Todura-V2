@@ -52,7 +52,8 @@
           padding: 0;
           cursor: pointer;
           transition: $transition-time;
-          &:hover {
+          &:active {
+            transition: .05s;
             background: $active;
             filter: 
                 drop-shadow(0 0 1vmin $active)
@@ -411,7 +412,8 @@
                                     transform: translate(-50%,-50%);
                                 }
                             }
-                            &:hover input ~ .checkmark {
+                            &:active input ~ .checkmark {
+                                transition: .05s;
                                 background: $h2;
                                 transform: scale(115%);
                                 filter: 
@@ -426,7 +428,8 @@
                                     drop-shadow(0 0 1vmin $active)
                                     drop-shadow(0 0 5vmin $active);
                             }
-                            &:hover input:checked ~ .checkmark {
+                            &:active input:checked ~ .checkmark {
+                                transition: .05s;
                                 filter: 
                                     drop-shadow(0 0 1vmin $active)
                                     drop-shadow(0 0 5vmin $active)
@@ -944,7 +947,7 @@
             }
         }
     }
-    $taskAddInputHeight: 25vmin;
+    $taskAddInputHeight: 22vmin;
     #content {
         position: fixed;
         height: calc(100% - 8vmin - 12vmin);
@@ -1056,8 +1059,8 @@
                 position: absolute;
                 .task {
                     width: 100%;
-                    padding: 1.5rem 1rem;
-                    gap: .5rem;
+                    padding: 3vmin 2vmin;
+                    gap: .5vmin;
                     height: fit-content;
                     background: $ui2;
                     border: $outline;
@@ -1067,7 +1070,7 @@
                     display: flex;
                     justify-content: flex-start;
                     align-items: flex-start;
-                    padding-right: calc(60px + 1rem);
+                    padding-right: calc(15vmin + 1rem);
                     flex-direction: column;
                     flex-shrink: 0;
                     cursor: pointer;
@@ -1130,10 +1133,10 @@
                     }
                     .task_checkmarkWrapper {
                         z-index: 12;
-                        width: 60px;
+                        width: 15vmin;
                         height: 100%;
                         display: flex;
-                        padding: 12px;
+                        padding: 3.5vmin;
                         position: absolute;
                         top: 50%;
                         transform: translateY(-50%);
@@ -1144,7 +1147,6 @@
                             width: 100%;
                             position: relative;
                             cursor: pointer;
-                            font-size: 1rem;
                             user-select: none;
                             input {
                                 position: absolute;
@@ -1169,7 +1171,7 @@
                                     left: 50%;
                                     top: 50%;
                                     color: $h2;
-                                    font-size: 1rem;
+                                    font-size: 3.5vmin;
                                     transform: translate(-50%,-50%);
                                 }
                             }
@@ -1206,7 +1208,7 @@
                         .task_text {
                             margin: 0;
                             // $task_text_size: min(6.5vmin,3rem); //old: 6.5vmin
-                            $task_text_size: 2.5rem;
+                            $task_text_size: 7.5vmin;
                             line-height: $task_text_size;
                             font-size: $task_text_size;
                             color: $h1;
@@ -1218,13 +1220,13 @@
                         .task_desc {
                             margin: 0;
                             // $task_desc_size: min(2.65vmin,1rem); //old: 6.5vmin
-                            $task_desc_size: 20px;
+                            $task_desc_size: 3.5vmin;
                             $task_desc_lineheight: calc($task_desc_size + ($task_desc_size / 10));
                             line-height: $task_desc_lineheight;
                             font-size: $task_desc_size;
                             margin-bottom: calc(0px - $task_desc_lineheight);
                             color: $p1;
-                            max-height: 50vmin !important;
+                            max-height: 60vmin !important;
                             overflow: auto;
                             cursor: text;
                             padding-left: 1vmin;
@@ -1234,10 +1236,10 @@
                             .clamp-lines__button {
                                 background: transparent;
                                 color: $p3;
-                                height: 1rem;
+                                height: 3vmin;
                                 padding: 0 !important;
                                 width: fit-content;
-                                font-size: .85rem;
+                                font-size: 3vmin;
                                 cursor: pointer;
                             }
                         }
@@ -1253,28 +1255,29 @@
                         // width: calc(100% - (75% - 10vmin));
                         // width: fit-content;
                         width: 100%;
-                        margin: 15px 0;
+                        margin: .5vmin 0;
                         height: 100%;
                         flex: 1;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-start;
-                        text-align: left ;
+                        text-align: left;
+                        padding-left: 1vmin;
                         .dueDateLabel {
                             margin: 0;
-                            font-size: 16px;
+                            font-size: 3.5vmin;
                             color: $p3;
-                            padding-top: 2dvb;
+                            padding-top: 4.5vmin;
                         }
                         #dueDate {
-                            padding: .35rem;
-                            padding-top: .5rem;
+                            padding: 1vmin;
+                            padding-top: 1.5vmin;
                             margin: 1vmin 0;
                             font-family: $font;
                             width: 100%;
                             text-align: left;
                             vertical-align: middle;
-                            font-size: 18px;
+                            font-size: 3.25vmin;
                             color: $p2;
                             background: $ui4;
                             border-radius: $border-rad;
@@ -1284,7 +1287,7 @@
                         }
                         .task_optionsWapper {
                             width: 100%;
-                            height: 25px;
+                            height: 5vmin;
                             display: flex;
                             flex-direction: row;
                             gap: .75vmin;
@@ -1316,7 +1319,7 @@
                 z-index: 99;
                 position: absolute;
                 left: 0%;
-                bottom: calc($taskAddInputHeight + 7vmin + 3.5vmin);
+                bottom: calc($taskAddInputHeight + 7vmin + 3vmin);
                 user-select: none;
                 pointer-events: none;
                 opacity: 1;
@@ -1329,7 +1332,7 @@
                 z-index: 99;
                 position: absolute;
                 left: 0%;
-                top: 3.5vmin;
+                top: 3vmin;
                 user-select: none;
                 pointer-events: none;
                 opacity: 0;
@@ -1340,9 +1343,9 @@
     #taskedit {
         width: 100%;
         transform: translateX(calc(100% + 10vmin));
-        height: calc(100dvh - 14vmin - 25px);
+        height: calc(100dvh - 20vmin);
         position: fixed;
-        top: 35px;
+        top: 8vmin;
         right: 0;
         background: $bg2;
         // background-image: radial-gradient(circle farthest-corner at 10vmin 10vmin, rgba($active, .25), rgba($active, .05) 65%, transparent 100%); // too crazy lmao
@@ -1363,7 +1366,7 @@
             background: $ui1;
             padding: 3vmin;
             padding-top: 3.5vmin;
-            font-size: 2.5rem;
+            font-size: 7.5vmin;
             width: 100%;
             font-family: $font;
             border-radius: $border-rad;
@@ -1378,7 +1381,7 @@
             background: $ui1;
             padding: 3vmin;
             padding-top: 3.5vmin;
-            font-size: 20px;
+            font-size: 4vmin;
             min-height: 15vmin;
             height: fit-content;
             overflow-y: auto;
@@ -1407,8 +1410,8 @@
         }
         #taskedit_savechanges {
             width: 100%;
-            padding: 3vmin;
-            font-size: 25px;
+            padding: 4vmin;
+            font-size: 5vmin;
             color: $p1;
             background: $active;
             border-radius: $border-rad;
@@ -1417,6 +1420,128 @@
             box-shadow: 0 0 2vmin rgba($active,.75);
             text-shadow: 0 0 3vmin $p3;
             &:hover {
+                box-shadow: 0 .5vmin 5vmin $active;
+                transform: translateY(-.5vmin);
+                text-shadow: 0 0 2vmin $h1;
+            }
+        }
+    }
+    
+    #taskview {
+        width: 100%;
+        transform: translateX(calc(100% + 10vmin));
+        height: calc(100dvh - 8vmin - 12vmin);
+        position: fixed;
+        top: 8vmin;
+        right: 0;
+        background: $ui2;
+        // background-image: radial-gradient(circle farthest-corner at 10vmin 10vmin, rgba($active, .25), rgba($active, .05) 65%, transparent 100%); // too crazy lmao
+        border-left: $outline;
+        box-shadow: 0 0 1vmin $bg3, 0 0 5vmin $bg3, 0 0 10vmin $bg3;
+        transition: transform 1s;
+        padding: 2.5vmin;
+        overflow-x: hidden;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 1vmin;
+        padding-top: 8vmin;
+        z-index: 200;
+        #taskview_close {
+            color: $h2;
+            opacity: .5;
+            position: absolute;
+            top: 1vmin;
+            left: 1vmin;
+            font-size: 6.5vmin;
+            cursor: pointer;
+        }
+        .taskview_title {
+            color: $h1;
+            font-weight: bold;
+            background: $ui1;
+            margin: 0;
+            margin-top: .5vmin;
+            padding: 2.5vmin;
+            padding-top: 3.5vmin;
+            font-size: 8vmin;
+            width: 100%;
+            font-family: $font;
+            border-radius: $border-rad;
+            outline: $outline;
+            transition: .15s;
+        }
+        .taskview_desc {
+            color: $p1;
+            font-weight: normal;
+            background: $ui1;
+            margin: 0;
+            padding: 3vmin;
+            padding-top: 3.5vmin;
+            font-size: 4vmin;
+            width: 100%;
+            font-family: $font;
+            border-radius: $border-rad;
+            outline: $outline;
+            transition: .15s;
+            overflow-y: auto;
+            overflow-x: hidden;
+            min-height: 15vmin;
+            max-height: 60vmin;
+            &{//scrollbar
+                &::-webkit-scrollbar {width: 8px;}
+                &::-webkit-scrollbar-track {background-color: transparent;} 
+                &::-webkit-scrollbar-thumb {
+                    background-color: $ui4;
+                    border-radius: 5vmin;
+                    background-clip: content-box;
+                    transition: .35s;
+                }
+                &::-webkit-scrollbar-thumb:hover {
+                    background-color: $ui5;
+                }
+            }
+            &:focus {
+                border-bottom: 1vmin solid $active;
+            }
+        }
+        .taskview_duedate {
+            color: $p2;
+            font-weight: normal;
+            background: $ui1;
+            margin: 0;
+            padding: 3vmin;
+            padding-top: 3.5vmin;
+            font-size: 4.5vmin;
+            width: 100%;
+            font-family: $font;
+            border-radius: $border-rad;
+            outline: $outline;
+            transition: .15s;
+            #tvdlabel {
+                color: $p2;
+                font-size: 3.5vmin;
+            }
+            #tvddate {
+                color: $p1;
+                font-size: 4vmin;
+            }
+        }
+        #taskview_edit {
+            width: 100%;
+            padding: 3vmin;
+            font-size: 5vmin;
+            color: $p1;
+            background: $active;
+            border-radius: $border-rad;
+            cursor: pointer;
+            transition: .35s;
+            box-shadow: 0 0 2vmin rgba($active,.75);
+            text-shadow: 0 0 3vmin $p3;
+            z-index: 205;
+            &:active {
+                transition: .05s;
                 box-shadow: 0 .5vmin 5vmin $active;
                 transform: translateY(-.5vmin);
                 text-shadow: 0 0 2vmin $h1;

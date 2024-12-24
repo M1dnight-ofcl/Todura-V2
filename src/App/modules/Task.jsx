@@ -23,6 +23,7 @@ import ClampLines from 'react-clamp-lines';
 import Markdown from 'react-markdown';
 import { motion } from "framer-motion";
 import { toast } from 'react-toastify';
+import { current } from "@reduxjs/toolkit";
 export const Task=({
     id,
     title,
@@ -45,6 +46,8 @@ export const Task=({
             new:{id,title,desc,meta:{...meta,dueDate:value,}}
         })); 
     }
+    // const[mouseHeld,setMouseHeld]=useState(false);
+    const[lastTap,setLastTap]=useState(0);
     return(<>{state?
         <motion.div 
             className={`task ${!isNaN(state.meta.color)&&state.meta.color>=0&&state.meta.color<=7?`task_clr${state.meta.color}`:""}`} 
@@ -59,12 +62,49 @@ export const Task=({
                 opacity:1,
                 scale:1,
                 y:0,}}
-            onDoubleClick={(e)=>{
+            onClick={(e)=>{
+                // SOO MUCH REDUNDANCY CUZ FUCK TOUCHSCREEN DEVICES
+                // DEAR MOBILE DEVICES, STOP WITH YOUR TISM CLICK EVENT
+                // DOUBLE CLICK IS A SIMPLE CONCEPT. A FUCKIGN RASBERRY PI 2
+                // CAN DO BETTER
+                // sry abt crashout
+                switch(e.detail){
+                    case 1:
+                        let currentTime=new Date().getTime();
+                        let tapLength=currentTime-lastTap;
+                        console.log(currentTime,lastTap,tapLength)
+                        if(tapLength<650&&tapLength>0){
+                            e.preventDefault();
+                            if(e.target.id==`${btoa(title)}_${id}`.replaceAll("=","")){
+                                dispatch(setSelectedTask({...state,taskeditOpen:true}));
+                            }
+                        }
+                        setLastTap(currentTime);
+                    break;
+                    case 2:
+                        if(e.target.id==`${btoa(title)}_${id}`.replaceAll("=","")){
+                            dispatch(setSelectedTask({...state,taskeditOpen:true}));
+                        }
+                    break;
+                    default:break;
+                }
+            }}>
+            {/* onDoubleClick={(e)=>{
                 if(e.target.id==`${btoa(title)}_${id}`.replaceAll("=","")){
                     dispatch(setSelectedTask({...state,taskeditOpen:true}));
                     // document.getElementById("taskview").style.transform="translateX(0)";
                 }
-            }}>
+            }}> */}
+            {/* onMouseUp={(e)=>{setMouseHeld(false);}}
+            onMouseDown={(e)=>{
+                setMouseHeld(true);
+                setTimeout(()=>{if(mouseHeld){
+                    if(e.target.id==`${btoa(title)}_${id}`.replaceAll("=","")){
+                        dispatch(setSelectedTask({...state,taskeditOpen:true}));
+                        // document.getElementById("taskview").style.transform="translateX(0)";
+                    }
+                }}, 1000);
+            }}> */}
                 <div className="task_checkmarkWrapper">
                     <motion.label 
                         transition={{ delay:.15,duration:.15 }}

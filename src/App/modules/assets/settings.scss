@@ -1,185 +1,277 @@
 @import "../../../theme.scss";
-#settingsWrapper {
-    height: 100%;
-    width: calc(110vmin);
-    max-width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    padding: 5vmin;
-    font-family: $font;
-    #settingsSidebar {
+@media (orientation: landscape) {
+    #settingsWrapper {
         height: 100%;
-        width: 32vmin;
+        width: calc(110vmin);
+        max-width: 100%;
         position: absolute;
         top: 50%;
-        left: 0;
-        transform: translateY(-50%);
-        display: flex;
-        padding: 1rem;
-        justify-content: flex-start;
-        align-items: flex-start;
-        flex-direction: column;
-        gap: .5vmin;
-        h1 {
-            font-size: 6vmin;
-            color: $h1;
-            width: 100%;
-            margin: 2vmin 0;
-            margin-bottom: 1vmin !important;
-        }
-        button {
-            width: 100%;
-            padding: 1vmin;
-            padding-top: 1.5vmin;
-            text-align: left;
-            border-radius: $border-rad;
-            background: transparent;
-            border: transparent 1px solid;
-            color: $p2;
-            font-size: 3vmin;
-            font-family: $font;
-            cursor: pointer;
-            transition: .35s;
-            &:hover {background: $ui1;}
-            &.sb_active {background: $ui4;}
-            .i{aspect-ratio: 1 / 1;}
-        }
-    }
-    #taskScrollShade {
-        height: 5vmin;
-        width: 100%;
-        background: linear-gradient(180deg, transparent, $bg2);
-        z-index: 99;
-        position: absolute;
-        left: calc((32vmin * 2) + 30px + 2vmin);
-        transform: translateX(-50%);
-        bottom: 2.5vmin;
-        user-select: none;
-        pointer-events: none;
-        opacity: 1;
-        transition: .5s;
-    }
-    #taskScrollShadeTop {
-        height: 5vmin;
-        width: calc(110vmin - 32vmin);
-        background: linear-gradient(0deg, transparent, $bg2);
-        z-index: 99;
-        position: absolute;
-        left: calc((32vmin * 2) + 30px + 2vmin);
-        transform: translateX(-50%);
-        top: 2.5vmin;
-        user-select: none;
-        pointer-events: none;
-        opacity: 0;
-        transition: .5s;
-    }
-    #settingsContent {
-        height: calc(100% - 2rem);
-        width: calc(100% - 32vmin);
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        padding: 0 1rem;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        flex-direction: column;
-        overflow-y: auto;
-        overflow-x: hidden;
-        // scroll-margin: 20vmin;
-        .experimental_settingswrapper {
-            padding: 2vmin;
-            // padding-right: 8.5vmin;
-            width: 100%;
-            border: 1px solid $clr1;
-            border-radius: $border-rad;
-            position: relative;
-            // &,& *,*,:not(&::after){z-index: 90 !important;}
-            &::after {
-                content: "";
-                height: 100%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: 5vmin;
+        font-family: $font;
+        #settingsSidebar {
+            height: 100%;
+            width: 32vmin;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            display: flex;
+            padding: 1rem;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: .5vmin;
+            h1 {
+                font-size: 6vmin;
+                color: $h1;
                 width: 100%;
-                position: absolute;
-                border-radius: $border-rad;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-50%);
-                z-index: -10 !important;
-                background-image: linear-gradient(115deg,$clr1,transparent);
-                opacity: .25;
-                pointer-events: none;
+                margin: 2vmin 0;
+                margin-bottom: 1vmin !important;
             }
-            padding-top: 5vmin;
-            &::before {
-                content: "Experimental Settings! These probably barely work";
-                position: absolute;
-                top: 2vmin;
-                left: 2vmin;
-                font-size: 2vmin;
-                color: $clr1;
-            }
-        }
-        .danger_settingswrapper {
-            padding: 2vmin;
-            // padding-right: 8.5vmin;
-            width: 100%;
-            border: 1px solid $clr1;
-            border-radius: $border-rad;
-            position: relative;
-            // &,& *,*,:not(&::after){z-index: 90 !important;}
-            &::after {
-                content: "";
-                height: 100%;
+            button {
                 width: 100%;
-                position: absolute;
+                padding: 1vmin;
+                padding-top: 1.5vmin;
+                text-align: left;
                 border-radius: $border-rad;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-50%);
-                z-index: -10 !important;
-                background-image: linear-gradient(115deg,$clr1,transparent);
-                opacity: .25;
-                pointer-events: none;
-            }
-            padding-top: 5vmin;
-            &::before {
-                content: "Dangerous Settings! These probably do something major or will result in data loss";
-                position: absolute;
-                text-wrap: wrap;
-                top: 2vmin;
-                left: 2vmin;
-                font-size: 2vmin;
-                color: $clr1;
+                background: transparent;
+                border: transparent 1px solid;
+                color: $p2;
+                font-size: 3vmin;
+                font-family: $font;
+                cursor: pointer;
+                transition: .35s;
+                &:hover {background: $ui1;}
+                &.sb_active {background: $ui4;}
+                .i{aspect-ratio: 1 / 1;}
             }
         }
-        .caption {
-            width: 100%;
-            text-wrap: wrap;
-            color: $p3;
-            opacity: .75;
-            margin: 0;
-            padding: 0;
-            font-size: 2.5vmin;
-        }
-        .clrinput {
+        #taskScrollShade {
             height: 5vmin;
+            width: 100%;
+            background: linear-gradient(180deg, transparent, $bg2);
+            z-index: 99;
+            position: absolute;
+            left: calc((32vmin * 2) + 30px + 2vmin);
+            transform: translateX(-50%);
+            bottom: 2.5vmin;
+            user-select: none;
+            pointer-events: none;
+            opacity: 1;
+            transition: .5s;
+        }
+        #taskScrollShadeTop {
+            height: 5vmin;
+            width: calc(110vmin - 32vmin);
+            background: linear-gradient(0deg, transparent, $bg2);
+            z-index: 99;
+            position: absolute;
+            left: calc((32vmin * 2) + 30px + 2vmin);
+            transform: translateX(-50%);
+            top: 2.5vmin;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0;
+            transition: .5s;
+        }
+        #settingsContent {
+            height: calc(100% - 2rem);
+            width: calc(100% - 32vmin);
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            padding: 0 1rem;
             display: flex;
             justify-content: flex-start;
-            align-items: center;
-            color: $p3;
-            code {
-                padding: .5vmin;
-                background: $ui1;
-                border: $outline;
-                border-radius: calc(($border-rad / 4) * 3);
-                font-family: $font-monospace;
-                font-weight: thin;
-                font-size: 2.5vmin;
+            align-items: flex-start;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+            // scroll-margin: 20vmin;
+            .experimental_settingswrapper {
+                padding: 2vmin;
+                // padding-right: 8.5vmin;
+                width: 100%;
+                border: 1px solid $clr1;
+                border-radius: $border-rad;
                 position: relative;
-                .clrinput_tooltip {
+                // &,& *,*,:not(&::after){z-index: 90 !important;}
+                &::after {
+                    content: "";
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    border-radius: $border-rad;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    z-index: -10 !important;
+                    background-image: linear-gradient(115deg,$clr1,transparent);
+                    opacity: .25;
+                    pointer-events: none;
+                }
+                padding-top: 5vmin;
+                &::before {
+                    content: "Experimental Settings! These probably barely work";
+                    position: absolute;
+                    top: 2vmin;
+                    left: 2vmin;
+                    font-size: 2vmin;
+                    color: $clr1;
+                }
+            }
+            .danger_settingswrapper {
+                padding: 2vmin;
+                // padding-right: 8.5vmin;
+                width: 100%;
+                border: 1px solid $clr1;
+                border-radius: $border-rad;
+                position: relative;
+                // &,& *,*,:not(&::after){z-index: 90 !important;}
+                &::after {
+                    content: "";
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    border-radius: $border-rad;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    z-index: -10 !important;
+                    background-image: linear-gradient(115deg,$clr1,transparent);
+                    opacity: .25;
+                    pointer-events: none;
+                }
+                padding-top: 5vmin;
+                &::before {
+                    content: "Dangerous Settings! These probably do something major or will result in data loss";
+                    position: absolute;
+                    text-wrap: wrap;
+                    top: 2vmin;
+                    left: 2vmin;
+                    font-size: 2vmin;
+                    color: $clr1;
+                }
+            }
+            .caption {
+                width: 100%;
+                text-wrap: wrap;
+                color: $p3;
+                opacity: .75;
+                margin: 0;
+                padding: 0;
+                font-size: 2.5vmin;
+            }
+            .clrinput {
+                height: 5vmin;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                color: $p3;
+                code {
+                    padding: .5vmin;
+                    background: $ui1;
+                    border: $outline;
+                    border-radius: calc(($border-rad / 4) * 3);
+                    font-family: $font-monospace;
+                    font-weight: thin;
+                    font-size: 2.5vmin;
+                    position: relative;
+                    .clrinput_tooltip {
+                        // visibility: hidden;
+                        opacity: 0;
+                        pointer-events: none;
+                        transition: .35s;
+                        width: 30vmin;
+                        background-color: $ui1;
+                        color: $p2;
+                        text-align: left;
+                        text-wrap: wrap;
+                        padding: 2vmin;
+                        border: $outline;
+                        font-size: 2.5vmin;
+                        line-height: 3vmin;
+                        border-radius: calc(($border-rad / 4) * 3);
+                        top: calc(100% + .5vmin);
+                        left: 50%;
+                        transform: translate(-50%,-1vmin);
+                        position: absolute;
+                        z-index: 120 !important;
+                        font-family: $font !important;
+                    }
+                    &:hover .clrinput_tooltip,
+                    .clrinput_tooltip:hover {
+                        opacity: 1;
+                        transform: translate(-50%,0);
+                    }
+                }
+                input[type=color] {
+                    appearance: none;
+                    border: none;
+                    $size: calc(4.5vmin + 2px);
+                    width: $size;
+                    height: $size;
+                    border-radius: calc(($border-rad / 4) * 3);
+                    background: transparent;
+                    transition: .35s;
+                    color-scheme: $color-scheme;
+                    position: absolute;
+                    left: calc(100% - 4.5vmin - 2vmin);
+                    &:hover {
+                        transform: scale(120%);
+                    }
+                }
+                input[type=color]::-webkit-color-swatch-wrapper {
+                    padding: 1px;
+                    background: var(--outline);
+                }
+                input[type=color]::-webkit-color-swatch {
+                    border: none;
+                }
+            }
+            h2 {
+                font-size: 4.5vmin;
+                color: $h2;
+                width: 100%;
+                margin: 2vmin 0;
+            }
+            h3 {
+                font-size: 3.5vmin;
+                color: $p1;
+                width: 100%;
+                margin: .5vmin 0;
+            }
+            ul {
+                margin: 1vmin;
+                li {
+                    font-size: 3vmin;
+                    color: $p3;
+                    width: 100%;
+                    margin: 0;
+                    width: 100%;
+                    text-wrap: wrap;
+                }
+            }
+            label {
+                font-size: 3vmin;
+                color: $p2;
+                margin: .35vmin 0;
+            }
+            label,button {
+                code {
+                    padding: .5vmin;
+                    background: $ui1;
+                    border: $outline;
+                    border-radius: calc(($border-rad / 4) * 3);
+                    font-family: $font-monospace;
+                    font-weight: thin;
+                    font-size: 2.5vmin;
+                    position: relative;
+                }
+                .tooltip {
                     // visibility: hidden;
                     opacity: 0;
                     pointer-events: none;
@@ -194,59 +286,154 @@
                     font-size: 2.5vmin;
                     line-height: 3vmin;
                     border-radius: calc(($border-rad / 4) * 3);
-                    top: calc(100% + .5vmin);
-                    left: 50%;
-                    transform: translate(-50%,-1vmin);
+                    left: calc(100% + .5vmin);
+                    top: 50%;
+                    transform: translate(-1vmin,-50%);
                     position: absolute;
-                    z-index: 120 !important;
+                    z-index: 120;
                     font-family: $font !important;
+                    code {
+                        font-size: 1.75vmin;
+                    }
                 }
-                &:hover .clrinput_tooltip,
-                .clrinput_tooltip:hover {
+                &:hover .tooltip,
+                .tooltip:hover {
                     opacity: 1;
-                    transform: translate(-50%,0);
+                    transform: translate(0,-50%);
                 }
             }
-            input[type=color] {
-                appearance: none;
-                border: none;
-                $size: calc(4.5vmin + 2px);
-                width: $size;
-                height: $size;
-                border-radius: calc(($border-rad / 4) * 3);
-                background: transparent;
+            .label_checkbox {
+                width: fit-content;
+                display: flex;
+                justify-content: flex-start;
+                position: relative;
+                .checkmarkContainer {
+                    display: flex;
+                    aspect-ratio: 1 / 1;
+                    width: 4.5vmin !important;
+                    position: relative;
+                    cursor: pointer;
+                    font-size: 1rem;
+                    user-select: none;
+                    input {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                        height: 0;
+                        width: 0;
+                    }
+                    .checkmark {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        width: 100%;
+                        background-color: $ui4;
+                        border-radius: calc(($border-rad / 4) * 3);
+                        transition: .35s;
+                        &:after {
+                            position:absolute;
+                            display:none;
+                            content: "✔" !important;
+                            left: 50%;
+                            top: 50%;
+                            color: $h2;
+                            font-size: 1rem;
+                            transform: translate(-50%,-50%);
+                        }
+                    }
+                    &:hover input ~ .checkmark {
+                        background: $h2;
+                        transform: scale(105%);
+                    }
+                    input:checked ~ .checkmark {
+                        background: $active;
+                    }
+                    input:checked ~ .checkmark:after {
+                        display: block;
+                    }
+                }
+            }
+            button {
+                padding: 2vmin;
+                width: 35vmin;
+                border-radius: $border-rad;
+                border: $outline;
+                background: $ui1;
+                color: $p1;
+                font-family: $font;
+                font-size: 2.5vmin;
+                cursor: pointer;
                 transition: .35s;
-                color-scheme: $color-scheme;
-                position: absolute;
-                left: calc(100% - 4.5vmin - 2vmin);
                 &:hover {
-                    transform: scale(120%);
+                    border-color: transparent;
+                    // filter: drop-shadow(0 0 2rem $active);
+                    background: $active;
+                    color: $bg1;
+                    transform: scale(105%);
                 }
             }
-            input[type=color]::-webkit-color-swatch-wrapper {
-                padding: 1px;
-                background: var(--outline);
-            }
-            input[type=color]::-webkit-color-swatch {
-                border: none;
+            select {
+                padding: 2vmin;
+                width: 35vmin;
+                border-radius: $border-rad;
+                border: $outline;
+                background: $ui1;
+                color: $p1;
+                font-family: $font;
+                font-size: 2.5vmin;
+                margin-top: .5vmin;
+                cursor: pointer;
+                transition: .35s;
+                outline: none;
             }
         }
+    }    
+}
+@media (orientation: portrait) {
+    #settingsWrapper {
+        height: 100%;
+        width: calc(100%);
+        max-width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: 5vmin;
+        font-family: $font;
+        #settingsSidebar {
+            display: none;
+        }
+        #taskScrollShade {
+            height: 5vmin;
+            width: 100%;
+            background: linear-gradient(180deg, transparent, $bg2);
+            z-index: 99;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            user-select: none;
+            pointer-events: none;
+            opacity: 1;
+            transition: .5s;
+        }
         h2 {
-            font-size: 4.5vmin;
+            font-size: 6.5vmin;
             color: $h2;
             width: 100%;
             margin: 2vmin 0;
         }
         h3 {
-            font-size: 3.5vmin;
+            font-size: 5vmin;
             color: $p1;
             width: 100%;
-            margin: .5vmin 0;
+            margin: 1vmin 0;
         }
         ul {
             margin: 1vmin;
             li {
-                font-size: 3vmin;
+                font-size: 3.5vmin;
                 color: $p3;
                 width: 100%;
                 margin: 0;
@@ -255,50 +442,14 @@
             }
         }
         label {
-            font-size: 3vmin;
+            font-size: 3.5vmin;
             color: $p2;
             margin: .35vmin 0;
         }
         label,button {
-            code {
-                padding: .5vmin;
-                background: $ui1;
-                border: $outline;
-                border-radius: calc(($border-rad / 4) * 3);
-                font-family: $font-monospace;
-                font-weight: thin;
-                font-size: 2.5vmin;
-                position: relative;
-            }
+            font-size: 4vmin;
             .tooltip {
-                // visibility: hidden;
-                opacity: 0;
-                pointer-events: none;
-                transition: .35s;
-                width: 30vmin;
-                background-color: $ui1;
-                color: $p2;
-                text-align: left;
-                text-wrap: wrap;
-                padding: 2vmin;
-                border: $outline;
-                font-size: 2.5vmin;
-                line-height: 3vmin;
-                border-radius: calc(($border-rad / 4) * 3);
-                left: calc(100% + .5vmin);
-                top: 50%;
-                transform: translate(-1vmin,-50%);
-                position: absolute;
-                z-index: 120;
-                font-family: $font !important;
-                code {
-                    font-size: 1.75vmin;
-                }
-            }
-            &:hover .tooltip,
-            .tooltip:hover {
-                opacity: 1;
-                transform: translate(0,-50%);
+                display: none;
             }
         }
         .label_checkbox {
@@ -309,10 +460,9 @@
             .checkmarkContainer {
                 display: flex;
                 aspect-ratio: 1 / 1;
-                width: 4.5vmin !important;
+                width: 6.5vmin !important;
                 position: relative;
                 cursor: pointer;
-                font-size: 1rem;
                 user-select: none;
                 input {
                     position: absolute;
@@ -337,11 +487,11 @@
                         left: 50%;
                         top: 50%;
                         color: $h2;
-                        font-size: 1rem;
+                        font-size: 3vmin;
                         transform: translate(-50%,-50%);
                     }
                 }
-                &:hover input ~ .checkmark {
+                &:active input ~ .checkmark {
                     background: $h2;
                     transform: scale(105%);
                 }
@@ -354,14 +504,14 @@
             }
         }
         button {
-            padding: 2vmin;
-            width: 35vmin;
+            padding: 3vmin 2.5vmin;
+            width: 45vmin;
             border-radius: $border-rad;
             border: $outline;
             background: $ui1;
             color: $p1;
             font-family: $font;
-            font-size: 2.5vmin;
+            font-size: 3.5vmin;
             cursor: pointer;
             transition: .35s;
             &:hover {
@@ -373,18 +523,178 @@
             }
         }
         select {
-            padding: 2vmin;
-            width: 35vmin;
+            padding: 3vmin 2.5vmin;
+            width: 45vmin;
             border-radius: $border-rad;
             border: $outline;
             background: $ui1;
             color: $p1;
             font-family: $font;
-            font-size: 2.5vmin;
-            margin-top: .5vmin;
+            font-size: 3.5vmin;
+            margin-top: 1vmin;
             cursor: pointer;
             transition: .35s;
             outline: none;
+        }
+        #taskScrollShadeTop {
+            height: 5vmin;
+            width: 100%;
+            background: linear-gradient(0deg, transparent, $bg2);
+            z-index: 99;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0;
+            transition: .5s;
+        }
+        #settingsContent {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 6.5vmin;
+            padding-top: 16vmin;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+            &::before {
+                content: "Settings";
+                position: absolute;
+                top: 5vmin;
+                left: 5vmin;
+                width: 100%;
+                height: fit-content;
+                font-size: 10vmin;
+                color: $h1;
+                font-weight: bold;
+            }
+            .experimental_settingswrapper {
+                padding: 2.5vmin 2vmin;
+                // padding-right: 8.5vmin;
+                width: 100%;
+                border: .25vmin solid $clr1;
+                border-radius: $border-rad;
+                position: relative;
+                // &,& *,*,:not(&::after){z-index: 90 !important;}
+                &::after {
+                    content: "";
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    border-radius: $border-rad;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    z-index: -10 !important;
+                    background-image: linear-gradient(115deg,$clr1,transparent);
+                    opacity: .25;
+                    pointer-events: none;
+                }
+                padding-top: 5vmin;
+                &::before {
+                    content: "Experimental Settings! These probably barely work";
+                    position: absolute;
+                    top: 1.5vmin;
+                    left: 1.5vmin;
+                    font-size: 3vmin;
+                    color: $clr1;
+                    text-wrap: wrap;
+                }
+            }
+            .danger_settingswrapper {
+                padding: 2.5vmin 2vmin;
+                // padding-right: 8.5vmin;
+                width: 100%;
+                border: .25vmin solid $clr1;
+                border-radius: $border-rad;
+                position: relative;
+                // &,& *,*,:not(&::after){z-index: 90 !important;}
+                &::after {
+                    content: "";
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    border-radius: $border-rad;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    z-index: -10 !important;
+                    background-image: linear-gradient(115deg,$clr1,transparent);
+                    opacity: .25;
+                    pointer-events: none;
+                }
+                padding-top: 8vmin;
+                &::before {
+                    content: "Dangerous Settings! These probably do something major or will result in data loss";
+                    position: absolute;
+                    top: 1.5vmin;
+                    left: 1.5vmin;
+                    font-size: 3vmin;
+                    color: $clr1;
+                    text-wrap: wrap;
+                }
+            }
+            /* .caption {
+                width: 100%;
+                text-wrap: wrap;
+                color: $p3;
+                opacity: .75;
+                margin: 0;
+                padding: 0;
+                font-size: 2.5vmin;
+            } */
+            .clrinput {
+                height: 10vmin;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                color: $p3;
+                font-size: 3.5vmin;
+                .clrinput_tooltip {
+                    display: none;
+                }
+                code {
+                    padding: 1vmin;
+                    background: $ui1;
+                    border: $outline;
+                    border-radius: calc(($border-rad / 4) * 3);
+                    font-family: $font-monospace;
+                    font-weight: thin;
+                    font-size: 3.5vmin;
+                    position: relative;
+                }
+                input[type=color] {
+                    appearance: none;
+                    border: none;
+                    $size: calc(9.5vmin + 2px);
+                    width: $size;
+                    height: $size;
+                    border-radius: $border-rad;
+                    background: transparent;
+                    transition: .35s;
+                    color-scheme: $color-scheme;
+                    position: absolute;
+                    left: calc(100% - 9.5vmin - 2vmin);
+                    &:hover {
+                        transform: scale(120%);
+                    }
+                }
+                input[type=color]::-webkit-color-swatch-wrapper {
+                    padding: 1px;
+                    background: var(--outline);
+                }
+                input[type=color]::-webkit-color-swatch {
+                    border: none;
+                }
+            }
         }
     }
 }

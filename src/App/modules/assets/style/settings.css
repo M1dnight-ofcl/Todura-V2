@@ -1,386 +1,690 @@
 @charset "UTF-8";
-#settingsWrapper {
-  height: 100%;
-  width: 110vmin;
-  max-width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 5vmin;
-  font-family: var(--font);
+@media (orientation: landscape) {
+  #settingsWrapper {
+    height: 100%;
+    width: 110vmin;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5vmin;
+    font-family: var(--font);
+  }
+  #settingsWrapper #settingsSidebar {
+    height: 100%;
+    width: 32vmin;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    padding: 1rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5vmin;
+  }
+  #settingsWrapper #settingsSidebar h1 {
+    font-size: 6vmin;
+    color: var(--h1);
+    width: 100%;
+    margin: 2vmin 0;
+    margin-bottom: 1vmin !important;
+  }
+  #settingsWrapper #settingsSidebar button {
+    width: 100%;
+    padding: 1vmin;
+    padding-top: 1.5vmin;
+    text-align: left;
+    border-radius: var(--border-rad);
+    background: transparent;
+    border: transparent 1px solid;
+    color: var(--p2);
+    font-size: 3vmin;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  #settingsWrapper #settingsSidebar button:hover {
+    background: var(--ui1);
+  }
+  #settingsWrapper #settingsSidebar button.sb_active {
+    background: var(--ui4);
+  }
+  #settingsWrapper #settingsSidebar button .i {
+    aspect-ratio: 1/1;
+  }
+  #settingsWrapper #taskScrollShade {
+    height: 5vmin;
+    width: 100%;
+    background: linear-gradient(180deg, transparent, var(--bg2));
+    z-index: 99;
+    position: absolute;
+    left: calc(64vmin + 30px + 2vmin);
+    transform: translateX(-50%);
+    bottom: 2.5vmin;
+    user-select: none;
+    pointer-events: none;
+    opacity: 1;
+    transition: 0.5s;
+  }
+  #settingsWrapper #taskScrollShadeTop {
+    height: 5vmin;
+    width: 78vmin;
+    background: linear-gradient(0deg, transparent, var(--bg2));
+    z-index: 99;
+    position: absolute;
+    left: calc(64vmin + 30px + 2vmin);
+    transform: translateX(-50%);
+    top: 2.5vmin;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  #settingsWrapper #settingsContent {
+    height: calc(100% - 2rem);
+    width: calc(100% - 32vmin);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 0 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  #settingsWrapper #settingsContent .experimental_settingswrapper {
+    padding: 2vmin;
+    width: 100%;
+    border: 1px solid var(--clr1);
+    border-radius: var(--border-rad);
+    position: relative;
+    padding-top: 5vmin;
+  }
+  #settingsWrapper #settingsContent .experimental_settingswrapper::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border-radius: var(--border-rad);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -10 !important;
+    background-image: linear-gradient(115deg, var(--clr1), transparent);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  #settingsWrapper #settingsContent .experimental_settingswrapper::before {
+    content: "Experimental Settings! These probably barely work";
+    position: absolute;
+    top: 2vmin;
+    left: 2vmin;
+    font-size: 2vmin;
+    color: var(--clr1);
+  }
+  #settingsWrapper #settingsContent .danger_settingswrapper {
+    padding: 2vmin;
+    width: 100%;
+    border: 1px solid var(--clr1);
+    border-radius: var(--border-rad);
+    position: relative;
+    padding-top: 5vmin;
+  }
+  #settingsWrapper #settingsContent .danger_settingswrapper::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border-radius: var(--border-rad);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -10 !important;
+    background-image: linear-gradient(115deg, var(--clr1), transparent);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  #settingsWrapper #settingsContent .danger_settingswrapper::before {
+    content: "Dangerous Settings! These probably do something major or will result in data loss";
+    position: absolute;
+    text-wrap: wrap;
+    top: 2vmin;
+    left: 2vmin;
+    font-size: 2vmin;
+    color: var(--clr1);
+  }
+  #settingsWrapper #settingsContent .caption {
+    width: 100%;
+    text-wrap: wrap;
+    color: var(--p3);
+    opacity: 0.75;
+    margin: 0;
+    padding: 0;
+    font-size: 2.5vmin;
+  }
+  #settingsWrapper #settingsContent .clrinput {
+    height: 5vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--p3);
+  }
+  #settingsWrapper #settingsContent .clrinput code {
+    padding: 0.5vmin;
+    background: var(--ui1);
+    border: var(--outline) solid 1px;
+    border-radius: calc(var(--border-rad) / 4 * 3);
+    font-family: var(--font-monospace);
+    font-weight: thin;
+    font-size: 2.5vmin;
+    position: relative;
+  }
+  #settingsWrapper #settingsContent .clrinput code .clrinput_tooltip {
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.35s;
+    width: 30vmin;
+    background-color: var(--ui1);
+    color: var(--p2);
+    text-align: left;
+    text-wrap: wrap;
+    padding: 2vmin;
+    border: var(--outline) solid 1px;
+    font-size: 2.5vmin;
+    line-height: 3vmin;
+    border-radius: calc(var(--border-rad) / 4 * 3);
+    top: calc(100% + 0.5vmin);
+    left: 50%;
+    transform: translate(-50%, -1vmin);
+    position: absolute;
+    z-index: 120 !important;
+    font-family: var(--font) !important;
+  }
+  #settingsWrapper #settingsContent .clrinput code:hover .clrinput_tooltip,
+  #settingsWrapper #settingsContent .clrinput code .clrinput_tooltip:hover {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  #settingsWrapper #settingsContent .clrinput input[type=color] {
+    appearance: none;
+    border: none;
+    width: calc(4.5vmin + 2px);
+    height: calc(4.5vmin + 2px);
+    border-radius: calc(var(--border-rad) / 4 * 3);
+    background: transparent;
+    transition: 0.35s;
+    color-scheme: var(--color-scheme);
+    position: absolute;
+    left: calc(100% - 4.5vmin - 2vmin);
+  }
+  #settingsWrapper #settingsContent .clrinput input[type=color]:hover {
+    transform: scale(120%);
+  }
+  #settingsWrapper #settingsContent .clrinput input[type=color]::-webkit-color-swatch-wrapper {
+    padding: 1px;
+    background: var(--outline);
+  }
+  #settingsWrapper #settingsContent .clrinput input[type=color]::-webkit-color-swatch {
+    border: none;
+  }
+  #settingsWrapper #settingsContent h2 {
+    font-size: 4.5vmin;
+    color: var(--h2);
+    width: 100%;
+    margin: 2vmin 0;
+  }
+  #settingsWrapper #settingsContent h3 {
+    font-size: 3.5vmin;
+    color: var(--p1);
+    width: 100%;
+    margin: 0.5vmin 0;
+  }
+  #settingsWrapper #settingsContent ul {
+    margin: 1vmin;
+  }
+  #settingsWrapper #settingsContent ul li {
+    font-size: 3vmin;
+    color: var(--p3);
+    width: 100%;
+    margin: 0;
+    width: 100%;
+    text-wrap: wrap;
+  }
+  #settingsWrapper #settingsContent label {
+    font-size: 3vmin;
+    color: var(--p2);
+    margin: 0.35vmin 0;
+  }
+  #settingsWrapper #settingsContent label code, #settingsWrapper #settingsContent button code {
+    padding: 0.5vmin;
+    background: var(--ui1);
+    border: var(--outline) solid 1px;
+    border-radius: calc(var(--border-rad) / 4 * 3);
+    font-family: var(--font-monospace);
+    font-weight: thin;
+    font-size: 2.5vmin;
+    position: relative;
+  }
+  #settingsWrapper #settingsContent label .tooltip, #settingsWrapper #settingsContent button .tooltip {
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.35s;
+    width: 30vmin;
+    background-color: var(--ui1);
+    color: var(--p2);
+    text-align: left;
+    text-wrap: wrap;
+    padding: 2vmin;
+    border: var(--outline) solid 1px;
+    font-size: 2.5vmin;
+    line-height: 3vmin;
+    border-radius: calc(var(--border-rad) / 4 * 3);
+    left: calc(100% + 0.5vmin);
+    top: 50%;
+    transform: translate(-1vmin, -50%);
+    position: absolute;
+    z-index: 120;
+    font-family: var(--font) !important;
+  }
+  #settingsWrapper #settingsContent label .tooltip code, #settingsWrapper #settingsContent button .tooltip code {
+    font-size: 1.75vmin;
+  }
+  #settingsWrapper #settingsContent label:hover .tooltip,
+  #settingsWrapper #settingsContent label .tooltip:hover, #settingsWrapper #settingsContent button:hover .tooltip,
+  #settingsWrapper #settingsContent button .tooltip:hover {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+  #settingsWrapper #settingsContent .label_checkbox {
+    width: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+  }
+  #settingsWrapper #settingsContent .label_checkbox .checkmarkContainer {
+    display: flex;
+    aspect-ratio: 1/1;
+    width: 4.5vmin !important;
+    position: relative;
+    cursor: pointer;
+    font-size: 1rem;
+    user-select: none;
+  }
+  #settingsWrapper #settingsContent .label_checkbox .checkmarkContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  #settingsWrapper #settingsContent .label_checkbox .checkmarkContainer .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--ui4);
+    border-radius: calc(var(--border-rad) / 4 * 3);
+    transition: 0.35s;
+  }
+  #settingsWrapper #settingsContent .label_checkbox .checkmarkContainer .checkmark:after {
+    position: absolute;
+    display: none;
+    content: "✔" !important;
+    left: 50%;
+    top: 50%;
+    color: var(--h2);
+    font-size: 1rem;
+    transform: translate(-50%, -50%);
+  }
+  #settingsWrapper #settingsContent .label_checkbox .checkmarkContainer:hover input ~ .checkmark {
+    background: var(--h2);
+    transform: scale(105%);
+  }
+  #settingsWrapper #settingsContent .label_checkbox .checkmarkContainer input:checked ~ .checkmark {
+    background: var(--active);
+  }
+  #settingsWrapper #settingsContent .label_checkbox .checkmarkContainer input:checked ~ .checkmark:after {
+    display: block;
+  }
+  #settingsWrapper #settingsContent button {
+    padding: 2vmin;
+    width: 35vmin;
+    border-radius: var(--border-rad);
+    border: var(--outline) solid 1px;
+    background: var(--ui1);
+    color: var(--p1);
+    font-family: var(--font);
+    font-size: 2.5vmin;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  #settingsWrapper #settingsContent button:hover {
+    border-color: transparent;
+    background: var(--active);
+    color: var(--bg1);
+    transform: scale(105%);
+  }
+  #settingsWrapper #settingsContent select {
+    padding: 2vmin;
+    width: 35vmin;
+    border-radius: var(--border-rad);
+    border: var(--outline) solid 1px;
+    background: var(--ui1);
+    color: var(--p1);
+    font-family: var(--font);
+    font-size: 2.5vmin;
+    margin-top: 0.5vmin;
+    cursor: pointer;
+    transition: 0.35s;
+    outline: none;
+  }
 }
-#settingsWrapper #settingsSidebar {
-  height: 100%;
-  width: 32vmin;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  display: flex;
-  padding: 1rem;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  gap: 0.5vmin;
-}
-#settingsWrapper #settingsSidebar h1 {
-  font-size: 6vmin;
-  color: var(--h1);
-  width: 100%;
-  margin: 2vmin 0;
-  margin-bottom: 1vmin !important;
-}
-#settingsWrapper #settingsSidebar button {
-  width: 100%;
-  padding: 1vmin;
-  padding-top: 1.5vmin;
-  text-align: left;
-  border-radius: var(--border-rad);
-  background: transparent;
-  border: transparent 1px solid;
-  color: var(--p2);
-  font-size: 3vmin;
-  font-family: var(--font);
-  cursor: pointer;
-  transition: 0.35s;
-}
-#settingsWrapper #settingsSidebar button:hover {
-  background: var(--ui1);
-}
-#settingsWrapper #settingsSidebar button.sb_active {
-  background: var(--ui4);
-}
-#settingsWrapper #settingsSidebar button .i {
-  aspect-ratio: 1/1;
-}
-#settingsWrapper #taskScrollShade {
-  height: 5vmin;
-  width: 100%;
-  background: linear-gradient(180deg, transparent, var(--bg2));
-  z-index: 99;
-  position: absolute;
-  left: calc(64vmin + 30px + 2vmin);
-  transform: translateX(-50%);
-  bottom: 2.5vmin;
-  user-select: none;
-  pointer-events: none;
-  opacity: 1;
-  transition: 0.5s;
-}
-#settingsWrapper #taskScrollShadeTop {
-  height: 5vmin;
-  width: 78vmin;
-  background: linear-gradient(0deg, transparent, var(--bg2));
-  z-index: 99;
-  position: absolute;
-  left: calc(64vmin + 30px + 2vmin);
-  transform: translateX(-50%);
-  top: 2.5vmin;
-  user-select: none;
-  pointer-events: none;
-  opacity: 0;
-  transition: 0.5s;
-}
-#settingsWrapper #settingsContent {
-  height: calc(100% - 2rem);
-  width: calc(100% - 32vmin);
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  padding: 0 1rem;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-#settingsWrapper #settingsContent .experimental_settingswrapper {
-  padding: 2vmin;
-  width: 100%;
-  border: 1px solid var(--clr1);
-  border-radius: var(--border-rad);
-  position: relative;
-  padding-top: 5vmin;
-}
-#settingsWrapper #settingsContent .experimental_settingswrapper::after {
-  content: "";
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  border-radius: var(--border-rad);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -10 !important;
-  background-image: linear-gradient(115deg, var(--clr1), transparent);
-  opacity: 0.25;
-  pointer-events: none;
-}
-#settingsWrapper #settingsContent .experimental_settingswrapper::before {
-  content: "Experimental Settings! These probably barely work";
-  position: absolute;
-  top: 2vmin;
-  left: 2vmin;
-  font-size: 2vmin;
-  color: var(--clr1);
-}
-#settingsWrapper #settingsContent .danger_settingswrapper {
-  padding: 2vmin;
-  width: 100%;
-  border: 1px solid var(--clr1);
-  border-radius: var(--border-rad);
-  position: relative;
-  padding-top: 5vmin;
-}
-#settingsWrapper #settingsContent .danger_settingswrapper::after {
-  content: "";
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  border-radius: var(--border-rad);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -10 !important;
-  background-image: linear-gradient(115deg, var(--clr1), transparent);
-  opacity: 0.25;
-  pointer-events: none;
-}
-#settingsWrapper #settingsContent .danger_settingswrapper::before {
-  content: "Dangerous Settings! These probably do something major or will result in data loss";
-  position: absolute;
-  text-wrap: wrap;
-  top: 2vmin;
-  left: 2vmin;
-  font-size: 2vmin;
-  color: var(--clr1);
-}
-#settingsWrapper #settingsContent .caption {
-  width: 100%;
-  text-wrap: wrap;
-  color: var(--p3);
-  opacity: 0.75;
-  margin: 0;
-  padding: 0;
-  font-size: 2.5vmin;
-}
-#settingsWrapper #settingsContent .clrinput {
-  height: 5vmin;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  color: var(--p3);
-}
-#settingsWrapper #settingsContent .clrinput code {
-  padding: 0.5vmin;
-  background: var(--ui1);
-  border: var(--outline) solid 1px;
-  border-radius: calc(var(--border-rad) / 4 * 3);
-  font-family: var(--font-monospace);
-  font-weight: thin;
-  font-size: 2.5vmin;
-  position: relative;
-}
-#settingsWrapper #settingsContent .clrinput code .clrinput_tooltip {
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.35s;
-  width: 30vmin;
-  background-color: var(--ui1);
-  color: var(--p2);
-  text-align: left;
-  text-wrap: wrap;
-  padding: 2vmin;
-  border: var(--outline) solid 1px;
-  font-size: 2.5vmin;
-  line-height: 3vmin;
-  border-radius: calc(var(--border-rad) / 4 * 3);
-  top: calc(100% + 0.5vmin);
-  left: 50%;
-  transform: translate(-50%, -1vmin);
-  position: absolute;
-  z-index: 120 !important;
-  font-family: var(--font) !important;
-}
-#settingsWrapper #settingsContent .clrinput code:hover .clrinput_tooltip,
-#settingsWrapper #settingsContent .clrinput code .clrinput_tooltip:hover {
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-#settingsWrapper #settingsContent .clrinput input[type=color] {
-  appearance: none;
-  border: none;
-  width: calc(4.5vmin + 2px);
-  height: calc(4.5vmin + 2px);
-  border-radius: calc(var(--border-rad) / 4 * 3);
-  background: transparent;
-  transition: 0.35s;
-  color-scheme: var(--color-scheme);
-  position: absolute;
-  left: calc(100% - 4.5vmin - 2vmin);
-}
-#settingsWrapper #settingsContent .clrinput input[type=color]:hover {
-  transform: scale(120%);
-}
-#settingsWrapper #settingsContent .clrinput input[type=color]::-webkit-color-swatch-wrapper {
-  padding: 1px;
-  background: var(--outline);
-}
-#settingsWrapper #settingsContent .clrinput input[type=color]::-webkit-color-swatch {
-  border: none;
-}
-#settingsWrapper #settingsContent h2 {
-  font-size: 4.5vmin;
-  color: var(--h2);
-  width: 100%;
-  margin: 2vmin 0;
-}
-#settingsWrapper #settingsContent h3 {
-  font-size: 3.5vmin;
-  color: var(--p1);
-  width: 100%;
-  margin: 0.5vmin 0;
-}
-#settingsWrapper #settingsContent ul {
-  margin: 1vmin;
-}
-#settingsWrapper #settingsContent ul li {
-  font-size: 3vmin;
-  color: var(--p3);
-  width: 100%;
-  margin: 0;
-  width: 100%;
-  text-wrap: wrap;
-}
-#settingsWrapper #settingsContent label {
-  font-size: 3vmin;
-  color: var(--p2);
-  margin: 0.35vmin 0;
-}
-#settingsWrapper #settingsContent label code, #settingsWrapper #settingsContent button code {
-  padding: 0.5vmin;
-  background: var(--ui1);
-  border: var(--outline) solid 1px;
-  border-radius: calc(var(--border-rad) / 4 * 3);
-  font-family: var(--font-monospace);
-  font-weight: thin;
-  font-size: 2.5vmin;
-  position: relative;
-}
-#settingsWrapper #settingsContent label .tooltip, #settingsWrapper #settingsContent button .tooltip {
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.35s;
-  width: 30vmin;
-  background-color: var(--ui1);
-  color: var(--p2);
-  text-align: left;
-  text-wrap: wrap;
-  padding: 2vmin;
-  border: var(--outline) solid 1px;
-  font-size: 2.5vmin;
-  line-height: 3vmin;
-  border-radius: calc(var(--border-rad) / 4 * 3);
-  left: calc(100% + 0.5vmin);
-  top: 50%;
-  transform: translate(-1vmin, -50%);
-  position: absolute;
-  z-index: 120;
-  font-family: var(--font) !important;
-}
-#settingsWrapper #settingsContent label .tooltip code, #settingsWrapper #settingsContent button .tooltip code {
-  font-size: 1.75vmin;
-}
-#settingsWrapper #settingsContent label:hover .tooltip,
-#settingsWrapper #settingsContent label .tooltip:hover, #settingsWrapper #settingsContent button:hover .tooltip,
-#settingsWrapper #settingsContent button .tooltip:hover {
-  opacity: 1;
-  transform: translate(0, -50%);
-}
-#settingsWrapper #settingsContent .label_checkbox {
-  width: fit-content;
-  display: flex;
-  justify-content: flex-start;
-  position: relative;
-}
-#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer {
-  display: flex;
-  aspect-ratio: 1/1;
-  width: 4.5vmin !important;
-  position: relative;
-  cursor: pointer;
-  font-size: 1rem;
-  user-select: none;
-}
-#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--ui4);
-  border-radius: calc(var(--border-rad) / 4 * 3);
-  transition: 0.35s;
-}
-#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer .checkmark:after {
-  position: absolute;
-  display: none;
-  content: "✔" !important;
-  left: 50%;
-  top: 50%;
-  color: var(--h2);
-  font-size: 1rem;
-  transform: translate(-50%, -50%);
-}
-#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer:hover input ~ .checkmark {
-  background: var(--h2);
-  transform: scale(105%);
-}
-#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer input:checked ~ .checkmark {
-  background: var(--active);
-}
-#settingsWrapper #settingsContent .label_checkbox .checkmarkContainer input:checked ~ .checkmark:after {
-  display: block;
-}
-#settingsWrapper #settingsContent button {
-  padding: 2vmin;
-  width: 35vmin;
-  border-radius: var(--border-rad);
-  border: var(--outline) solid 1px;
-  background: var(--ui1);
-  color: var(--p1);
-  font-family: var(--font);
-  font-size: 2.5vmin;
-  cursor: pointer;
-  transition: 0.35s;
-}
-#settingsWrapper #settingsContent button:hover {
-  border-color: transparent;
-  background: var(--active);
-  color: var(--bg1);
-  transform: scale(105%);
-}
-#settingsWrapper #settingsContent select {
-  padding: 2vmin;
-  width: 35vmin;
-  border-radius: var(--border-rad);
-  border: var(--outline) solid 1px;
-  background: var(--ui1);
-  color: var(--p1);
-  font-family: var(--font);
-  font-size: 2.5vmin;
-  margin-top: 0.5vmin;
-  cursor: pointer;
-  transition: 0.35s;
-  outline: none;
+@media (orientation: portrait) {
+  #settingsWrapper {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5vmin;
+    font-family: var(--font);
+  }
+  #settingsWrapper #settingsSidebar {
+    display: none;
+  }
+  #settingsWrapper #taskScrollShade {
+    height: 5vmin;
+    width: 100%;
+    background: linear-gradient(180deg, transparent, var(--bg2));
+    z-index: 99;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    user-select: none;
+    pointer-events: none;
+    opacity: 1;
+    transition: 0.5s;
+  }
+  #settingsWrapper h2 {
+    font-size: 6.5vmin;
+    color: var(--h2);
+    width: 100%;
+    margin: 2vmin 0;
+  }
+  #settingsWrapper h3 {
+    font-size: 5vmin;
+    color: var(--p1);
+    width: 100%;
+    margin: 1vmin 0;
+  }
+  #settingsWrapper ul {
+    margin: 1vmin;
+  }
+  #settingsWrapper ul li {
+    font-size: 3.5vmin;
+    color: var(--p3);
+    width: 100%;
+    margin: 0;
+    width: 100%;
+    text-wrap: wrap;
+  }
+  #settingsWrapper label {
+    font-size: 3.5vmin;
+    color: var(--p2);
+    margin: 0.35vmin 0;
+  }
+  #settingsWrapper label, #settingsWrapper button {
+    font-size: 4vmin;
+  }
+  #settingsWrapper label .tooltip, #settingsWrapper button .tooltip {
+    display: none;
+  }
+  #settingsWrapper .label_checkbox {
+    width: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+  }
+  #settingsWrapper .label_checkbox .checkmarkContainer {
+    display: flex;
+    aspect-ratio: 1/1;
+    width: 6.5vmin !important;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+  }
+  #settingsWrapper .label_checkbox .checkmarkContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  #settingsWrapper .label_checkbox .checkmarkContainer .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--ui4);
+    border-radius: calc(var(--border-rad) / 4 * 3);
+    transition: 0.35s;
+  }
+  #settingsWrapper .label_checkbox .checkmarkContainer .checkmark:after {
+    position: absolute;
+    display: none;
+    content: "✔" !important;
+    left: 50%;
+    top: 50%;
+    color: var(--h2);
+    font-size: 3vmin;
+    transform: translate(-50%, -50%);
+  }
+  #settingsWrapper .label_checkbox .checkmarkContainer:active input ~ .checkmark {
+    background: var(--h2);
+    transform: scale(105%);
+  }
+  #settingsWrapper .label_checkbox .checkmarkContainer input:checked ~ .checkmark {
+    background: var(--active);
+  }
+  #settingsWrapper .label_checkbox .checkmarkContainer input:checked ~ .checkmark:after {
+    display: block;
+  }
+  #settingsWrapper button {
+    padding: 3vmin 2.5vmin;
+    width: 45vmin;
+    border-radius: var(--border-rad);
+    border: var(--outline) solid 1px;
+    background: var(--ui1);
+    color: var(--p1);
+    font-family: var(--font);
+    font-size: 3.5vmin;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  #settingsWrapper button:hover {
+    border-color: transparent;
+    background: var(--active);
+    color: var(--bg1);
+    transform: scale(105%);
+  }
+  #settingsWrapper select {
+    padding: 3vmin 2.5vmin;
+    width: 45vmin;
+    border-radius: var(--border-rad);
+    border: var(--outline) solid 1px;
+    background: var(--ui1);
+    color: var(--p1);
+    font-family: var(--font);
+    font-size: 3.5vmin;
+    margin-top: 1vmin;
+    cursor: pointer;
+    transition: 0.35s;
+    outline: none;
+  }
+  #settingsWrapper #taskScrollShadeTop {
+    height: 5vmin;
+    width: 100%;
+    background: linear-gradient(0deg, transparent, var(--bg2));
+    z-index: 99;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  #settingsWrapper #settingsContent {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 6.5vmin;
+    padding-top: 16vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* .caption {
+        width: 100%;
+        text-wrap: wrap;
+        color: $p3;
+        opacity: .75;
+        margin: 0;
+        padding: 0;
+        font-size: 2.5vmin;
+    } */
+  }
+  #settingsWrapper #settingsContent::before {
+    content: "Settings";
+    position: absolute;
+    top: 5vmin;
+    left: 5vmin;
+    width: 100%;
+    height: fit-content;
+    font-size: 10vmin;
+    color: var(--h1);
+    font-weight: bold;
+  }
+  #settingsWrapper #settingsContent .experimental_settingswrapper {
+    padding: 2.5vmin 2vmin;
+    width: 100%;
+    border: 0.25vmin solid var(--clr1);
+    border-radius: var(--border-rad);
+    position: relative;
+    padding-top: 5vmin;
+  }
+  #settingsWrapper #settingsContent .experimental_settingswrapper::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border-radius: var(--border-rad);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -10 !important;
+    background-image: linear-gradient(115deg, var(--clr1), transparent);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  #settingsWrapper #settingsContent .experimental_settingswrapper::before {
+    content: "Experimental Settings! These probably barely work";
+    position: absolute;
+    top: 1.5vmin;
+    left: 1.5vmin;
+    font-size: 3vmin;
+    color: var(--clr1);
+    text-wrap: wrap;
+  }
+  #settingsWrapper #settingsContent .danger_settingswrapper {
+    padding: 2.5vmin 2vmin;
+    width: 100%;
+    border: 0.25vmin solid var(--clr1);
+    border-radius: var(--border-rad);
+    position: relative;
+    padding-top: 8vmin;
+  }
+  #settingsWrapper #settingsContent .danger_settingswrapper::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border-radius: var(--border-rad);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -10 !important;
+    background-image: linear-gradient(115deg, var(--clr1), transparent);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  #settingsWrapper #settingsContent .danger_settingswrapper::before {
+    content: "Dangerous Settings! These probably do something major or will result in data loss";
+    position: absolute;
+    top: 1.5vmin;
+    left: 1.5vmin;
+    font-size: 3vmin;
+    color: var(--clr1);
+    text-wrap: wrap;
+  }
+  #settingsWrapper #settingsContent .clrinput {
+    height: 10vmin;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--p3);
+    font-size: 3.5vmin;
+  }
+  #settingsWrapper #settingsContent .clrinput .clrinput_tooltip {
+    display: none;
+  }
+  #settingsWrapper #settingsContent .clrinput code {
+    padding: 1vmin;
+    background: var(--ui1);
+    border: var(--outline) solid 1px;
+    border-radius: calc(var(--border-rad) / 4 * 3);
+    font-family: var(--font-monospace);
+    font-weight: thin;
+    font-size: 3.5vmin;
+    position: relative;
+  }
+  #settingsWrapper #settingsContent .clrinput input[type=color] {
+    appearance: none;
+    border: none;
+    width: calc(9.5vmin + 2px);
+    height: calc(9.5vmin + 2px);
+    border-radius: var(--border-rad);
+    background: transparent;
+    transition: 0.35s;
+    color-scheme: var(--color-scheme);
+    position: absolute;
+    left: calc(100% - 9.5vmin - 2vmin);
+  }
+  #settingsWrapper #settingsContent .clrinput input[type=color]:hover {
+    transform: scale(120%);
+  }
+  #settingsWrapper #settingsContent .clrinput input[type=color]::-webkit-color-swatch-wrapper {
+    padding: 1px;
+    background: var(--outline);
+  }
+  #settingsWrapper #settingsContent .clrinput input[type=color]::-webkit-color-swatch {
+    border: none;
+  }
 }/*# sourceMappingURL=settings.css.map */
