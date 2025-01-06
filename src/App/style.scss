@@ -2,6 +2,12 @@
 @import "./themes/default_dark.scss";
 @import "./themes/default_light.scss";
 @import "./themes/sharp_dark.scss";
+// global styling
+a {
+    font-weight: bolder;
+    text-decoration: none;
+    color: $active;
+}
 //-----------------
 @media (orientation: landscape) {
     #titlebar {

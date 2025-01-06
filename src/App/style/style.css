@@ -239,6 +239,12 @@
   border: 1px var(--outline) solid;
 }
 
+a {
+  font-weight: bolder;
+  text-decoration: none;
+  color: var(--active);
+}
+
 @media (orientation: landscape) {
   #titlebar {
     height: 35px;
